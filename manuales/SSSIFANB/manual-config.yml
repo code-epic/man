@@ -1,0 +1,44 @@
+manual:
+  nombre: "SSSIFANB - Sistema de Seguridad Social de la Fuerza Armada Nacional Bolivariana"
+  version: "1.0.0"
+  autor: "Carlos Peña"
+  fecha: "2026-03-18"
+  entorno: "sandra_ecosystem"
+
+estructura:
+  portada: true
+  preliminares:
+    - presentacion
+    - glosario
+  capitulos:
+    - introduccion
+    - inicio-sesion
+    - afiliacion
+    - tarjeta-tim
+    - prestaciones
+    - nomina-pensionados
+    - configuracion
+  anexos: true
+  glosario: true
+  referencias: false
+
+metadatos:
+  paleta: "sandra-teal"
+  fuentes:
+    principal: "Inter"
+    codigo: "FiraCode"
+  iconos: true
+  logo: "../../assets/logos/sandra.png"
+
+build:
+  motor: "xelatex"
+  opciones:
+    - "-interaction=nonstopmode"
+    - "-shell-escape"
+  salida: "SSSIFANB - Manual de Usuario.pdf"
+
+informacion:
+  institucion: "Instituto de Previsión Social de la Fuerza Armada Nacional Bolivariana"
+  siglas: "IPSFANB"
+  modulo_principal: "Afiliación"
+  version_sistema: "2.0"

@@ -1,0 +1,97 @@
+%======================================================================
+% CAPÍTULO 13 - MODELO DE DATOS
+%======================================================================
+\chapter{Modelo de Datos}
+
+\bigskip
+
+El modelo de datos de Sentinel define las entidades fundamentales que representan la información de nómina. Este capítulo describe cada entidad y sus relaciones.
+
+\bigskip
+
+\section{Entidades Principales}
+
+El sistema trabaja con tres entidades fundamentales que se fusionan para crear un Expediente Digital Completo (Beneficiario):
+
+\bigskip
+
+\begin{enumerate}
+    \item Entidad Base (The Blueprint): Información estructural del afiliado.
+    \item Entidad Movimiento (Movements): Estado transaccional dinámico.
+    \item Directivas (The Ruleset): Tablas maestras con reglas salariales.
+\end{enumerate}
+
+\bigskip
+
+\section{Entidad Beneficiario}
+
+Beneficiario: Entidad central que representa un afiliado militar. Contiene la información de identificación, relaciones con Base y Movimientos, y todos los campos calculados.
+
+\bigskip
+
+La estructura Beneficiario contiene: cedula (identificador único), nombres, apellidos, componente\_id, patterns (clave de fusión), numero\_cuenta, base (datos estructurales), y movimientos (datos financieros).
+
+\bigskip
+
+\section{Entidad Base}
+
+Base: Información estructural del afiliado que contiene los datos invariables: grado, componente, fechas de ingreso y ascenso, antigüedad calculada.
+
+\bigskip
+
+La estructura Base contiene: patterns (clave primaria de búsqueda), grado\_id, componente\_id, fecha\_ingreso, f\_ult\_ascenso, antiguedad (tiempo de servicio calculado en días), antiguedad\_grado (tiempo en el grado actual), st\_no\_ascenso, st\_profesion, sueldo\_base, calculos (primas), garantia\_original, garantia\_anticipo, factor\_aplicado.
+
+\bigskip
+
+\section{Entidad Movimiento}
+
+Movimiento: Estado transaccional dinámico que representa las operaciones financieras del beneficiario: cuentas bancarias, pasivos, y variaciones monetarias.
+
+\bigskip
+
+La estructura Movimiento contiene: cedula (clave de búsqueda), cap\_banco (capital en banco), anticipo, dep\_adicional, dep\_garantia.
+
+\bigskip
+
+\section{Entidades de Directivas}
+
+Las directivas son las reglas salariales que determinan los cálculos:
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{llp{8cm}}
+\toprule
+\textbf{Entidad} & \textbf{Descripción} \\
+\midrule
+PrimasFunciones & Funciones de prima con fórmulas Rhai, parámetros, condiciones \\
+Directiva & Tabla de sueldos base por grado y antigüedad \\
+Conceptos & Conceptos de nómina: códigos, descripciones, tipos \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section{Relaciones entre Entidades}
+
+Las relaciones entre entidades son las siguientes:
+
+\begin{itemize}
+    \item Beneficiario tiene una relación 1:1 con Base.
+    \item Beneficiario tiene una relación 1:N con Movimientos.
+    \item Base tiene una relación 1:N con Directiva.
+\end{itemize}
+
+\bigskip
+
+\section{Flujo de Datos}
+
+El flujo de datos sigue un patrón de procesamiento en pipeline:
+
+\[
+\text{Entrada (gRPC)} \rightarrow \text{Deserialización} \rightarrow \text{Cálculo} \rightarrow \text{Fusión} \rightarrow \text{Exportación}
+\]
+
+\vfill
+\newpage

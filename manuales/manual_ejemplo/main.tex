@@ -1,0 +1,53 @@
+%======================================================================
+% MANUAL: Manual Ejemplo
+% Version: 1.0.0
+% Autor: Carlos Pena
+% Generado con SandraManuals Framework
+%======================================================================
+
+\documentclass[11pt,oneside,openright,spanish,letterpaper]{book}
+
+% Estilos Sandra
+\usepackage{estilos/sandra-estilos}
+
+% Metadatos
+\hypersetup{
+    pdftitle={Manual Ejemplo},
+    pdfauthor={Carlos Pena},
+    pdfsubject={Manual de prueba},
+    pdfkeywords={Sandra, Manual}
+}
+
+\begin{document}
+
+% Portada
+\newgeometry{margin=0cm}
+\input{portada}
+\restoregeometry
+
+% Preliminares
+\frontmatter
+\pagenumbering{roman}
+
+% Indices
+\tableofcontents
+\listoffigures
+\listoftables
+
+% Contenido principal
+\mainmatter
+\pagenumbering{arabic}
+
+% Capitulos
+\input{capitulos/00-introduccion}
+\input{capitulos/01-instalacion}
+\input{capitulos/03-dashboard}
+
+% Anexos
+\appendix
+\input{anexos/anexos}
+
+\backmatter
+\printindex
+
+\end{document}

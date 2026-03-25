@@ -1,0 +1,198 @@
+%======================================================================
+% SANDRA ESTILOS - Paquete de estilos unificado para SandraManuals
+% Autor: Carlos Peña
+% Versión: 1.0.0
+%======================================================================
+
+\ProvidesPackage{sandra-estilos}[2026/03/05 v1.0.0 Estilos unificados SandraManuals]
+
+%----------------------------------------------------------------------
+% PAQUETES BASE
+%----------------------------------------------------------------------
+\usepackage{iftex}
+\ifPDFTeX
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{mathpazo}
+\else
+    \usepackage{fontspec}
+\fi
+
+\usepackage[
+    margin=2.5cm,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+]{geometry}
+
+\usepackage{graphicx}
+\usepackage{fontawesome5}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{emptypage}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{makeidx}
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{lettrine}
+\usepackage{epigraph}
+\usepackage{microtype}
+\usepackage{eso-pic}
+\usepackage{tikz}
+\usetikzlibrary{calc, shapes.geometric, backgrounds, shadows.blur, positioning, arrows.meta}
+
+\usepackage[spanish]{babel}
+
+%----------------------------------------------------------------------
+% PALETA DE COLORES UNIVERSAL (Combinación de ambos proyectos)
+%----------------------------------------------------------------------
+\definecolor{sandraDark}{HTML}{2D5A4A}
+\definecolor{sandraGreen}{HTML}{4CAF93}
+\definecolor{sandraLight}{HTML}{B2E0D0}
+\definecolor{sandraAccent}{HTML}{66BB6A}
+\definecolor{sandraSoft}{HTML}{F5FAF8}
+\definecolor{sandraGray}{HTML}{616161}
+\definecolor{textDark}{HTML}{263238}
+\definecolor{textLight}{HTML}{78909C}
+\definecolor{primary}{HTML}{455A64}
+\definecolor{secondary}{HTML}{90A4AE}
+\definecolor{accent}{HTML}{66BB6A}
+\definecolor{teallight}{HTML}{F4F6F8}
+\definecolor{tealpastel}{HTML}{E8F5E9}
+\definecolor{textdark}{HTML}{2D3E4E}
+
+%----------------------------------------------------------------------
+% CONFIGURACIÓN DE FUENTES
+%----------------------------------------------------------------------
+\ifPDFTeX
+    % Usar fuentes del sistema para PDFTeX
+\else
+    \setmainfont{Inter}[
+        Path = ../../assets/fonts/,
+        Extension = .otf,
+        UprightFont = *-Regular,
+        BoldFont = *-Bold,
+        ItalicFont = *-Regular,
+        ItalicFeatures = {FakeSlant=0.2},
+        BoldItalicFont = *-Bold,
+        BoldItalicFeatures = {FakeSlant=0.2}
+    ]
+\fi
+
+%----------------------------------------------------------------------
+% HYPERREF
+%----------------------------------------------------------------------
+\usepackage[
+    spanish,
+    bookmarks=true,
+    colorlinks=true,
+    linkcolor=sandraDark,
+    citecolor=sandraDark,
+    urlcolor=sandraGreen,
+    pdfcreator={LaTeX - SandraManuals Framework},
+    pdfproducer={XeLaTeX}
+]{hyperref}
+
+%----------------------------------------------------------------------
+% CONFIGURACIÓN DE PÁGINAS
+%----------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\textcolor{sandraDark}{\small\nouppercase{\rightmark}}}
+\fancyhead[L]{\textcolor{sandraGray}{\small Manual Técnico}}
+\fancyfoot[C]{%
+    \begin{tikzpicture}[remember picture, overlay]
+        \path[fill=secondary, opacity=0.15] 
+            (current page.south west) .. controls ++(5cm, 3.5cm) and ++(-5cm, -1.5cm) .. (current page.south east) -- cycle;
+        \path[fill=primary, opacity=0.12] 
+            (current page.south west) .. controls ++(7cm, -1.5cm) and ++(-3cm, 3.5cm) .. (current page.south east) -- cycle;
+    \end{tikzpicture}%
+    \textbf{\textcolor{textLight}{\thepage}}%
+}
+\fancyfoot[R]{\textcolor{sandraGreen}{\textit{Sandra Platform}}}
+
+\geometry{headsep=1cm, footskip=1.5cm, headheight=32pt}
+
+%----------------------------------------------------------------------
+% TÍTULOS
+%----------------------------------------------------------------------
+\titleformat{\chapter}[display]
+    {\normalfont\Large\bfseries\color{sandraDark}}
+    {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+\titleformat{\section}
+    {\normalfont\large\bfseries\color{sandraDark}}
+    {\thesection}{15pt}{\large}
+
+\titleformat{\subsection}
+    {\normalfont\normalsize\bfseries\color{sandraGreen}}
+    {\thesubsection}{10pt}{\normalsize}
+
+%----------------------------------------------------------------------
+% LISTINGS (CÓDIGO)
+%----------------------------------------------------------------------
+\lstset{
+    backgroundcolor=\color{sandraSoft},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{sandraDark},
+    stringstyle=\color{sandraGreen},
+    commentstyle=\color{textLight},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    frame=single,
+    framesep=2pt,
+    framerule=0.5pt,
+    rulecolor=\color{sandraGreen},
+    breaklines=true
+}
+
+%----------------------------------------------------------------------
+% COMANDOS PERSONALIZADOS
+%----------------------------------------------------------------------
+\newcommand{\capitulo}[1]{\chapter{#1}}
+\newcommand{\seccion}[1]{\section{#1}}
+\newcommand{\subseccion}[1]{\subsection{#1}}
+\newcommand{\notacientifica}[1]{%
+    \vspace{1em}
+    \noindent\textbf{\textcolor{sandraDark}{Nota Técnica:}} \textit{\textcolor{textLight}{#1}}
+    \vspace{1em}
+}
+
+\newenvironment{definicion}
+{\begin{trivlist}\item[\hskip \labelsep \textbf{Definición: }]}
+{\end{trivlist}}
+
+\newenvironment{caja}[1]
+{\begin{trivlist}\item[\hskip \labelsep \textbf{#1: }]}
+{\end{trivlist}}
+
+\newcommand{\techref}[2]{\textcolor{sandraDark}{\textbf{#1}}}
+\newcommand{\keyconcept}[1]{\textbf{\color{sandraDark}#1}}
+
+%----------------------------------------------------------------------
+% CONFIGURACIÓN DE ESPACIOS
+%----------------------------------------------------------------------
+\setstretch{1.4}
+\renewcommand{\arraystretch}{1.4}
+\setlength{\tabcolsep}{10pt}
+
+%----------------------------------------------------------------------
+% ÍNDICE
+%----------------------------------------------------------------------
+\makeindex
+
+\endinput

@@ -1,0 +1,343 @@
+%======================================================================
+% CAPÍTULO 06: MÓDULO DE CONFIGURACIÓN
+%======================================================================
+% Parámetros del sistema, tasas BCV y directivas
+%======================================================================
+
+\chapter{Módulo de Configuración}
+\label{ch:configuracion}
+
+\section{Descripción General}
+
+El Módulo de Configuración permite la administración de los parámetros generales del sistema SSSIFANB. Este módulo está restringido a usuarios con rol de administrador y contiene las opciones necesarias para mantener el correcto funcionamiento de la plataforma.
+
+\section{Submódulos Disponibles}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Parámetros}: Variables globales del sistema
+    \item \textbf{Tasa BCV}: Cotización del dólar oficial
+    \item \textbf{Directivas}: Gestión de documentos normativos
+    \item \textbf{Auth Data}: Configuración de seguridad
+\end{itemize}
+
+\section{Parámetros del Sistema}
+
+\subsection*{Variables Globales}
+
+\begin{longtable}{p{4cm}p{8cm}}
+\toprule
+\textbf{Parámetro} & \textbf{Descripción} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Parámetros del sistema}
+\label{tab:parametros}
+\endlastfoot
+
+\textbf{Tasa de Aporte} & Porcentaje de cotización mensual obligatoria \\
+\textbf{Tope de Anticipo} & Límite máximo de anticipo permitted \\
+\textbf{Porcentaje Fondo Social} & Asignación para programas sociales \\
+\textbf{Interés Fideicomiso} & Tasa de rendimiento anual del fideicomiso \\
+\textbf{Fecha de Cierre} & Día de corte para procesamiento de nómina \\
+\end{longtable}
+
+\subsection*{Cron Operativo Transversal (Homologación - Art. 39)}
+
+Es vital para el sistema codificar que las actualizaciones ejecutadas sobre Parámetros detonen transaccionalmente un proceso de actualización sobre los expedientes del módulo \emph{Pensionados y Retroactivos}, dado que legalmente, toda pensión es equivalente al alza real activa de forma inmediata sin esperar comprobación extra.
+
+\begin{lstlisting}[language=Java, caption=Trigger de Homologación Salarial]
+function actualizarSueldoBaseDecreto(nuevoSueldoGeneral) {
+    // Al guardarse el parametro de aumento, el CRON actualiza los expedientes 
+    // sin requerir validaciones burocraticas manuales (Art. 39).
+    triggerActualizacionMasiva({
+        moduloDestino: 'Pensionados_Retroactivos',
+        action: 'EQUIPARAR_ESCALA_EXPRESS',
+        newBase: nuevoSueldoGeneral
+    });
+}
+\end{lstlisting}
+
+\subsection*{Edición de Parámetros}
+
+Para modificar un parámetro:
+
+\begin{enumerate}[leftmargin=*]
+    \item Seleccionar \textbf{Parámetros} en el menú
+    \item Buscar el parámetro a modificar
+    \item Ingresar el nuevo valor
+    \item Justificar el cambio en el campo de observaciones
+    \item Hacer clic en \textbf{Guardar Cambios}
+    \item Confirmar la acción en el diálogo de seguridad
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\begin{tcolorbox}[
+    enhanced,
+    colback=sandraSoft,
+    colframe=sandraAccent,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Advertencia}\\
+\smallskip
+Los cambios en los parámetros del sistema afectan directamente los cálculos de nómina y prestaciones. Asegúrese de verificar la información antes de guardar y documente cualquier modificación para auditoría.
+\end{tcolorbox}
+\end{figure}
+
+\section{Tasa del Banco Central de Venezuela}
+
+\subsection*{Gestión de Tasas}
+
+El sistema permite consultar y registrar la tasa oficial del BCV para conversiones monetarias:
+
+\begin{figure}[H]
+\centering
+\begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=sandraDark,
+    width=0.85\textwidth,
+    halign=center
+]
+\begin{tabular}{lr}
+\toprule
+\textbf{Parámetro} & \textbf{Valor} \\
+\midrule
+Moneda Base & Bolívar (VES) \\
+Moneda Extranjera & Dólar (USD) \\
+Tasa BCV Actual & \$\$85,25 por USD \\
+Fecha de Actualización & 15/03/2026 \\
+Hora de Actualización & 10:00 AM \\
+\midrule
+\textbf{Última Compra} & \$\$85,18 \\
+\textbf{Última Venta} & \$\$85,32 \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+\caption{Tasa BCV actual}
+\label{fig:tasa-bcv}
+\end{figure}
+
+\subsection*{Sincronización Automática}
+
+\begin{itemize}[leftmargin=*]
+    \item El sistema puede configurarse para sincronizar automáticamente la tasa
+    \item La actualización se realiza mediante conexión con el API del BCV
+    \item Se mantiene registro histórico de todas las tasas aplicadas
+    \item Las conversiones usan la tasa del día de procesamiento
+\end{itemize}
+
+\section{Directivas PDF}
+
+\subsection*{Gestión de Documentos}
+
+Este submódulo permite cargar y administrar los documentos normativos del sistema:
+
+\begin{figure}[H]
+\begin{tcolorbox}[
+    enhanced,
+    colback=sandraSoft,
+    colframe=sandraDark,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Tipos de Directivas}\\
+\smallskip
+\begin{itemize}
+    \item Leyes y reglamentos
+    \item Circulares ministeriales
+    \item Resoluciones internas
+    \item Instructivos operativos
+    \item Formatos oficiales
+\end{itemize}
+\end{tcolorbox}
+\end{figure}
+
+\subsection*{Cargar Nueva Directriz}
+
+\begin{enumerate}[leftmargin=*]
+    \item Seleccionar \textbf{Directivas} en el menú
+    \item Hacer clic en \textbf{Agregar Directriz}
+    \item Completar los metadatos:
+    \begin{itemize}
+        \item Número de documento
+        \item Título
+        \item Fecha de vigencia
+        \item Categoría
+        \item Descripción
+    \end{itemize}
+    \item Adjuntar archivo PDF
+    \item Hacer clic en \textbf{Guardar}
+\end{enumerate}
+
+\subsection*{Especificaciones de Archivos}
+
+\begin{longtable}{p{3cm}p{9cm}}
+\toprule
+\textbf{Parámetro} & \textbf{Especificación} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Especificaciones para carga de directivas}
+\label{tab:especificaciones-directivas}
+\endlastfoot
+
+\textbf{Formato} & PDF exclusivamente \\
+\textbf{Tamaño máximo} & 25 MB \\
+\textbf{Resolución} & Mínimo 150 DPI para legibilidad \\
+\textbf{Nomenclatura} & \texttt{TIPO\_NUMERO\_AÑO.pdf} \\
+\end{longtable}
+
+\section{Auth Data (Seguridad)}
+
+\subsection*{Configuración de Autenticación}
+
+Este submódulo gestiona los parámetros de seguridad del ecosistema:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Habilitar/Deshabilitar 2FA}: Control global de autenticación de dos factores
+    \item \textbf{Método TOTP}: Configuración del tiempo de validez de códigos
+    \item \textbf{Límite de intentos}: Número máximo de intentos de login fallidos
+    \item \textbf{Tiempo de bloqueo}: Duración del bloqueo por intentos excesivos
+    \item \textbf{Vencimiento de sesión}: Tiempo máximo de inactividad
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\begin{tcolorbox}[
+    enhanced,
+    colback=sandraSoft,
+    colframe=sandraGreen,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Seguridad del Sistema}\\
+\smallskip
+El SSSIFANB implementa múltiples capas de seguridad incluyendo encriptación HMAC SHA256 para contraseñas, tokens JWT con expiración configurable, y autenticación de dos factores mediante códigos TOTP. Los cambios en esta configuración deben ser realizados por personal autorizado.
+\end{tcolorbox}
+\end{figure}
+
+\section{Logs de Auditoría}
+
+El sistema mantiene un registro de todas las modificaciones realizadas:
+
+\begin{longtable}{p{3cm}p{3cm}p{3cm}p{4cm}}
+\toprule
+\textbf{Fecha} & \textbf{Hora} & \textbf{Usuario} & \textbf{Acción} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Ejemplo de log de auditoría}
+\label{tab:log-auditoria}
+\endlastfoot
+
+15/03/2026 & 09:45 & admin\_ipsfa & Modificó Tasa de Aporte \\
+15/03/2026 & 10:12 & admin\_ipsfa & Cargó Directiva N° 2854 \\
+15/03/2026 & 11:30 & admin\_ipsfa & Habilitó 2FA global \\
+16/03/2026 & 08:00 & admin\_ipsfa & Actualizó tasa BCV \\
+\end{longtable}
+
+\section{Bitácora de Cambios}
+
+\begin{enumerate}[leftmargin=*]
+    \item Seleccionar \textbf{Ver Bitácora} en cualquier submódulo
+    \item Filtrar por período, usuario o tipo de acción
+    \item Exportar reporte en PDF o Excel
+    \item Consultar detalles de cada modificación
+\end{enumerate}
+
+\begin{figure}[H]
+\begin{tcolorbox}[
+    enhanced,
+    colback=sandraSoft,
+    colframe=sandraDark,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Retención de Logs}\\
+\smallskip
+Los registros de auditoría se mantienen durante 5 años según las políticas de retención de datos del IPSFANB. Los logs pueden ser solicitados por organismos de control en cualquier momento.
+\end{tcolorbox}
+\end{figure}
+
+\section{Respaldo y Restauración}
+
+\subsection*{Respaldo de Base de Datos}
+
+El administrador puede generar respaldos de la base de datos:
+
+\begin{enumerate}[leftmargin=*]
+    \item Acceder a \textbf{Configuración > Respaldo}
+    \item Seleccionar el tipo de respaldo:
+    \begin{itemize}
+        \item Completo: Toda la base de datos
+        \item Parcial: Solo tablas seleccionadas
+    \end{itemize}
+    \item Hacer clic en \textbf{Generar Respaldo}
+    \item Descargar el archivo de respaldo generado
+    \item Almacenar en ubicación segura
+\end{enumerate}
+
+\subsection*{Restauración}
+
+\begin{enumerate}[leftmargin=*]
+    \item Acceder a \textbf{Configuración > Restauración}
+    \item Seleccionar el archivo de respaldo
+    \item Verificar integridad del archivo
+    \item Confirmar la restauración
+    \item Esperar proceso de importación
+    \item Validar datos restaurados
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\begin{tcolorbox}[
+    enhanced,
+    colback=sandraSoft,
+    colframe=sandraAccent,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Advertencia de Restauración}\\
+\smallskip
+La restauración de datos reemplaza la información actual. Este proceso debe realizarse únicamente en casos de contingencia y requiere confirmación escrita del director del IPSFANB.
+\end{tcolorbox}
+\end{figure}
+
+\section{Usuarios y Permisos}
+
+\subsection*{Gestión de Usuarios}
+
+\begin{longtable}{p{3cm}p{9cm}}
+\toprule
+\textbf{Acción} & \textbf{Descripción} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Operaciones de gestión de usuarios}
+\label{tab:gestion-usuarios}
+\endlastfoot
+
+\textbf{Crear Usuario} & Agregar nuevo usuario al sistema \\
+\textbf{Modificar Usuario} & Cambiar datos o permisos \\
+\textbf{Desactivar Usuario} & Suspender acceso sin eliminar \\
+\textbf{Eliminar Usuario} & Remover usuario del sistema \\
+\textbf{Resetear Clave} & Forzar cambio de contraseña \\
+\end{longtable}
+
+\subsection*{Roles Disponibles}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Administrador}: Acceso total al sistema
+    \item \textbf{Operador}: Gestión de solicitudes
+    \item \textbf{Consulta}: Solo lectura de información
+    \item \textbf{Afiliado}: Acceso a datos propios
+\end{itemize}
+
+\newpage

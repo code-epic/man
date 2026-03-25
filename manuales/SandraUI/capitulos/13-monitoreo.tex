@@ -1,0 +1,79 @@
+%======================================================================
+% MONITOREO
+%======================================================================
+
+\chapter{Monitoreo}
+
+El módulo de monitoreo proporciona visibilidad profunda del estado del sistema, permitiendo a los administradores mantener el control sobre la infraestructura y responder rápidamente a cualquier anomalía.
+
+\section{Dashboard}
+
+El dashboard de monitoreo presenta una vista consolidada de todas las métricas relevantes del sistema:
+
+\begin{itemize}
+    \item Uso de CPU y memoria
+    \item Conexiones activas
+    \item Tráfico de red
+    \item Estado de servicios
+    \item Alertas pendientes
+\end{itemize}
+
+La monitorización proactiva permite detectar anomalías antes de que impacten a los usuarios, reduciendo el tiempo de inactividad no planificado.
+
+\section{Métricas en Tiempo Real}
+
+El sistema recopila y displaying métricas en tiempo real:
+
+\begin{itemize}
+    \item \textbf{Latencia}: Tiempo de respuesta de cada componente
+    \item \textbf{Throughput}: Volumen de transacciones por segundo
+    \item \textbf{Errores}: Tasa de errores y excepciones
+    \item \textbf{Disponibilidad}: Porcentaje de tiempo operativo
+\end{itemize}
+
+\section{Heartbeat y Latencia}
+
+\begin{itemize}
+\item \textbf{Detección en Tiempo Real}: Monitoreo continuo de la latencia entre nodos del clúster y clientes.
+\item \textbf{Alertas Automáticas}: Notificaciones ante degradaciones de servicio que excedan umbrales configurados.
+\item \textbf{Histórico de Métricas}: Almacenamiento de datos históricos para análisis de tendencias.
+\end{itemize}
+
+La monitorización proactiva permite detectar anomalías antes de que impacten a los usuarios, reduciendo el tiempo de inactividad no planificado.
+
+\section{Análisis de Tráfico}
+
+El módulo de análisis de tráfico proporciona:
+
+\begin{itemize}
+\item \textbf{Visualización de Métricas}: Gráficos en tiempo real del tráfico de red.
+\item \textbf{Identificación de Cuellos de Botella}: Detección de puntos de congestión en la transferencia de datos.
+\item \textbf{Integración gRPC}: Métricas específicas del protocolo de alto rendimiento.
+\end{itemize}
+
+El análisis de tráfico permite optimizar el rendimiento de la red identificando patrones de uso y potenciales cuellos de botella.
+
+\section{Salud de Nodos}
+
+El sistema supervisa constantemente el estado de los servicios backend:
+
+\begin{itemize}
+\item \textbf{Estado de Sandra Server}: Disponibilidad y rendimiento del middleware.
+\item \textbf{Balanceo de Carga}: Verificación de que las peticiones se distribuyen óptimamente.
+\item \textbf{Recursos del Sistema}: CPU, memoria, disco de cada nodo.
+\end{itemize}
+
+La supervisión de salud de nodos permite implementar arquitecturas auto-curativas que pueden recuperarse automáticamente de fallos.
+
+\section{Alertas y Notificaciones}
+
+El sistema de alertas permite configurar notificaciones para diferentes eventos:
+
+\begin{itemize}
+    \item Umbrales de uso de recursos
+    \item Fallos de servicios
+    \item Intentos de acceso fallidos
+    \item Cambios en la configuración
+\end{itemize}
+
+\clearpage

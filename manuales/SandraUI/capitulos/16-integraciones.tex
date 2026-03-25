@@ -1,0 +1,65 @@
+%======================================================================
+% INTEGRACIONES
+%======================================================================
+
+\chapter{Integraciones}
+
+Sandra UI Consola proporciona múltiples opciones de integración con sistemas externos y herramientas de terceros.
+
+\section{API REST}
+
+La API REST permite integración programática con sistemas externos:
+
+\begin{itemize}
+    \item Endpoints para operaciones CRUD
+    \item Autenticación mediante tokens JWT
+    \item Formato JSON para intercambio de datos
+    \item Documentación OpenAPI/Swagger
+\end{itemize}
+
+\section{Webhooks}
+
+Los webhooks permiten recibir notificaciones en tiempo real:
+
+\begin{itemize}
+    \item Configuración de eventos triggering
+    \item URLs de callback personalizables
+    \item Reintentos automáticos en caso de fallo
+    \item Firmas de verificación de payload
+\end{itemize}
+
+\section{Orquestación de Procesos (Fnx Engine)}
+
+Sandra utiliza un motor de orquestación propietario para manejar tareas de larga duración:
+
+\subsection{Gestión de PIDs}
+
+Un PID (Process Identifier) es un número único asignado a cada proceso en ejecución, permitiendo su seguimiento y control individual.
+
+El manejo de PIDs permite implementar cancellation, progreso tracking, y recuperación ante fallos de procesos de larga duración.
+
+Cada instrucción pesada (escaneos de red, migraciones) se ejecuta en segundo plano con un PID único:
+
+\begin{itemize}
+\item \textbf{Ejecución Asíncrona}: El usuario no espera a que termine el proceso.
+\item \textbf{Monitoreo en Tiempo Real}: Seguimiento del progreso del proceso.
+\item \textbf{Cancelación}: Posibilidad de detener procesos si es necesario.
+\item \textbf{Resultados Almacenados}: Los resultados se guardan para consulta posterior.
+\end{itemize}
+
+El patrón de ejecutar procesos pesados en background mejora significativamente la experiencia de usuario, evitando bloqueos de interfaz.
+
+\subsection{Escaneo de Infraestructura}
+
+Integración nativa con Nmap para descubrimiento automático de activos:
+
+\begin{itemize}
+\item \textbf{Descubrimiento de Dispositivos}: Identificación automática de servidores, routers, switches, dispositivos biométricos.
+\item \textbf{Detección de Puertos}: Identificación de puertos abiertos en cada dispositivo.
+\item \textbf{Análisis de Servicios}: Determinación de servicios activos en cada puerto.
+\item \textbf{Exportación de Resultados}: Generación de reportes para auditoría.
+\end{itemize}
+
+La integración con Nmap permite mantener un inventario actualizado de activos de red, fundamental para la seguridad perimetral.
+
+\clearpage

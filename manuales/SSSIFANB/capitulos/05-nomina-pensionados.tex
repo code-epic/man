@@ -1,0 +1,345 @@
+%======================================================================
+% CAPÍTULO 05: NÓMINA DE PENSIONADOS
+%======================================================================
+% Cálculos, conceptos, retroactivos y calculadora
+% Fundamento Legal: Art. 7, 34-47 de la Ley SSSIFANB
+%======================================================================
+
+\chapter{Módulo de Nómina de Pensionados}
+\label{ch:nomina-pensionados}
+
+\section{Descripción General}
+
+Este módulo suple el Capítulo III (Art. 34 al 47) protegiendo el dictamen de que \textbf{todas las pensiones militares son inembargables (Art. 7)}.
+
+El Módulo de Nómina de Pensionados gestiona el cálculo, procesamiento y disbursamiento de las pensiones de los beneficiarios del sistema.
+
+\section{Submódulos Disponibles}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Cálculos}: Procesamiento de nómina mensual
+    \item \textbf{Conceptos}: Tabulador de conceptos salariales
+    \item \textbf{Patria}: Integración con Sistema Patria
+    \item \textbf{Retroactivos}: Homologación de pensiones
+    \item \textbf{Calculadora}: Simulador de pensiones
+\end{itemize}
+
+\section{Cálculos de Nómina - Reserva Activa (Art. 34 y 38)}
+
+El sistema aplica la Matriz Ponderada de Pensiones de Reserva Activa:
+
+\keyconcept{Matriz Ponderada de Pensiones de Reserva Activa (Mandato Art. 38)}\\
+El controlador maestro restringe y asigna los porcentajes garantizando la retribución exacta por los años de servicio, validando topes máximos y mínimos legales.
+
+\begin{lstlisting}[language=Java, caption=Algoritmo de Matriz Ponderada]
+function generarPensionActiva(anosServicio, ultimoSueldoIntegral) {
+    if (anosServicio < 15) {
+        return { error: 'REJECT_INSUFFICIENT_TIME' }; // No califica
+    }
+    
+    let porcentaje = 0;
+    if (anosServicio === 15) porcentaje = 0.50;
+    else if (anosServicio >= 30) porcentaje = 1.00;
+    else {
+        // Ponderacion fraccionaria intermedia entre 15..29
+        porcentaje = calcularFactorIntermedio(anosServicio); 
+    }
+    
+    let pensionCalculada = ultimoSueldoIntegral * porcentaje;
+    
+    // Mecanismo de Piso Economico (Art. 35 y 36)
+    if (pensionCalculada < SALARIO_MINIMO_NACIONAL) {
+        pensionCalculada = SALARIO_MINIMO_NACIONAL;
+    }
+    
+    return pensionCalculada;
+}
+\end{lstlisting}
+
+\subsection*{Proceso de Cálculo}
+
+El sistema realiza mensualmente el cálculo de nómina considerando:
+
+\begin{enumerate}[leftmargin=*]
+    \item Identificación del pensionado activo
+    \item Determinación del tipo de pensión
+    \item Aplicación del tabulador de conceptos
+    \item Cálculo de deducciones aplicables
+    \item Determinación del neto a pagar
+    \item Generación de orden de pago
+\end{enumerate}
+
+\begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=sandraDark,
+    width=0.85\textwidth,
+    halign=center
+]
+\begin{tabular}{lr}
+\toprule
+\textbf{Concepto} & \textbf{Monto} \\
+\midrule
+Pensión Base & \$\$5.000.000,00 \\
+Complemento por Hijos & +\$\$500.000,00 \\
+Asignación Especial & +\$\$200.000,00 \\
+\midrule
+\textbf{Bruto} & \textbf{\$\$5.700.000,00} \\
+\midrule
+Deducción ISLR & -\$\$285.000,00 \\
+Deducción SSO (6.5\%) & -\$\$370.500,00 \\
+\midrule
+\textbf{Neto a Pagar} & \textbf{\$\$5.044.500,00} \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+\caption{Ejemplo de cálculo de nómina}
+\label{fig:calculo-nomina}
+\end{figure}
+
+\section{Tabulador de Conceptos}
+
+\subsection*{Conceptos de Ingreso}
+
+\begin{longtable}{p{4cm}p{8cm}}
+\toprule
+\textbf{Concepto} & \textbf{Descripción} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Conceptos de ingreso pensionado}
+\label{tab:conceptos-ingreso}
+\endlastfoot
+
+Pensión Base & Monto según grado y años de servicio (Art. 38) \\
+Complemento por Antigüedad & Incremento por años de servicio \\
+Asignación por Hijos & Complemento por dependientes menores \\
+Asignación Especial & Bono discrecional autorizado \\
+Retroactivo & Diferencia pendiente de homologación (Art. 39) \\
+Prima por Responsabilidad & Complemento por cargo especial \\
+\end{longtable}
+
+\subsection*{Conceptos de Deducción}
+
+\begin{longtable}{p{4cm}p{8cm}}
+\toprule
+\textbf{Concepto} & \textbf{Descripción} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Conceptos de deducción pensionado}
+\label{tab:conceptos-deduccion}
+\endlastfoot
+
+ISLR & Impuesto sobre la renta (escala progresiva) \\
+SSO (Salud) & Aporte de salud 6.5\% del monto pensión \\
+LSRQ & Ley de Política de Vivienda \\
+Embargo Judicial & Deducción por medida cautelar \\
+Manutención & Pensión alimenticia ordenada \\
+\end{longtable}
+
+\section{Vector de Sobrevivientes e Invalidez (Art. 43 y 46)}
+
+El núcleo que previene el desamparo tras el fallecimiento del servidor.
+
+\subsection*{Vector de Distribución de Sobrevivientes (Art. 43)}
+
+\begin{lstlisting}[language=Java, caption=Matriz de Sobrevivientes]
+// El algoritmo divide legalmente el capital para evitar desamparo familiar
+const liquidarSobrevivientes = (montoTotalFiduciario, sobrevivientesValid) => {
+    let asignaciones = {
+        conyuge: montoTotalFiduciario * 0.60,
+        hijos: montoTotalFiduciario * 0.20,      // Total dividido entre num de hijos
+        padres: montoTotalFiduciario * 0.20      // 10% Madre, 10% Padre
+    };
+
+    // Ruteo de Fallas Familiares (Exclusión de Supervivencia)
+    if (!sobrevivientesValid.includes('padres')) {
+        // Reubicacion matematica algoritmica sobre el remanente
+        reubicarPorcentajeFaltante(asignaciones, 'padres', 0.20);
+    }
+    
+    return asignaciones;
+};
+\end{lstlisting}
+
+\subsection*{Generadores por Invalidez (Art. 46)}
+
+\begin{tcolorbox}[
+    colback=sandraSoft,
+    colframe=sandraDark,
+    width=\textwidth,
+    title=\textbf{Invalidez en Acto de Servicio}
+]
+\small
+En vida, el sistema genera nómina a militares en Acto de Servicio garantizando sus derechos prestacionales inmediatos:
+\begin{itemize}
+    \item \textbf{Invalidez Absoluta Permanente}: Se asigna el \textbf{100\%} de la tabla equivalente a la posición del retiro de su escalafón.
+    \item \textbf{Invalidez Parcial Permanente}: Asume el \textbf{75\%} de los montos ante limitación que impida al servidor realizar labores regulares.
+\end{itemize}
+\end{tcolorbox}
+
+\section{Integración Sistema Patria}
+
+El sistema se integra con el Sistema Patria para la validación y transferencia de pagos:
+
+\begin{tcolorbox}[
+    enhanced,
+    colback=sandraSoft,
+    colframe=sandraDark,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+La integración con el Sistema Patria permite verificar la condición de vida del pensionado, validar el método de pago y realizar transferencias directas a la billetera digital del beneficiario.
+\end{tcolorbox}
+
+\section{Retroactivos (Art. 39 - Homologación)}
+
+Los retroactivos surgen cuando se producen homologaciones salariales:
+
+\begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=sandraAccent,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Cron Operativo Transversal}: Las actualizaciones ejecutadas por un analista en ``Configuración / Parámetros'' (Cambiar el tabulador Base Militar Activa por un Decreto Ejecutivo) detonan transaccionalmente un proceso de actualización sobre los expedientes del módulo Pensionados / Retroactivos.
+\end{tcolorbox}
+
+\subsection*{Causas de Retroactivo}
+
+\begin{longtable}{p{4cm}p{8cm}}
+\toprule
+\textbf{Causa} & \textbf{Descripción} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Causas de retroactivo}
+\label{tab:causas-retroactivo}
+\endlastfoot
+
+Homologación Salarial & Actualización de tabuladores por decreto \\
+Nuevos Conceptos & Incorporación de beneficios adicionales \\
+Corrección de Cálculo & Rectificación de errores históricos \\
+Cambio de Categoría & Reclasificación del pensionado \\
+Sentencia Judicial & Orden de pago retroactivo \\
+\end{longtable}
+
+\section{Calculadora de Pensiones}
+
+La calculadora permite simular el monto de pensión estimado:
+
+\begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=sandraDark,
+    width=0.85\textwidth,
+    halign=center
+]
+\begin{tabular}{p{5cm}rp{4cm}}
+\toprule
+\textbf{Parámetro} & \textbf{Valor} & \textbf{Unidad} \\
+\midrule
+Grado al Retiro & Coronel & \\
+Años de Servicio & 25 & Años \\
+Fecha de Ingreso & 01/03/2001 & \\
+Fecha de Retiro & 28/02/2026 & \\
+\midrule
+\textbf{Pensión Estimada} & \textbf{\$\$8.500.000,00} & Mensual \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\subsection*{Factores de Cálculo}
+
+La calculadora considera los siguientes factores:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Grado}: Nivel jerárquico al momento del retiro
+    \item \textbf{Años de Servicio}: Tiempo total de cotización
+    \item \textbf{Último Sueldo}: Remuneración base final
+    \item \textbf{Componentes}: Bonificaciones aplicables
+    \item \textbf{Beneficiarios}: Dependientes registrados
+\end{itemize}
+
+\section{Estados del Cálculo}
+
+\begin{longtable}{p{3cm}p{9cm}}
+\toprule
+\textbf{Estado} & \textbf{Descripción} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Estados de cálculo de nómina}
+\label{tab:estados-calculo}
+\endlastfoot
+
+Preparado & Cálculo generado, en revisión \\
+Aprobado & Cálculo validado por supervisor \\
+Rechazado & Cálculo con errores, requiere corrección \\
+Procesado & Incluido en nómina para pago \\
+Pagado & Orden de pago ejecutada \\
+\end{longtable}
+
+\section{Consulta de Pagos}
+
+El pensionado puede consultar el estado de sus pagos:
+
+\begin{enumerate}[leftmargin=*]
+    \item Seleccionar \textbf{Movimientos} en el menú
+    \item Filtrar por período de consulta
+    \item Verificar estado de cada orden
+    \item Descargar comprobante de pago
+\end{enumerate}
+
+\begin{tcolorbox}[
+    enhanced,
+    colback=sandraSoft,
+    colframe=sandraDark,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Estados de Pago}:
+\begin{itemize}
+    \item \textbf{Pendiente}: En cola de procesamiento
+    \item \textbf{Ejecutado}: Pago realizado exitosamente
+    \item \textbf{Fallido}: Error en la transferencia
+    \item \textbf{Reintentando}: Intento de pago en curso
+\end{itemize}
+\end{tcolorbox}
+
+\section{Reportes del Módulo}
+
+\begin{longtable}{p{4cm}p{8cm}}
+\toprule
+\textbf{Reporte} & \textbf{Contenido} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Reportes del módulo de nómina}
+\label{tab:reportes-nomina}
+\endlastfoot
+
+Liquidación de Nómina & Detalle completo del cálculo mensual \\
+Constancia de Pensión & Certificado oficial del monto pensionario \\
+Historial de Pagos & Registro de todos los pagos realizados \\
+Proyección Anual & Estimación de ingresos por pensionado \\
+Resumen por Grado & Consolidado de pensionados por jerarquía \\
+\end{longtable}
+
+\begin{tcolorbox}[
+    enhanced,
+    colback=sandraSoft,
+    colframe=sandraGreen,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Importante}: La calculadora proporciona una estimación referencial basada en los datos ingresados. El monto final de la pensión está sujeto a validación por parte del IPSFANB y puede variar según la normativa vigente al momento del retiro.
+\end{tcolorbox}
+
+\newpage

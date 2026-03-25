@@ -1,0 +1,190 @@
+%======================================================================
+% CAPÍTULO 03: TARJETA DE IDENTIFICACIÓN MILITAR (TIM)
+%======================================================================
+% Emisión y gestión de la TIM
+% Fundamento Legal: Art. 84 y 90 - Red Sanitaria Militar
+%======================================================================
+
+\chapter{Tarjeta de Identificación Militar (TIM)}
+\label{ch:tarjeta-tim}
+
+\section{Introducción}
+
+La \textbf{Tarjeta de Identificación Militar (TIM)} es el documento oficial que acredita la condición de miembro de la FANB y es esencial para el acceso a la Red Sanitaria Militar.
+
+\begin{tcolorbox}[
+    colback=sandraSoft,
+    colframe=sandraDark,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Fundamento Legal (Art. 84 y 90)}: La TIM es el credencial material generado por el sistema que permite al efectivo y a sus familiares el acceso directo a la Red Sanitaria Militar. No portarla o no emitirla sistemáticamente imposibilitaría la atención en hospitales militares.
+\end{tcolorbox}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{4-tim.png}
+\caption{Módulo Principal de Identificación Militar TIM}
+\label{fig:modulo-tim}
+\end{figure}
+
+\section{Indicadores del Módulo}
+
+El panel de indicadores muestra estadísticas y el termómetro demográfico del afiliado:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{4.1-indicadores.png}
+\caption{Panel Analítico de Indicadores de Salud}
+\label{fig:indicadores}
+\end{figure}
+
+Los indicadores monitorean en tiempo real la situación del afiliado:
+\begin{itemize}[label=\textcolor{sandraGreen}{\faIcon{check-circle}}, leftmargin=*]
+    \item \textbf{\faIcon{piggy-bank} Cumplimiento de Cotizaciones:} Estado financiero de las cotizaciones obligatorias requeridas para sostener y activar los beneficios fiduciarios.
+    \item \textbf{\faIcon{id-card-alt} Régimen de Vigencia:} Ciclo de vida y caducidad oficial del plástico o carnet digital TIM.
+    \item \textbf{\faIcon{notes-medical} Historial Semántico de Atención:} Trazabilidad contable e inventario en la Red Sanitaria Militar.
+    \item \textbf{\faIcon{users} Beneficiarios Familiares Activos:} Proporción y vigencia técnica del núcleo familiar amparado bajo el titular.
+\end{itemize}
+
+\section{Liberación de TIM}
+
+\begin{tcolorbox}[
+    colback=white,
+    colframe=sandraDark,
+    title=\textbf{\faIcon{unlock-alt} Mecanismo de Liberación de TIM},
+    width=\textwidth
+]
+La \keyconcept{Liberación de Identificación} es el protocolo auditable donde el Estado Mayor o el operador levantan la restricción sistémica o física de un carnet inhabilitado.
+Se requiere registrar oficialmente el motivo desencadenante del suceso (e.g., Extravío, Robo o Deterioro Severo) para reactivar administrativamente el código individual de cara a una reimpresión en la Red Sanitaria.
+\end{tcolorbox}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{4.2-liberacion-tim.png}
+\caption{Procedimiento de Liberación del TIM}
+\label{fig:liberacion}
+\end{figure}
+
+\section{Aprobación de TIM}
+
+\begin{tcolorbox}[
+    colback=white,
+    colframe=sandraGreen,
+    title=\textbf{\faIcon{thumbs-up} Tracking de Aprobación de Carnetización},
+    width=\textwidth
+]
+El ciclo culmina operativamente cuando las autoridades procedimentan el \keyconcept{Seguimiento de Aprobación}. A través de este módulo se dicta el \emph{Status} validado del nuevo carnet, permitiendo el ingreso automatizado y habilitación transaccional expedita en las farmacias y pabellones de toda la República.
+\end{tcolorbox}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{4.3-aprobacion-de-tim.png}
+\caption{Aprobación Operativa de Identidad}
+\label{fig:aprobacion}
+\end{figure}
+
+\section{Tipos de TIM}
+
+\begin{longtable}{p{3cm}p{4cm}p{5cm}}
+\toprule
+\textbf{Tipo} & \textbf{Validez} & \textbf{Características} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Tipos de TIM}
+\label{tab:tipos-tim}
+\endlastfoot
+
+TIM Activa & 5 años & Personal en servicio activo \\
+TIM Reserva & 5 años & Personal en la reserva \\
+TIM Retiro & Permanente & Personal pensionado \\
+TIM Beneficiario & Según vigencia & Familiares dependientes \\
+\end{longtable}
+
+\section{Datos en la TIM}
+
+\subsection*{Frente de la Tarjeta}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Fotografía}: Imagen del afiliado
+    \item \textbf{Nombres y Apellidos}
+    \item \textbf{Cédula de Identidad}
+    \item \textbf{Grado y Componente}
+    \item \textbf{Número de TIM}
+    \item \textbf{Código QR}: Para verificación digital
+\end{itemize}
+
+\subsection*{Reverso de la Tarjeta}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Fecha de Emisión}
+    \item \textbf{Fecha de Vencimiento}
+    \item \textbf{Estado}: Activo, Suspendido, Vencido
+    \item \textbf{Firma Digital}
+    \item \textbf{Grupo Sanguíneo}
+\end{itemize}
+
+\section{Especificaciones de Fotografía}
+
+\begin{longtable}{p{4cm}p{8cm}}
+\toprule
+\textbf{Parámetro} & \textbf{Especificación} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Especificaciones de fotografía}
+\label{tab:foto}
+\endlastfoot
+
+\textbf{Formato} & JPG o PNG \\
+\textbf{Tamaño} & 10 KB - 500 KB \\
+\textbf{Dimensiones} & 354 x 472 píxeles (ratio 3:4) \\
+\textbf{Fondo} & Blanco o azul claro uniforme \\
+\textbf{Posición} & Rostro frontal, ojos abiertos \\
+\textbf{Iluminación} & Uniforme, sin sombras \\
+\end{longtable}
+
+\section{Estados de Solicitud}
+
+\begin{longtable}{p{3cm}p{9cm}}
+\toprule
+\textbf{Estado} & \textbf{Descripción} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Estados de solicitud}
+\label{tab:estados}
+\endlastfoot
+
+Borrador & Solicitud iniciada, incompleta \\
+Enviada & Recibida por el sistema \\
+En Proceso & En validación de datos \\
+Aprobada & En fabricación \\
+Despachada & Enviada por correo postal \\
+Entregada & Recibida por afiliado \\
+Rechazada & Devuelta por errores en datos \\
+\end{longtable}
+
+\section{Red Sanitaria Militar}
+
+La TIM habilita el acceso a los servicios de:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Hospitales Militares}: Atención hospitalaria completa
+    \item \textbf{ Clínicas IPSFANB}: Servicios ambulatorios
+    \item \textbf{ Farmacias}: Medicamentos subsidiados
+    \item \textbf{ Estudios Médicos}: Laboratorios, imágenes, especialistas
+    \item \textbf{Emergencias}: Atención de urgencias 24/7
+\end{itemize}
+
+\begin{tcolorbox}[
+    colback=sandraSoft,
+    colframe=sandraAccent,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Importante}: Sin la TIM vigente, el afiliado y sus beneficiarios no pueden acceder a los servicios de la Red Sanitaria Militar. Es responsabilidad del afiliado mantener su TIM actualizada.
+\end{tcolorbox}
+
+\newpage

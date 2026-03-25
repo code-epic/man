@@ -1,0 +1,71 @@
+%======================================================================
+% SOLUCIÓN DE PROBLEMAS
+%======================================================================
+
+\chapter{Solución de Problemas}
+
+Este capítulo aborda los problemas más comunes que pueden surgir al utilizar Sandra UI Consola y sus soluciones.
+
+\section{Problemas Comunes}
+
+\subsection{Problemas de Conexión}
+
+\begin{itemize}
+    \item \textbf{Error de conexión al servidor}: Verificar que el servidor Sandra esté activo y la dirección IP sea correcta.
+    \item \textbf{Timeout de conexión}: Aumentar el timeout en la configuración de conexión.
+    \item \textbf{Certificado SSL inválido}: Validar el certificado o importar uno nuevo.
+\end{itemize}
+
+\subsection{Problemas de Autenticación}
+
+\begin{itemize}
+    \item \textbf{Token expirado}: Cerrar sesión y volver a iniciar.
+    \item \textbf{MFA no funciona}: Verificar que la hora del dispositivo esté sincronizada.
+    \item \textbf{Contraseña incorrecta}: Utilizar la función de recuperación de contraseña.
+\end{itemize}
+
+\section{Web Application Firewall (WAF)}
+
+La plataforma integra un WAF avanzado que proporciona:
+
+\begin{itemize}
+\item \textbf{Detección de Inyecciones}: Protección contra SQL Injection, NoSQL Injection y Command Injection.
+\item \textbf{Prevención XSS}: Filtrado de scripts maliciosos en entrada/salida.
+\item \textbf{Protección DDoS}: Limitación de rate y traffic shaping.
+\item \textbf{Inspección de Payload}: Análisis profundo de contenido malformado.
+\end{itemize}
+
+El WAF actúa como un escudo perimetral, analizando todo el tráfico HTTP antes de que alcance la aplicación, bloqueando requests maliciosos conhecidos.
+
+\section{Logs y Diagnósticos}
+
+Para diagnosticar problemas:
+
+\begin{enumerate}
+    \item Acceder a la sección de logs en Opciones
+    \item Filtrar por fecha y tipo de evento
+    \item Exportar logs para análisis detallado
+    \item Consultar el historial de errores
+\end{enumerate}
+
+La información de los logs incluye:
+
+\begin{itemize}
+    \item Timestamp preciso de cada evento
+    \item Usuario que realizó la operación
+    \item Detalles técnicos del error
+    \item Stack trace cuando esté disponible
+\end{itemize}
+
+\section{Herramientas de Diagnóstico}
+
+Sandra UI incluye herramientas de diagnóstico integradas:
+
+\begin{itemize}
+    \item \textbf{Ping}: Verificar conectividad
+    \item \textbf{Traceroute}: Ruta de red hacia el servidor
+    \item \textbf{Test de velocidad}: Medir latencia y ancho de banda
+    \item \textbf{Estado de servicios}: Verificar cada componente
+\end{itemize}
+
+\clearpage

@@ -1,0 +1,88 @@
+%======================================================================
+% PORTADA INCREÍBLE
+%======================================================================
+\thispagestyle{empty}
+
+\begin{tikzpicture}[remember picture, overlay]
+    % Fondo oscuro profundo
+    \fill[textdark] (current page.south west) rectangle (current page.north east);
+    
+    % Malla técnica de fondo (estilo blueprint avanzada)
+    \draw[step=0.5cm, secondary, opacity=0.015] (current page.south west) grid (current page.north east);
+    \draw[step=2cm, secondary, opacity=0.03] (current page.south west) grid (current page.north east);
+    
+    % Olas ascendentes inferiores multidimensionales (Efecto llamas futuristas)
+    \path[fill=primary, opacity=0.4] 
+        (current page.south west) .. controls ++(7cm, 8cm) and ++(-4cm, 3cm) .. 
+        ([yshift=12cm]current page.south east) -- (current page.south east) -- cycle;
+
+    \path[fill=accent, opacity=0.25] 
+        (current page.south west) .. controls ++(6cm, 10cm) and ++(-5cm, -3cm) .. 
+        ([yshift=15cm]current page.south east) -- (current page.south east) -- cycle;
+        
+    \path[fill=secondary, opacity=0.15] 
+        (current page.south west) .. controls ++(4cm, 12cm) and ++(-8cm, -1cm) .. 
+        ([yshift=18cm]current page.south east) -- (current page.south east) -- cycle;
+
+    % Estrella/Destello sutil en el borde de la ola
+    \node[circle, fill=white, inner sep=0pt, minimum size=3pt, blur shadow={shadow blur steps=5, shadow blur radius=2mm, shadow opacity=100}, opacity=0.8] at (current page.center) {};
+
+    % Olas descendentes superiores
+    \path[fill=primary, opacity=0.3] 
+        (current page.north west) .. controls ++(6cm, -3cm) and ++(-7cm, 2cm) .. 
+        ([yshift=-6cm]current page.north east) -- (current page.north east) -- cycle;
+
+    \path[fill=accent, opacity=0.1] 
+        (current page.north west) .. controls ++(3cm, -5cm) and ++(-4cm, 1cm) .. 
+        ([yshift=-4cm]current page.north east) -- (current page.north east) -- cycle;
+\end{tikzpicture}
+
+\vspace*{0.5cm}
+
+\begin{center}
+    % Logo central con triple acento neón de lujo
+    \begin{tikzpicture}
+        \node[circle, top color=white, bottom color=teallight, draw=accent, line width=1.5mm, inner sep=0.6cm, minimum size=6.5cm] (logo) {
+            \includegraphics[width=6cm]{assets/sandra.png}
+        };
+        % Múltiples resplandores para efecto brillante premium
+        \node[circle, draw=accent, opacity=0.3, line width=2mm, minimum size=8.2cm] at (logo) {};
+        \node[circle, draw=accent, opacity=0.15, line width=4mm, minimum size=9cm] at (logo) {};
+        \node[circle, draw=white, opacity=0.05, line width=6mm, minimum size=10cm] at (logo) {};
+    \end{tikzpicture}
+    
+    \vspace{1.8cm}
+    
+    {\fontsize{42}{50}\selectfont \textbf{\textcolor{white}{\textsc{Sandra Ecosystem}}}}\\[0.8em]
+    {\LARGE \textcolor{accent}{\textbf{PLATAFORMA EMPRESARIAL DE MIDDLEWARE}}}
+    
+    \vspace{2cm}
+    
+    % Decorador elegante diamante alargado
+    \begin{tikzpicture}
+        \fill[secondary!50!white, opacity=0.5] (-4cm, 0) rectangle (4cm, 0.03cm);
+        \node[shape=diamond, fill=accent, minimum size=0.6cm] at (0, 0.015cm) {};
+    \end{tikzpicture}
+    
+    \vspace{1.5cm}
+    
+    {\Large \textbf{\textcolor{white}{\uppercase{Documento Técnico e Ingeniería}}}}\\[1.2em]
+    {\large \textbf{\textcolor{teallight}{Versión 1.0}} \ \textbar\ \textcolor{secondary}{Marzo 2026}}
+    
+\end{center}
+
+\vfill
+
+\begin{center}
+    \begin{tikzpicture}
+        \node[anchor=center, text width=0.85\textwidth, align=center, fill=textdark, draw=primary, line width=1pt, opacity=0.85, rounded corners=15pt, inner sep=18pt] at (0,0) {
+            {\normalsize \textcolor{accent}{\textsc{\textbf{Autor del Proyecto}}}}\\[0.6em]
+            {\LARGE \textbf{\textcolor{white}{Carlos Peña}}}\\[0.4em]
+            {\normalsize \textcolor{teallight}{\textit{Code Epic Technologies \textendash\ Arquitectura Sovereign}}}\\[0.6em]
+            {\small \textcolor{secondary}{\uppercase{Caracas, Venezuela}}}
+        };
+    \end{tikzpicture}
+\end{center}
+
+\vspace*{1cm}
+\newpage

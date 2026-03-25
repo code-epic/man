@@ -1,0 +1,64 @@
+%======================================================================
+% CONFIGURACIÓN
+%======================================================================
+
+\chapter{Configuración}
+
+Este capítulo describe las opciones de configuración disponibles en Sandra UI Consola para personalizar el comportamiento del sistema según las necesidades de cada organización.
+
+\section{Configuración General}
+
+La configuración general permite ajustar los parámetros básicos del sistema:
+
+\begin{itemize}
+    \item Nombre de la instancia
+    \item Zona horaria
+    \item Idioma de la interfaz
+    \item Formato de fecha y hora
+    \item Configuración de notificaciones
+\end{itemize}
+
+\section{Configuración de Conexión}
+
+La consola se comunica con Sandra Server mediante múltiples protocolos. Los parámetros de conexión incluyen:
+
+\begin{itemize}
+    \item \textbf{Host}: Dirección del servidor Sandra
+    \item \textbf{Puerto}: Número de puerto para la conexión
+    \item \textbf{Protocolo}: gRPC, REST o WebSocket
+    \item \textbf{Timeout}: Tiempo máximo de espera para respuestas
+    \item \textbf{Retry}: Configuración de reintentos en caso de fallo
+\end{itemize}
+
+La comunicación multicanal permite optimizar cada tipo de operación según sus requisitos de latencia y fiabilidad:
+
+\begin{itemize}
+\item \textbf{gRPC}: Streaming de datos en tiempo real y operaciones de alta velocidad.
+\item \textbf{REST}: Operaciones CRUD estándar y consultas.
+\item \textbf{WebSockets}: Notificaciones push y actualizaciones en vivo.
+\end{itemize}
+
+\section{Parámetros Avanzados}
+
+Los parámetros avanzados permiten un control más granular del sistema:
+
+\begin{itemize}
+    \item Configuración de memoria caché
+    \item Límites de conexiones simultáneas
+    \item Configuración de logs
+    \item Parámetros de seguridad
+    \item Configuración de alta disponibilidad
+\end{itemize}
+
+\section{Certificados SSL}
+
+La gestión de certificados SSL es fundamental para la seguridad de las comunicaciones:
+
+\begin{itemize}
+    \item Importar certificados firmados por CA
+    \item Generar certificados autofirmados
+    \item Validar certificado antes de conectar
+    \item Renovación automática de certificados
+\end{itemize}
+
+\clearpage

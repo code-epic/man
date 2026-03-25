@@ -1,0 +1,73 @@
+%======================================================================
+% GESTIÓN DE USUARIOS
+%======================================================================
+
+\chapter{Gestión de Usuarios}
+
+La seguridad informática es una disciplina que se encarga de proteger la integridad y la privacidad de la información almacenada en un sistema informativo. Un sistema seguro debe ser íntegro, confidencial, irrefutable y tener buena disponibilidad.
+
+La seguridad por diseño (Security by Design) es un paradigma que integra la seguridad en todas las fases del desarrollo del software, desde la concepción inicial hasta el despliegue y mantenimiento.
+
+\section{Crear Usuarios}
+
+La gestión de usuarios permite:
+
+\begin{itemize}
+    \item Crear nuevos usuarios con diferentes niveles de acceso
+    \item Asignar roles y permisos específicos
+    \item Configurar autenticación multifactor
+    \item Establecer políticas de contraseña
+\end{itemize}
+
+\section{Roles y Permisos}
+
+El sistema implementa un modelo de control de acceso basado en roles (RBAC):
+
+\begin{itemize}
+    \item \textbf{Administrador}: Acceso completo a todas las funciones
+    \item \textbf{Operador}: Monitoreo y operaciones de lectura/escritura
+    \item \textbf{Auditor}: Acceso de solo lectura a logs y reportes
+    \item \textbf{Usuario}: Acceso básico según configuración
+\end{itemize}
+
+\section{Autenticación}
+
+\subsection{Seguridad Basada en Tokens (JWT)}
+
+El sistema implementa un robusto mecanismo de autenticación basado en JSON Web Tokens:
+
+Un JSON Web Token (JWT) es una cadena codificada en Base64 formada por tres partes separadas por un punto: Header (algoritmo y tipo), Payload (datos del usuario, expiración, roles), y Signature (firma digital para validación).
+
+El estándar JWT fue definido en RFC 7519 en 2015, proporcionando un método stateless para transmitir claims entre partes de forma segura.
+
+Componentes del Token JWT:
+
+\begin{enumerate}
+\item \textbf{Header}: Especifica el algoritmo de firma (HS256/RSA) y el tipo de token.
+\item \textbf{Payload}: Contiene los claims del usuario (sub, roles, permisos, expiración).
+\item \textbf{Signature}: Verifica que el token no haya sido modificado y fue emitido por el servidor.
+\end{enumerate}
+
+El flujo de autenticación funciona de la siguiente manera:
+
+\begin{enumerate}
+\item El usuario envía credenciales (usuario/contraseña) al servidor.
+\item El servidor valida las credenciales y genera un JWT con la información del usuario.
+\item El cliente almacena el JWT (localStorage o cookies seguras).
+\item En cada request posterior, el cliente envía el JWT en el header Authorization.
+\item El servidor valida la firma y los claims antes de procesar la solicitud.
+\end{enumerate}
+
+Para mayor seguridad, se recomienda validar también la IP del cliente al generar el token, detectando así intentos de robo de sesión.
+
+\subsection{Autenticación Multifactor (MFA)}
+
+El sistema implementa MFA mediante TOTP:
+
+El TOTP (Time-based One-Time Password) es un algoritmo que genera contraseñas de un solo uso basadas en el tiempo, típicamente intervalos de 30 segundos, utilizado ampliamente en la autenticación multifactor.
+
+La autenticación multifactor incrementa significativamente la seguridad, ya que requiere múltiples formas de verificación independientes.
+
+Los usuarios deben validar su identidad no solo con credenciales tradicionales, sino también mediante un código dinámico de 6 dígitos generado por aplicaciones de autenticación estándar (como Google Authenticator), fortaleciendo la barrera contra el acceso no autorizado y el robo de identidad.
+
+\clearpage

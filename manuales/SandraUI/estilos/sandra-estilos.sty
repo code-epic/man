@@ -1,0 +1,61 @@
+%======================================================================
+% SANDRA ESTILOS - Sandra UI Consola
+%======================================================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{estilos/sandra-estilos}
+
+% Paquetes básicos
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{longtable}
+
+% Colores Sandra
+\definecolor{sandraDark}{HTML}{2D5A4A}
+\definecolor{sandraGreen}{HTML}{4CAF93}
+\definecolor{sandraLight}{HTML}{B2E0D0}
+\definecolor{sandraAccent}{HTML}{66BB6A}
+\definecolor{sandraSoft}{HTML}{F5FAF8}
+\definecolor{textDark}{HTML}{263238}
+\definecolor{bluegray}{HTML}{455A64}
+\definecolor{bluegrayLight}{HTML}{90A4AE}
+
+% Configuración de página
+\geometry{
+    a4paper,
+    left=3cm,
+    right=3cm,
+    top=3cm,
+    bottom=3cm
+}
+
+% Configuración de títulos
+\titleformat{\chapter}[display]
+    {\normalfont\Huge\bfseries\color{sandraDark}}
+    {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+\titleformat{\section}
+    {\normalfont\Large\bfseries\color{sandraDark}}
+    {\thesection}{1em}{}
+
+\titleformat{\subsection}
+    {\normalfont\large\bfseries\color{sandraDark}}
+    {\thesubsection}{1em}{}
+
+% Hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=sandraDark,
+    filecolor=sandraDark,
+    urlcolor=sandraDark,
+    citecolor=sandraDark
+\endinput

@@ -1,0 +1,121 @@
+%======================================================================
+% HABILIDAD: Instalación y Onboarding
+% ID: instalacion
+% Descripción: Guía de instalación y primeros pasos
+%======================================================================
+
+\capitulo{Instalación y Configuración Inicial}
+
+\section{Requisitos del Sistema}
+
+Antes de proceder con la instalación, asegúrese de cumplir con los siguientes requisitos mínimos:
+
+\subsection{Requisitos de Hardware}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Componente} & \textbf{Mínimo} & \textbf{Recomendado} \\
+\midrule
+Procesador & 2 núcleos & 4+ núcleos \\
+Memoria RAM & 4 GB & 8 GB \\
+Almacenamiento & 10 GB libres & 50 GB libres \\
+Resolución & 1366x768 & 1920x1080 \\
+\bottomrule
+\end{tabular}
+\caption{Requisitos de hardware}
+\end{table}
+
+\subsection{Requisitos de Software}
+
+\begin{itemize}
+    \item Sistema operativo compatible (Windows 10/11, macOS 11+, Linux)
+    \item Navegador web actualizado (Chrome, Firefox, Safari, Edge)
+    \item Conexión a Internet para activación inicial
+\end{itemize}
+
+\section{Proceso de Instalación}
+
+\subsection{Descarga del Instalador}
+
+\begin{enumerate}
+    \item Visite el portal oficial de descargas
+    \item Inicie sesión con sus credenciales
+    \item Seleccione la versión correspondiente a su sistema operativo
+    \item Descargue el archivo de instalación
+\end{enumerate}
+
+\subsection{Instalación en Windows}
+
+\begin{enumerate}
+    \item Ejecute el archivo \texttt{Setup.exe} como administrador
+    \item Acepte los términos de la licencia
+    \item Seleccione el directorio de instalación (por defecto: \texttt{C:\textbackslash Archivos de programa	extbackslash Sandra})
+    \item Espere a que finalice la instalación
+    \item Reinicie el sistema si es solicitado
+\end{enumerate}
+
+\subsection{Instalación en macOS}
+
+\begin{enumerate}
+    \item Abra el archivo \texttt{Sandra.dmg}
+    \item Arrastre la aplicación a la carpeta \textbf{Aplicaciones}
+    \item Si aparece un mensaje de seguridad, autorice la aplicación en \textit{Preferencias del Sistema > Seguridad y Privacidad}
+\end{enumerate}
+
+\subsection{Instalación en Linux}
+
+\begin{lstlisting}[language=bash, caption=Instalacion via terminal]
+# Descargar el paquete
+wget https://sandra.codeepic.ve/download/sandra-linux.deb
+
+# Instalar
+dpkg -i sandra-linux.deb
+apt-get install -f
+
+# Verificar instalacion
+sandra --version
+\end{lstlisting}
+
+\section{Configuración Inicial}
+
+\subsection{Primer Inicio}
+
+Al iniciar la aplicación por primera vez, se le guiará a través del asistente de configuración:
+
+\begin{enumerate}
+    \item \textbf{Bienvenida} - Introducción al sistema
+    \item \textbf{Licencia} - Verificación de la licencia
+    \item \textbf{Configuración Regional} - Idioma y zona horaria
+    \item \textbf{Cuenta de Administrador} - Creación del usuario principal
+    \item \textbf{Conexión} - Configuración de servidor (si aplica)
+    \item \textbf{Resumen} - Confirmación de la configuración
+\end{enumerate}
+
+\subsection{Activación del Producto}
+
+\begin{caja}{Nota}
+Se requiere una clave de licencia válida para activar todas las funcionalidades. La versión de evaluación tiene una vigencia de 30 días.
+\end{caja}
+
+Para activar el producto:
+\begin{enumerate}
+    \item Abra el menú \textbf{Configuración > Licencia}
+    \item Ingrese su clave de licencia
+    \item Haga clic en \textbf{Activar}
+    \item Espere la confirmación de activación exitosa
+\end{enumerate}
+
+\section{Verificación de la Instalación}
+
+Para confirmar que la instalación se realizó correctamente:
+
+\begin{enumerate}
+    \item Inicie la aplicación
+    \item Verifique que aparezca la pantalla principal
+    \item Compruebe la versión instalada en \textbf{Acerca de}
+    \item Realice una prueba básica de funcionalidad
+\end{enumerate}
+
+\notacientifica{En caso de encontrar problemas durante la instalación, consulte la sección de solución de problemas o contacte al soporte técnico.}

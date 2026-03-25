@@ -1,0 +1,66 @@
+%======================================================================
+% INTRODUCCIÓN
+%======================================================================
+
+\chapter{Introducción}
+
+Sandra UI Consola es la capa de presentación del ecosistema Sandra, proporcionando una interfaz administrativa robusta, segura y de alto rendimiento para la gestión integral del sistema. Esta consola representa el nodo de control de un ecosistema distribuido diseñado para la resiliencia y la observabilidad completa.
+
+\section{Acerca de Sandra UI}
+
+En el contexto de la orientación a objetos, la lógica del negocio es aquella funcionalidad ofrecida por el software. El software se comunica de manera amigable con el usuario a partir de la interfaz, pero el procesamiento de los datos capturados como entrada y la posterior entrega de resultados al usuario por medio de la interfaz es conocido como la Lógica de Negocio.
+
+Sandra UI Consola se posiciona como una solución Enterprise de alta gama, integrando capacidades de SRE (Site Reliability Engineering) y observabilidad avanzada para garantizar la continuidad operativa. La consola proporciona una experiencia de usuario premium basada en principios de diseño moderno, mientras mantiene los más altos estándares de seguridad y rendimiento.
+
+Los principios de SRE permiten combinar la velocidad de desarrollo con la fiabilidad operacional, reduciendo el tiempo medio de recuperación (MTTR) y aumentando la disponibilidad del sistema.
+
+\section{Ecosistema Tecnológico}
+
+Sandra UI Consola está construida sobre un ecosistema tecnológico de alta gama que garantiza rendimiento, seguridad y escalabilidad.
+
+\subsection{Backend Core}
+
+El núcleo del backend utiliza tecnologías de alto rendimiento:
+
+\begin{itemize}
+\item \textbf{Go}: Lenguaje de programación diseñado para maximizar la eficiencia en el manejo de memoria y concurrencia, proporcionando tiempos de respuesta ultrarrápidos.
+\item \textbf{Rust}: Utilizado para componentes críticos que requieren seguridad de memoria y procesamiento de alto rendimiento.
+\end{itemize}
+
+La combinación de Go y Rust permite aprovechar las fortalezas de ambos lenguajes: la facilidad de desarrollo y concurrencia de Go, junto con la seguridad de memoria y rendimiento de Rust.
+
+\subsection{Comunicación}
+
+La consola implementa múltiples protocolos de comunicación:
+
+\begin{itemize}
+\item \textbf{gRPC con Protocol Buffers}: Serialización de datos de alta velocidad y baja latencia para streaming de información en tiempo real.
+\item \textbf{REST API}: Endpoints estándar para operaciones CRUD y consultas.
+\item \textbf{WebSockets}: Comunicación bidireccional para actualizaciones en tiempo real sin polling.
+\item \textbf{AES-256}: Cifrado de punto a punto para datos en reposo.
+\item \textbf{RSA/TLS 1.3}: Protocolo de seguridad para datos en tránsito.
+\end{itemize}
+
+La combinación de gRPC y WebSockets permite implementar patrones de comunicación tanto síncronos como asíncronos, optimizando el uso de recursos de red.
+
+\subsection{Base de Datos}
+
+El sistema soporta un modelo de almacenamiento híbrido:
+
+\begin{itemize}
+\item \textbf{MongoDB}: Base de datos NoSQL orientada a documentos, optimizada para grandes volúmenes de datos y flexibilidad de esquema.
+\item \textbf{Motores Relacionales}: Soporte para bases de datos SQL cuando se requiere integridad transaccional.
+\end{itemize}
+
+\section{Requisitos del Sistema}
+
+Para utilizar Sandra UI Consola se requieren los siguientes componentes:
+
+\begin{itemize}
+    \item Navegador web moderno (Chrome, Firefox, Edge o Safari)
+    \item Conexión a una instancia de Sandra Server
+    \item Credenciales de acceso válidas
+    \item Resolución de pantalla mínima de 1280x720
+\end{itemize}
+
+\clearpage

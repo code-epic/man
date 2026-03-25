@@ -1,0 +1,46 @@
+%======================================================================
+% CAPÍTULO 2: MARCO TEÓRICO
+%======================================================================
+\chapter{Marco Te\'orico}
+
+\section{Estado del Arte}
+
+El middleware empresarial ha evolucionado significativamente desde sus or\'{\i}genes hasta convertirse en plataformas complejas de integraci\'on. El mercado ofrece soluciones como IBM Integration Bus, MuleSoft, Apache Camel y Spring Integration.
+
+Sin embargo, la mayor\'{\i}a fueron dise\~nadas para mercados desarrollados. Esta brecha crea oportunidad para soluciones localmente desarrolladas.
+
+\begin{definicion}
+\item[Estado del Arte] Conjunto de tecnolog\'{\i}as, m\'etodos y pr\'acticas m\'as avanzadas para resolver un problema espec\'{\i}fico en un momento determinado.
+\end{definicion}
+
+\section{Fundamentos de Middleware}
+
+El middleware es un software que act\'ua como puente entre aplicaciones y el sistema operativo, facilitando la comunicaci\'on e integraci\'on. Un Enterprise Service Bus (ESB) representa la evoluci\'on hacia una arquitectura basada en servicios.
+
+Sandra Server implementa estos conceptos utilizando Go, proporcionando un ESB de alto rendimiento capaz de manejar miles de conexiones simult\'aneas.
+
+\section{Arquitectura de Microservicios}
+
+La arquitectura de microservicios construye aplicaciones como servicios peque\~nos, aut\'onomos y dbilmente acoplados. Cada microservicio es responsable de una funcionalidad espec\'{\i}fica y puede desplegarse independientemente.
+
+El ecosistema Sandra implementa esta arquitectura: Server (middleware central), Consola (interfaz), SDC (escritorio), y Sentinel (procesamiento especializado).
+
+\section{Seguridad de Confianza Cero}
+
+El modelo Zero Trust elimina la confianza impl\'{\i}cita, verificando cada solicitud independientemente de su origen. Los principios incluyen: verificaci\'on expl\'{\i}cita de usuarios y dispositivos, acceso con m\'{\i}nimo privilegio, y verificaci\'on continua de seguridad.
+
+Sandra Ecosystem implementa estos principios en todas las capas: cada solicitud de API es autenticada y autorizada, las comunicaciones usan TLS m\'utuo, y las sesiones tienen duraci\'on limitada.
+
+\section{Tecnolog\'{\i}as Emergentes}
+
+El ecosistema utiliza tecnolog\'{\i}as de \'ultima generaci\'on:
+\begin{itemize}
+\item \textbf{Go 1.24.3}: Alto rendimiento y concurrencia
+\item \textbf{Rust 2021}: Seguridad de memoria y rendimiento
+\item \textbf{Angular 16+}: Framework frontend moderno
+\item \textbf{Tauri 2.0}: Aplicaciones de escritorio ligeras
+\item \textbf{gRPC}: Comunicaci\'on entre servicios
+\item \textbf{WebSockets}: Tiempo real
+\end{itemize}
+
+\newpage

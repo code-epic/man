@@ -1,0 +1,135 @@
+%======================================================================
+% CAPÍTULO 18 - IMPLEMENTACIÓN
+%======================================================================
+\chapter{Implementación}
+
+\bigskip
+
+Este capítulo aborda los detalles técnicos de implementación, incluyendo el stack de tecnologías, consideraciones de despliegue y operación del sistema.
+
+\bigskip
+
+\section{Stack Tecnológico Detallado}
+
+Sentinel está implementado sobre un stack tecnológico moderno que aprovecha las capacidades del ecosistema Rust:
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Componente} & \textbf{Tecnología} & \textbf{Versión} \\
+\midrule
+Lenguaje & Rust & 2021 Edition \\
+Runtime Asíncrono & Tokio & 1.x \\
+Protocolo & gRPC & Protobuf v3 \\
+Serialización & serde\_json & Latest \\
+Paralelismo & Rayon & Latest \\
+Scripting & Rhai & Latest \\
+Fechas & chrono & Latest \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section{Arquitectura de Código}
+
+El código fuente está organizado en módulos:
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{llp{8cm}}
+\toprule
+\textbf{Módulo} & \textbf{Responsabilidad} \\
+\midrule
+kernel & Orquestación y coordinación general \\
+calc & Motor de cálculo y fórmulas \\
+model & Estructuras de datos \\
+system & Configuración y utilidades \\
+util & Funciones auxiliares \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section{Deserialización Zero-Copy}
+
+Sentinel utiliza serde\_json::from\_slice que permite la deserialización directa desde bytes sin copia adicional de memoria, aprovechando las instrucciones SIMD disponibles en los procesadores modernos.
+
+\bigskip
+
+\section{Pipeline Asíncrono}
+
+El procesamiento sigue un patrón de pipeline asíncrono:
+
+\begin{enumerate}
+    \item El hilo principal recibe paquetes de red.
+    \item Delega deserialización a un pool de hilos (tokio::spawn).
+    \item Mientras la CPU procesa el lote N, la red descarga el lote N+1.
+\end{enumerate}
+
+\bigskip
+
+\section{Archivos de Exportación}
+
+\subsection{nomina\_exportada.csv}
+
+Archivo principal con todos los campos de nómina:
+
+\bigskip
+
+Ejemplo de formato:
+
+\begin{lstlisting}[breaklines=true,frame=none,basicstyle=\ttfamily\small]
+cedula,nombres,apellidos,sexo,edo_civil,n_hijos,componente_id,grado_id,...
+\end{lstlisting}
+
+\bigskip
+
+\subsection{aporte\_CICLO.csv}
+
+Archivo de aportes para distribución de garantías:
+
+\bigskip
+
+Ejemplo de formato:
+
+\begin{lstlisting}[breaklines=true,frame=none,basicstyle=\ttfamily\small]
+cedula,nombres,apellidos,numero_cuenta,garantia_original,factor_aplicado,garantia_anticipo
+10002142,,MATHEUS HIDALGO LUIS EDUARDO,01020451850000065650,615.90,0.70114191,431.83
+\end{lstlisting}
+
+\bigskip
+
+\section{Consideraciones de Despliegue}
+
+Requisitos mínimos:
+
+\begin{itemize}
+    \item 16 GB de RAM (recomendado 32 GB para 500k+ registros)
+    \item Procesador multi-núcleo
+    \item Conexión gRPC al servidor Sandra
+    \item Espacio en disco para archivos CSV de salida
+\end{itemize}
+
+\bigskip
+
+\section{Métricas de Rendimiento}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Métrica} & \textbf{Valor} & \textbf{Condiciones} \\
+\midrule
+Tiempo total & ~4 segundos & 500,000 registros \\
+Throughput & ~125,000 reg/s & Procesamiento paralelo \\
+Memoria & ~8 GB & 500k registros en RAM \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vfill
+\newpage

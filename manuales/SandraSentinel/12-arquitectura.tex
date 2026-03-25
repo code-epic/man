@@ -1,0 +1,105 @@
+%======================================================================
+% CAPÍTULO 12 - ARQUITECTURA DEL SISTEMA
+%======================================================================
+\chapter{Arquitectura del Sistema}
+
+\bigskip
+
+\dropcap{L}{a} arquitectura de Sentinel se fundamenta en principios de diseño que priorizan el rendimiento, la mantenibilidad y la trazabilidad. Este capítulo detalla los componentes del sistema y sus interacciones.
+
+\bigskip
+
+\section{Visión General de la Arquitectura}
+
+Sentinel implementa una Arquitectura Hexagonal con las siguientes capas:
+
+\begin{enumerate}
+    \item Capa de Interfaz: CLI y Manifiestos
+    \item Capa de Orquestación: Kernel
+    \item Capa de Negocio: Motor de Cálculo y Fusión
+    \item Capa de Datos: gRPC Client y Serialización
+    \item Capa de Presentación: Exportación CSV
+\end{enumerate}
+
+\bigskip
+
+\section{Componentes Principales}
+
+\subsection{CLI (Interfaz de Línea de Comandos)}
+
+El punto de entrada del sistema. Responsabilidades:
+
+\begin{itemize}
+    \item Parseo de argumentos de línea de comandos.
+    \item Carga y validación de manifiestos JSON.
+    \item Inicialización del Kernel.
+    \item Presentación de resultados y estadísticas.
+\end{itemize}
+
+\bigskip
+
+Ejemplo de ejecución:
+
+\begin{lstlisting}
+cargo run -- -x -m nomina_2026.json
+\end{lstlisting}
+
+\bigskip
+
+\subsection{Kernel (Orquestador)}
+
+El centro de procesamiento que coordina todas las operaciones:
+
+\begin{enumerate}
+    \item Gestión del ciclo de ejecución.
+    \item Orquestación de la carga de datos.
+    \item Coordinación de cálculos.
+    \item Control de la exportación.
+    \item Telemetría y logging.
+\end{enumerate}
+
+\bigskip
+
+\subsection{Cargador (gRPC Client)}
+
+Módulo responsable de:
+
+\begin{itemize}
+    \item Conexión gRPC al servidor Sandra.
+    \item Streaming de datos desde la base de datos.
+    \item Deserialización paralela de JSON/NDJSON.
+    \item Normalización de datos a estructuras Rust.
+\end{itemize}
+
+\bigskip
+
+El cargamento de datos se realiza en paralelo mediante spawn de tareas asíncronas, permitiendo que mientras se procesa un lote, el siguiente ya está siendo descargado.
+
+\bigskip
+
+\subsection{Motor Rhai}
+
+Motor de scripting para evaluación de fórmulas de primas:
+
+\begin{itemize}
+    \item Compilación de expresiones Rhai desde la base de datos.
+    \item Ejecución en sandbox aislado.
+    \item Integración con Rayon para paralelismo.
+    \item Manejo robusto de errores.
+\end{itemize}
+
+\bigskip
+
+\subsection{Motor de Cálculo (Calculadora Nativa)}
+
+Implementa los algoritmos de cálculo de nómina en Rust nativo:
+
+\begin{itemize}
+    \item Cálculo de antigüedad y tiempo de servicio.
+    \item Determinación de sueldo base.
+    \item Cálculo de alícuotas.
+    \item Asignaciones y garantías.
+\end{itemize}
+
+\vfill
+\newpage

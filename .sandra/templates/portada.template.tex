@@ -1,0 +1,87 @@
+%======================================================================
+% PORTADA SANDRA TEMPLATE
+% Portada profesional con diseño TikZ
+% Variables: {{NOMBRE_MANUAL}}, {{VERSION}}, {{AUTOR}}, {{FECHA}}, {{ORGANIZACION}}
+%======================================================================
+
+\begin{tikzpicture}[
+    remember picture,
+    overlay,
+    shift={(current page.center)}
+]
+
+% Fondo degradado suave
+\fill[sandraSoft] 
+    (current page.south west) rectangle (current page.north east);
+
+% Olas decorativas superiores (estilo Teal Soft)
+\fill[sandraLight, opacity=0.3]
+    (current page.north west) .. controls ++(8cm,-3cm) and ++(-8cm,1cm) .. ++(21cm,0) --
+    (current page.north east) -- cycle;
+
+\fill[sandraGreen, opacity=0.2]
+    (current page.north west) .. controls ++(6cm,-2cm) and ++(-10cm,2cm) .. ++(21cm,-1cm) --
+    (current page.north east) -- cycle;
+
+% Marco decorativo
+\draw[sandraDark, line width=3pt]
+    ([shift={(1.5cm,-1.5cm)}]current page.north west) rectangle
+    ([shift={(-1.5cm,1.5cm)}]current page.south east);
+
+% Línea decorativa inferior
+\fill[sandraGreen]
+    ([shift={(2cm,3cm)}]current page.south west) rectangle
+    ([shift={(-2cm,3.3cm)}]current page.south east);
+
+% Caja del título
+\node[
+    fill=white,
+    draw=sandraDark,
+    line width=2pt,
+    rounded corners=10pt,
+    inner sep=20pt,
+    minimum width=14cm,
+    minimum height=5cm,
+    align=center
+] (titulo) at (0, 3cm) {
+    \fontsize{36}{40}\selectfont
+    \textcolor{sandraDark}{\textbf{{{NOMBRE_MANUAL}}}}\\[0.8cm]
+    \fontsize{16}{18}\selectfont
+    \textcolor{sandraGreen}{{{DESCRIPCION}}}
+};
+
+% Versión
+\node[
+    fill=sandraGreen,
+    text=white,
+    rounded corners=5pt,
+    inner sep=8pt,
+    font=\large\bfseries
+] at (0, 0cm) {Versión {{VERSION}}};
+
+% Información del autor
+\node[
+    align=center,
+    font=\large
+] at (0, -4cm) {
+    \textcolor{sandraDark}{\textbf{Autor:}}\\[0.3cm]
+    \textcolor{textDark}{{{AUTOR}}}\\[0.5cm]
+    \textcolor{sandraGray}{{{FECHA}}}
+};
+
+% Logo/Organización
+\node[
+    align=center,
+    font=\normalsize
+] at (0, -8cm) {
+    \textcolor{sandraDark}{\textbf{{{ORGANIZACION}}}}\\[0.2cm]
+    \textcolor{textLight}{Caracas, Venezuela}
+};
+
+% Decoración inferior
+\fill[sandraDark, opacity=0.1]
+    (current page.south west) .. controls ++(10cm,2cm) and ++(-5cm,-1cm) .. (current page.south east) -- cycle;
+
+\end{tikzpicture}
+
+\clearpage

@@ -1,0 +1,143 @@
+%======================================================================
+% CAPÍTULO 00: INTRODUCCIÓN AL SSSIFANB
+%======================================================================
+% Descripción general del sistema y su marco legal
+%======================================================================
+
+\chapter{Introducción al Sistema}
+\label{ch:introduccion}
+
+\section{Propósito del Sistema}
+
+El \textbf{Sistema de Seguridad Social de la Fuerza Armada Nacional Bolivariana (SSSIFANB)} es una plataforma tecnológica integral diseñada para automatizar y optimizar la gestión de los procesos de afiliación, administración de datos y otorgamiento de prestaciones sociales dirigidas al personal militar y sus beneficiarios.
+
+El sistema fue desarrollado en cumplimiento de la Ley del Sistema de Seguridad Social de la Fuerza Armada Nacional Bolivariana, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela, con el objetivo de garantizar la transparencia, eficiencia y trazabilidad en la administración de los recursos destinados a la protección social del personal militar.
+
+\section{Marco Legal}
+
+El SSSIFANB opera bajo el marco normativo establecido por:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Constitución de la República Bolivariana de Venezuela} (1999) — Artículos sobre seguridad social
+    \item \textbf{Ley del Sistema de Seguridad Social de la FANB} — Norma principal que regula el funcionamiento
+    \item \textbf{Ley Orgánica de la Fuerza Armada Nacional Bolivariana} — Define la condición militar
+    \item \textbf{Decretos y Resoluciones Ministeriales} — Normas complementarias de aplicación
+\end{itemize}
+
+\section{Arquitectura del Sistema}
+
+El sistema fue desarrollado utilizando tecnologías modernas que garantizan rendimiento, seguridad y escalabilidad:
+
+\begin{figure}[H]
+\centering
+\begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=sandraDark,
+    width=0.85\textwidth,
+    halign=center
+]
+\begin{tabular}{p{4cm}p{5cm}}
+\toprule
+\textbf{Componente} & \textbf{Tecnología} \\
+\midrule
+Frontend & Angular 17+ (Standalone) \\
+UI Base & Bootstrap 4.6 + ng-bootstrap \\
+Estilos & SCSS + Argon Dashboard \\
+Backend API & REST Services \\
+Seguridad & JWT + HMAC SHA256 + TOTP 2FA \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+\caption{Arquitectura tecnológica del SSSIFANB}
+\label{fig:arquitectura}
+\end{figure}
+
+\section{Módulos del Sistema}
+
+El SSSIFANB está organizado en los siguientes módulos funcionales:
+
+\subsection{Módulo de Afiliación}
+
+Gestiona el registro y actualización de los datos del afiliado, incluyendo:
+
+\begin{itemize}[leftmargin=*]
+    \item Datos militares (categoría, situación, grado, componente)
+    \item Datos personales y de contacto
+    \item Información física y biométrica
+    \item Grupo familiar y beneficiarios
+    \item Cuentas bancarias
+\end{itemize}
+
+\subsection{Módulo de Tarjeta de Identificación Militar (TIM)}
+
+Permite la emisión y gestión de la Tarjeta de Identificación Militar, documento oficial que acredita la condición de miembro de la FANB.
+
+\subsection{Módulo de Prestaciones Sociales}
+
+Administra los beneficios económicos contemplados en la ley:
+
+\begin{itemize}[leftmargin=*]
+    \item Anticipos del fideicomiso
+    \item Finiquitos de liquidación
+    \item Medidas judiciales (embargos, manutención)
+    \item Movimientos históricos del afiliado
+    \item Órdenes de pago
+    \item Procesamiento en lote
+\end{itemize}
+
+\subsection{Módulo de Nómina de Pensionados}
+
+Gestiona el cálculo y disbursamiento de las pensiones:
+
+\begin{itemize}[leftmargin=*]
+    \item Procesamiento de nómina
+    \item Tabulador de conceptos salariales
+    \item Retroactivos por homologación
+    \item Integración con Sistema Patria
+    \item Calculadora de pensiones
+\end{itemize}
+
+\subsection{Módulo de Configuración}
+
+Permite la administración de parámetros del sistema:
+
+\begin{itemize}[leftmargin=*]
+    \item Parámetros generales
+    \item Tasas del Banco Central de Venezuela (BCV)
+    \item Gestión de directivas PDF
+    \item Seguridad y datos de autenticación
+\end{itemize}
+
+\section{Requisitos de Acceso}
+
+Para acceder al SSSIFANB, el usuario debe cumplir con los siguientes requisitos:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Tener una cuenta de usuario activa} en el sistema
+    \item \textbf{Disponer de credenciales válidas} (usuario y contraseña)
+    \item \textbf{Contar con un dispositivo autenticador} configurado para TOTP (en caso de tener 2FA habilitado)
+    \item \textbf{Tener permisos asignados} según el rol del usuario en el sistema
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\begin{tcolorbox}[
+    enhanced,
+    colback=sandraSoft,
+    colframe=sandraAccent,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Nota de Seguridad}\\
+\smallskip
+El acceso al sistema está protegido mediante autenticación de dos factores (2FA). Cada intento de inicio de sesión genera un código temporal que debe ser ingresado junto con las credenciales habituales. Esto garantiza un nivel adicional de protección para sus datos.
+\end{tcolorbox}
+\end{figure}
+
+\section{Soporte y Asistencia}
+
+En caso de requerir asistencia técnica o tener consultas sobre el uso del sistema, puede comunicarse a través de los canales oficiales del IPSFANB.
+
+\newpage

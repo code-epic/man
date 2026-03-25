@@ -1,0 +1,130 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{Filosofia y Principios}{\es@scroman {iii}}{chapter*.1}%
+\contentsline {chapter}{Glosario de Iconos}{\es@scroman {vi}}{chapter*.3}%
+\contentsline {part}{I\hspace {1em}Fundamentos y Primeros Pasos}{1}{part.1}%
+\contentsline {chapter}{\numberline {1}Onboarding e Identidad}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Configuracion de Identidad}{2}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Campos de Configuracion}{2}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Mejores Practicas para la Nomenclatura}{3}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}Vinculacion del Nodo}{3}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Informacion Detectada Automaticamente}{4}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Generacion del Client ID}{4}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Proceso de Vinculacion}{5}{subsection.1.2.3}%
+\contentsline {section}{\numberline {1.3}Pantalla de Bienvenida}{5}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Resumen del Proceso de Onboarding}{6}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Solucion de Problemas Comunes}{6}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Interfaz de Usuario y Sandra AI}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}El Dashboard Principal}{7}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Panel de Metricas del Sistema}{7}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Interpretacion de las Metricas}{8}{subsection.2.1.2}%
+\contentsline {subsubsection}{Estado de RED}{8}{subsubsection*.16}%
+\contentsline {subsubsection}{Espacio de Almacenamiento}{8}{subsubsection*.17}%
+\contentsline {section}{\numberline {2.2}Asistente Sandra AI}{9}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Activacion del Asistente}{9}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Tipos de Interaccion}{9}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Comandos Predefinidos}{9}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Navegacion Principal}{10}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Accesos Directos}{10}{subsection.2.3.1}%
+\contentsline {section}{\numberline {2.4}Personalizacion del Dashboard}{11}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Temas de Color}{11}{subsection.2.4.1}%
+\contentsline {part}{II\hspace {1em}Gestión y Operaciones}{12}{part.2}%
+\contentsline {chapter}{\numberline {3}Gestion de Conexiones y Aplicaciones}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Perfiles de Conexion}{13}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Creacion de Nueva Conexion}{13}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Parametros de Conexion}{14}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Gestion de Aplicaciones}{14}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Lista de Aplicaciones}{14}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Formulario de Nueva Aplicacion}{15}{subsection.3.2.2}%
+\contentsline {subsubsection}{Campos de Configuracion}{17}{subsubsection*.25}%
+\contentsline {subsubsection}{Modos de Despliegue}{17}{subsubsection*.27}%
+\contentsline {subsection}{\numberline {3.2.3}Repositorio Fuente}{17}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Lista de Conexiones Activas}{18}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Informacion Visualizada}{18}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}Gestion del Monitor del Sistema}{19}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Metricas de Hardware}{20}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Inspector de Red}{20}{subsection.3.4.2}%
+\contentsline {chapter}{\numberline {4}Seguridad y Politicas de Proteccion}{21}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Configuracion de Seguridad}{21}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Niveles de Seguridad Predefinidos}{22}{subsection.4.1.1}%
+\contentsline {section}{\numberline {4.2}Politicas de Contrasenas}{22}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Configuracion de Regex}{22}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Algoritmo de Hashing}{23}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Rutas Proxy}{23}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Creacion de Rutas}{24}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Codigo ID de Seguridad}{24}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Persistencia de Trafico}{25}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Auditoria y Logs}{25}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Niveles de Auditoria}{25}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Estructura de Logs}{25}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Arquitectura de Defensa en Profundidad}{26}{section.4.5}%
+\contentsline {part}{III\hspace {1em}Seguridad Avanzada}{27}{part.3}%
+\contentsline {chapter}{\numberline {5}Visor de Documentos Seguro}{28}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Visor Seguro de SDC}{28}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Principio de Operacion}{28}{subsection.5.1.1}%
+\contentsline {section}{\numberline {5.2}Formatos Soportados}{29}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Lista de Documentos}{29}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Informacion Visualizada}{30}{subsection.5.3.1}%
+\contentsline {section}{\numberline {5.4}Flujo de Encriptacion GPG}{30}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Historia y Contexto de GPG}{31}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Fundamentos Criptograficos}{31}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Proceso de Encriptacion en SDC}{32}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Relevancia para SandraDC}{32}{subsection.5.4.4}%
+\contentsline {section}{\numberline {5.5}Exportacion y Compartir}{33}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Opciones de Exportacion}{34}{subsection.5.5.1}%
+\contentsline {section}{\numberline {5.6}Previsualizacion de Documentos}{34}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Documento Protegido}{35}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Desbloqueo con Clave}{36}{subsection.5.6.2}%
+\contentsline {subsection}{\numberline {5.6.3}Vista Desbloqueada}{37}{subsection.5.6.3}%
+\contentsline {section}{\numberline {5.7}Configurador del Visor}{38}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Opciones de Configuracion}{39}{subsection.5.7.1}%
+\contentsline {section}{\numberline {5.8}Flujo de Seguridad del Visor}{39}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Mejores Practicas}{39}{section.5.9}%
+\contentsline {part}{IV\hspace {1em}Inteligencia Artificial}{41}{part.4}%
+\contentsline {chapter}{\numberline {6}Chat de Sandra AI}{42}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Interfaz de Conversacion}{42}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Componentes de la Interfaz}{42}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Historial de Conversaciones}{43}{subsection.6.1.2}%
+\contentsline {section}{\numberline {6.2}Comandos y Consultas}{43}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Consultas de Informacion}{43}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Comandos Operativos}{44}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Asistencia Contextual}{45}{subsection.6.2.3}%
+\contentsline {section}{\numberline {6.3}Funciones Avanzadas}{45}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Procesamiento de Lenguaje Natural}{45}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Automatizacion de Tareas}{45}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}Integracion con el Sistema}{46}{subsection.6.3.3}%
+\contentsline {section}{\numberline {6.4}Mejores Practicas}{46}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Solucion de Problemas}{47}{section.6.5}%
+\contentsline {part}{V\hspace {1em}Configuración Avanzada}{48}{part.5}%
+\contentsline {chapter}{\numberline {7}Configuracion Avanzada}{49}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Temas Visuales}{49}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Temas Disponibles}{50}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Ajustes de Personalizacion}{50}{subsection.7.1.2}%
+\contentsline {section}{\numberline {7.2}Configuracion de Red}{50}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Parametros de Conexion}{51}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Configuracion de Proxy}{52}{subsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.2.3}Politicas de DNS}{52}{subsection.7.2.3}%
+\contentsline {section}{\numberline {7.3}Control de Acceso}{52}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Niveles de Permisos}{53}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Autenticacion Multifactor}{53}{subsection.7.3.2}%
+\contentsline {section}{\numberline {7.4}Sistema de Actualizaciones}{53}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Canales de Actualizacion}{54}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Tipos de Actualizacion}{54}{subsection.7.4.2}%
+\contentsline {section}{\numberline {7.5}Informacion del Sistema}{55}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Datos Tecnicos Mostrados}{56}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}Exportacion de Diagnostico}{56}{subsection.7.5.2}%
+\contentsline {section}{\numberline {7.6}Cierre del Sistema}{56}{section.7.6}%
+\contentsline {subsection}{\numberline {7.6.1}Procedimiento de Cierre}{57}{subsection.7.6.1}%
+\contentsline {subsection}{\numberline {7.6.2}Opciones de Cierre}{58}{subsection.7.6.2}%
+\contentsline {section}{\numberline {7.7}Mejores Practicas de Configuracion}{58}{section.7.7}%
+\contentsline {part}{VI\hspace {1em}Anexos Técnicos}{59}{part.6}%
+\contentsline {chapter}{\numberline {A}Anexos Tecnicos}{60}{appendix.Alph1}%
+\contentsline {section}{\numberline {A.1}Arquitectura de Software SDC}{60}{section.Alph1.1}%
+\contentsline {section}{\numberline {A.2}Ciclo de Vida de un Contenedor}{60}{section.Alph1.2}%
+\contentsline {section}{\numberline {A.3}Flujo de Cifrado de Datos}{61}{section.Alph1.3}%
+\contentsline {section}{\numberline {A.4}Topologia de Red}{61}{section.Alph1.4}%
+\contentsline {section}{\numberline {A.5}Tablas de Referencia Rapida}{61}{section.Alph1.5}%
+\contentsline {subsection}{\numberline {A.5.1}Puertos y Protocolos}{62}{subsection.Alph1.5.1}%
+\contentsline {subsection}{\numberline {A.5.2}Algoritmos Criptograficos}{62}{subsection.Alph1.5.2}%
+\contentsline {subsection}{\numberline {A.5.3}Codigos de Error}{63}{subsection.Alph1.5.3}%
+\contentsline {section}{\numberline {A.6}Glosario de Terminos Tecnicos Extendido}{63}{section.Alph1.6}%
+\contentsfinish 

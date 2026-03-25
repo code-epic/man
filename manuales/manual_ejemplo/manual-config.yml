@@ -1,0 +1,37 @@
+# Configuración del Manual
+# Generado por SandraManuals Framework
+
+manual:
+  nombre: "Manual Ejemplo"
+  version: "1.0.0"
+  autor: "Carlos Pena"
+  fecha: "2026-03-05"
+  descripcion: "Manual de prueba"
+  entorno: "hibrido"
+
+estructura:
+  portada: true
+  preliminares:
+    - presentacion
+  capitulos:
+    - introduccion
+    - instalacion
+    - dashboard
+  anexos: true
+  glosario: false
+  referencias: false
+
+metadatos:
+  paleta: "universal"
+  fuentes:
+    principal: "Inter"
+    codigo: "FiraCode"
+  iconos: true
+  logo: "../../assets/logos/sandra.png"
+
+build:
+  motor: "xelatex"
+  opciones:
+    - "-interaction=nonstopmode"
+    - "-shell-escape"
+  salida: "manual_ejemplo.pdf"

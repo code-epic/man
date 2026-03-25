@@ -1,0 +1,166 @@
+# SandraManuals Framework - Configuración Global
+# Ubicación: $HOME/dev/man/.sandra/config.yml
+
+framework:
+  nombre: "SandraManuals Framework"
+  version: "1.0.0"
+  descripcion: "Framework para creación de manuales técnicos con LaTeX"
+  autor: "Carlos Peña"
+  organizacion: "Code Epic Technologies"
+  
+paths:
+  base: "$HOME/dev/man"
+  habilidades: "$HOME/dev/man/.sandra/habilidades"
+  templates: "$HOME/dev/man/.sandra/templates"
+  estilos: "$HOME/dev/man/.sandra/templates/estilos"
+  modelos: "$HOME/dev/man/.sandra/modelos"
+  assets:
+    fonts: "$HOME/dev/man/assets/fonts"
+    iconos: "$HOME/dev/man/assets/iconos"
+    logos: "$HOME/dev/man/assets/logos"
+  manuales: "$HOME/dev/man/manuales"
+
+entornos:
+  sandra-ecosystem:
+    nombre: "Sandra Ecosystem"
+    descripcion: "Estilo académico y profesional para documentación técnica empresarial"
+    paleta: "dark-professional"
+    fuente_principal: "Inter"
+    fuente_codigo: "FiraCode"
+    margen_izquierdo: "3cm"
+    margen_general: "2.5cm"
+    
+  sandra-desktop:
+    nombre: "Sandra Desktop"
+    descripcion: "Estilo técnico orientado a usuarios finales"
+    paleta: "teal-soft"
+    fuente_principal: "Helvetica Neue"
+    fuente_codigo: "FiraCode"
+    margen_izquierdo: "2.5cm"
+    margen_general: "2.5cm"
+    
+  hibrido:
+    nombre: "Híbrido"
+    descripcion: "Combinación de ambos estilos"
+    paleta: "universal"
+    fuente_principal: "Inter"
+    fuente_codigo: "FiraCode"
+    margen_izquierdo: "2.5cm"
+    margen_general: "2.5cm"
+    
+  minimalista:
+    nombre: "Minimalista"
+    descripcion: "Estructura básica sin preconfiguraciones"
+    paleta: "default"
+    fuente_principal: "Latin Modern"
+    fuente_codigo: "Latin Modern"
+    margen_izquierdo: "2.5cm"
+    margen_general: "2.5cm"
+
+habilidades_disponibles:
+  introduccion:
+    id: "introduccion"
+    nombre: "Introducción General"
+    archivo: "00-introduccion.tex"
+    descripcion: "Propósito, alcance y estructura del documento"
+    
+  instalacion:
+    id: "instalacion"
+    nombre: "Instalación y Onboarding"
+    archivo: "01-instalacion.tex"
+    descripcion: "Guía de instalación y primeros pasos"
+    
+  configuracion:
+    id: "configuracion"
+    nombre: "Configuración"
+    archivo: "02-configuracion.tex"
+    descripcion: "Opciones de configuración y personalización"
+    
+  dashboard:
+    id: "dashboard"
+    nombre: "Panel de Control"
+    archivo: "03-dashboard.tex"
+    descripcion: "Interfaz y funcionalidades del dashboard"
+    
+  seguridad:
+    id: "seguridad"
+    nombre: "Seguridad"
+    archivo: "04-seguridad.tex"
+    descripcion: "Estándares y prácticas de seguridad"
+    
+  api:
+    id: "api"
+    nombre: "API y Desarrollo"
+    archivo: "05-api.tex"
+    descripcion: "Documentación de API para desarrolladores"
+    
+  glosario:
+    id: "glosario"
+    nombre: "Glosario de Iconos"
+    archivo: "98-glosario.tex"
+    descripcion: "Referencia visual de iconos utilizados"
+    
+  referencias:
+    id: "referencias"
+    nombre: "Referencias Bibliográficas"
+    archivo: "99-referencias.tex"
+    descripcion: "Bibliografía y referencias técnicas"
+
+paletas:
+  teal-soft:
+    nombre: "Teal Soft"
+    descripcion: "Paleta verde pastel suave (Sandra Desktop)"
+    colores:
+      primary: "2D5A4A"
+      secondary: "4CAF93"
+      light: "B2E0D0"
+      accent: "FFC107"
+      soft: "F5FAF8"
+      text: "37474F"
+      
+  dark-professional:
+    nombre: "Dark Professional"
+    descripcion: "Paleta oscura profesional (Sandra Ecosystem)"
+    colores:
+      primary: "2D3E4E"
+      secondary: "455A64"
+      light: "90A4AE"
+      accent: "66BB6A"
+      soft: "F4F6F8"
+      text: "2D3E4E"
+      
+  universal:
+    nombre: "Universal"
+    descripcion: "Paleta combinada de ambos proyectos"
+    colores:
+      primary: "2D5A4A"
+      secondary: "4CAF93"
+      light: "B2E0D0"
+      accent: "66BB6A"
+      soft: "F5FAF8"
+      text: "37474F"
+      
+  default:
+    nombre: "Default"
+    descripcion: "Colores estándar de LaTeX"
+    colores:
+      primary: "000000"
+      secondary: "333333"
+      light: "666666"
+      accent: "0000FF"
+      soft: "FFFFFF"
+      text: "000000"
+
+metadatos_default:
+  version: "1.0.0"
+  autor: "Carlos Peña"
+  organizacion: "Code Epic Technologies"
+  ubicacion: "Caracas, Venezuela"
+  licencia: "Propietario"
+  
+comandos:
+  init: "agentes/sandra-init.sh"
+  add: "agentes/sandra-add.sh"
+  build: "agentes/sandra-build.sh"
+  
+version_schema: "1.0"

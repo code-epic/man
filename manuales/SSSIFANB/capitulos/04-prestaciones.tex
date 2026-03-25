@@ -1,0 +1,327 @@
+%======================================================================
+% CAPÍTULO 04: PRESTACIONES SOCIALES
+%======================================================================
+% Anticipos, finiquitos, judiciales, movimientos y órdenes de pago
+% Fundamento Legal: Art. 57, 60, 61 de la Ley SSSIFANB
+%======================================================================
+
+\chapter{Módulo de Prestaciones Sociales}
+\label{ch:prestaciones}
+
+\section{Descripción General}
+
+El Módulo de Prestaciones Sociales es el ``corazón fiduciario'' del sistema, responsable operativo del Capítulo IV de la \leynegroprimero. Sus algoritmos matemáticos resguardan miles de millones de bolívares al año y dictaminan el patrimonio de una vida de servicio basándose directamente en el tiempo de cotización validado desde el \hyperref[ch:afiliacion]{Módulo de Afiliación}.
+
+\section{Acceso al Módulo}
+
+Para acceder al módulo de Prestaciones:
+
+\begin{enumerate}[leftmargin=*]
+    \item Seleccione \textbf{Prestaciones} en el menú lateral
+    \item Se mostrará el menú de opciones disponibles
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{5-prestaciones-menu.png}
+\caption{Módulo de Prestaciones}
+\label{fig:prestaciones-menu}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\end{minipage}
+\end{figure}
+
+\section{Submódulos Disponibles}
+
+El módulo de Prestaciones Sociales se organiza en los siguientes submódulos funcionales:
+
+\begin{itemize}[label=\textcolor{sandraGreen}{\faIcon{angle-right}}, leftmargin=*]
+    \item \textbf{\faIcon{money-bill-wave} Anticipos}: Solicitud de percepción anticipada de fondos fiduciarios.
+    \item \textbf{\faIcon{file-signature} Finiquitos}: Liquidación final integral de prestaciones al cese del servicio.
+    \item \textbf{\faIcon{balance-scale} Judiciales}: Gestión de medidas cautelares y embargos dictaminados por tribunales.
+    \item \textbf{\faIcon{history} Movimientos}: Historial contable de operaciones del fideicomiso.
+    \item \textbf{\faIcon{file-invoice-dollar} Órdenes de Pago}: Control estricto de desembolsos a cuentas del militar.
+    \item \textbf{\faIcon{layer-group} Lotes}: Procesamiento asíncrono masivo para actualización de expedientes.
+    \item \textbf{\faIcon{chart-bar} Reportes}: Generación de proyecciones y estados de cuenta certificados.
+\end{itemize}
+
+\section{Fundamento Matemático - Asignación de Antigüedad (Art. 57)}
+
+\keyconcept{Motor Lógico del Fideicomiso y Prestaciones}\\
+El ciclo asincrónico procesa contablemente los pagos por antigüedad e invoca las siguientes reglas de bloque comercial fiduciario de la ley:
+
+\begin{lstlisting}[language=Java, caption=Cálculos Fiduciarios de Antigüedad]
+// 1. Corridas Trimestrales de Garantía
+function procesarGarantiaTrimestral(sueldoIntegralDate) {
+    const sueldoDiario = sueldoIntegralDate / 30;
+    return sueldoDiario * 15; // Abonar a Fideicomiso
+}
+
+// 2. Corridas Anuales (Triggers después de Años_Servicio > 1)
+function procesarBonoAdicional(sueldoIntegralDate, anosServicio) {
+    if (anosServicio > 1) {
+        const sueldoDiario = sueldoIntegralDate / 30;
+        return sueldoDiario * 2; // Extra por cada año vencido
+    }
+    return 0;
+}
+\end{lstlisting}
+
+\section{Anticipos del Fideicomiso}
+
+Los anticipos permiten al afiliado disponer de una porción de sus prestaciones acumuladas antes de la desvinculación definitiva.
+
+\subsection*{Tipos de Anticipo}
+
+\begin{longtable}{p{3cm}p{4cm}p{5cm}}
+\toprule
+\textbf{Tipo} & \textbf{Monto Máximo} & \textbf{Restricciones} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Tipos de anticipo disponibles}
+\label{tab:tipos-anticipo}
+\endlastfoot
+
+Educativo & 30\% & Para estudios del afiliado o dependientes \\
+Médico & 40\% & Para tratamientos de salud \\
+Vivienda & 50\% & Para compra o mejora de vivienda \\
+Emergencia & 25\% & Para situaciones imprevistas calificadas \\
+\end{longtable}
+
+\subsection*{Requisitos para Solicitar}
+
+\begin{enumerate}[leftmargin=*]
+    \item Tener al menos 2 años de cotización continua
+    \item No tener anticipos pendientes de liquidación
+    \item Cumplir con los requisitos específicos del tipo de anticipo
+    \item Tener cuenta bancaria activa registrada en el sistema
+\end{enumerate}
+
+\begin{tcolorbox}[
+    enhanced,
+    colback=sandraSoft,
+    colframe=sandraDark,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Capacidad de Pago}\\
+\smallskip
+El sistema verifica que la suma de anticipos solicitados no supere el 70\% del total de las prestaciones acumuladas. Este cálculo protege la integridad de los fondos de fideicomiso.
+\end{tcolorbox}
+
+\section{Lista y Solicitud de Anticipos}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{5.1-lista-de-anticipos.png}
+\caption{Lista de anticipos}
+\label{fig:lista-anticipos}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{5.2-nuevo-anticipo.png}
+\caption{Nuevo anticipo}
+\label{fig:nuevo-anticipo}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{5.3-solicitar-anticipo.png}
+\caption{Solicitar anticipo}
+\label{fig:solicitar-anticipo}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{5.4-historico-anticipos.png}
+\caption{Histórico de anticipos}
+\label{fig:historico-anticipos}
+\end{minipage}
+\end{figure}
+
+\section{Finiquitos}
+
+El finiquito es la liquidación final de las prestaciones sociales al momento de la desvinculación del servicio militar.
+
+\subsection*{Triggers de Despido / Reserva Activa (Pase a Retiro)}
+
+\begin{tcolorbox}[
+    colback=sandraSoft,
+    colframe=sandraDark,
+    width=\textwidth,
+    title=\textbf{Liquidación de Finiquito (Art. 57)}
+]
+\small
+Toda fracción superior a \textbf{6 meses} equivale a \textbf{1 Año entero} frente a los dictados legales para la liquidación. Al generar el Finiquito total, el motor debe efectuar el cálculo en base a los 30 días continuos mensuales.
+
+\begin{lstlisting}[language=Java, numbers=none]
+// Suponiendo transformacion de meses extra a anosTotalesServicio
+let montoPrestacionSocial = ultimoSueldoIntegralRetirado * anosTotalesServicio * 30;
+\end{lstlisting}
+\end{tcolorbox}
+
+\subsection*{Tipos de Finiquito}
+
+\begin{longtable}{p{3cm}p{9cm}}
+\toprule
+\textbf{Tipo} & \textbf{Descripción} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Tipos de finiquito}
+\label{tab:tipos-finiquito}
+\endlastfoot
+
+Retiro Voluntario & Desvinculación por decisión propia del afiliado \\
+Retiro Obligatorio & Desvinculación por alcanzar límite de edad o servicio \\
+Discapacidad & Jubilación por incapacidad física o mental \\
+Fallecimiento & Liquidación a beneficiarios designados \\
+Transferencia & Cambio de componente o situación militar \\
+\end{longtable}
+
+\subsection*{Componentes del Finiquito}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Aporte Patrimonial}: Acumulación de aportes del afiliado
+    \item \textbf{Contribuciones Patronales}: Aportes del IPSFANB (cuota 2x)
+    \item \textbf{Intereses Acumulados}: Rendimientos financieros
+    \item \textbf{Ajustes por Inflación}: Compensación por variación monetaria
+    \item \textbf{Deducciones}: Anticipos no liquidados, deudas, etc.
+\end{itemize}
+
+\section{Gestión Judicial (Art. 60 y 61)}
+
+Este submódulo administra las medidas cautelares y embargos judicialmente ordenados.
+
+\subsection*{Algoritmo Condicional de Indemnización por Muerte Súbita}
+
+La diferencia radical algorítmica antes del pago obedece explícitamente a los estatutos 60 y 61:
+
+\begin{lstlisting}[language=Java, caption=Indemnización de Muerte (Art. 60 y 61)]
+let liquidacionTotal = 0;
+
+switch (condicionFallecimientoStatus) {
+    case 'ACTO_DE_SERVICIO':
+        // Artículo 60: Máximo entre 36 sueldos militares o 36 salarios mínimos
+        liquidacionTotal = Math.max(
+            (ultimoSueldoMilitar * 36), 
+            (salarioMinimoNacional * 36)
+        );
+        break;
+
+    case 'FUERA_DE_SERVICIO':
+        // Artículo 61: Máximo entre 24 sueldos militares o 24 salarios mínimos
+        liquidacionTotal = Math.max(
+            (ultimoSueldoMilitar * 24), 
+            (salarioMinimoNacional * 24)
+        );
+        break;
+}
+\end{lstlisting}
+
+\subsection*{Tipos de Medidas}
+
+\begin{longtable}{p{3cm}p{9cm}}
+\toprule
+\textbf{Tipo} & \textbf{Descripción} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Tipos de medidas judiciales}
+\label{tab:medidas-judiciales}
+\endlastfoot
+
+Embargo & Prohibición de disposición de fondos por orden judicial \\
+Retención & Deducción obligatoria de un porcentaje para terceros \\
+Manutención & Descuento para pago de pensiones alimentarias \\
+Decomiso & Incautación total o parcial por sentencia firme \\
+\end{longtable}
+
+\section{Movimientos del Fideicomiso}
+
+Este submódulo muestra el historial completo de operaciones del afiliado:
+
+\begin{figure}[H]
+\begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=sandraDark,
+    width=0.85\textwidth,
+    halign=center
+]
+\begin{tabular}{cll}
+\toprule
+\textbf{Fecha} & \textbf{Concepto} & \textbf{Monto} \\
+\midrule
+15/01/2026 & Aporte Mensual & +\$\$500.000,00 \\
+28/01/2026 & Interés Fideicomiso & +\$\$25.000,00 \\
+05/02/2026 & Anticipo Educativo & -\$\$2.000.000,00 \\
+15/02/2026 & Aporte Mensual & +\$\$500.000,00 \\
+\midrule
+\textbf{Saldo Actual} & & \textbf{\$\$8.525.000,00} \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+\caption{Ejemplo de movimiento de fideicomiso}
+\label{fig:movimientos-ejemplo}
+\end{figure}
+
+\section{Órdenes de Pago}
+
+Controla los disbursos realizados al afiliado:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Pendiente}: Orden creada, en espera de procesamiento
+    \item \textbf{Ejecutada}: Pago realizado exitosamente
+    \item \textbf{Fallida}: Error en el procesamiento del pago
+    \item \textbf{Cancelada}: Orden anulada antes del procesamiento
+\end{itemize}
+
+\section{Procesamiento en Lote}
+
+Permite la ejecución masiva de operaciones:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Generación de nóminas}: Creación batch de pagos
+    \item \textbf{Liquidación de anticipos}: Procesamiento múltiple
+    \item \textbf{Aplicación de intereses}: Cálculo y acreditación batch
+    \item \textbf{Actualización de estados}: Cambio masivo de status
+\end{itemize}
+
+Este componente es de extrema delicadeza. Aquí el servidor itera sobre miles de Fideicomitentes para calcular (Módulo Cálculo) y abonar (Módulo Aportes).
+
+\section{Reportes}
+
+Generación de informes para consulta y archivo:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Estado de Cuenta}: Resumen detallado de operaciones
+    \item \textbf{Certificado de Aportes}: Constancia de contribuciones
+    \item \textbf{Historial de Anticipos}: Registro de solicitudes pasadas
+    \item \textbf{Proyección de Jubilación}: Estimación de beneficios futuros
+\end{itemize}
+
+\begin{tcolorbox}[
+    enhanced,
+    colback=sandraSoft,
+    colframe=sandraAccent,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+Todos los reportes pueden ser exportados en formato PDF para impresión o archivo digital. También está disponible la exportación en formato Excel para análisis de datos adicionales.
+\end{tcolorbox}
+
+\newpage

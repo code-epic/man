@@ -1,0 +1,203 @@
+%======================================================================
+% CAPÍTULO 01: INICIO DE SESIÓN
+%======================================================================
+% Proceso de autenticación y primer acceso
+%======================================================================
+
+\chapter{Inicio de Sesión}
+\label{ch:inicio-sesion}
+
+\section{Presentación del Sistema}
+
+El \textbf{SSSIFANB} (Sistema de Seguridad Social de la Fuerza Armada Nacional Bolivariana) es una plataforma tecnológica integral diseñada para gestionar los procesos de afiliación, administración de datos y otorgamiento de prestaciones sociales dirigidas al personal militar y sus beneficiarios.
+
+El sistema fue desarrollado por el \textbf{Instituto de Previsión Social de la Fuerza Armada Nacional Bolivariana (IPSFANB)} con el objetivo de garantizar la transparencia, eficiencia y trazabilidad en la administración de los recursos destinados a la protección social del personal militar.
+
+\subsection*{Marco Legal}
+
+El SSSIFANB opera bajo el marco normativo establecido por:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Constitución de la República Bolivariana de Venezuela} (Art. 328): Determina que la Seguridad Social es la base de la suprema felicidad pública.
+    \item \textbf{Ley del Sistema de Seguridad Social de la FANB} (Decreto Gaceta Oficial N° 6.209): Ley Negro Primero, promulgada para dignificar al profesional militar.
+    \item \textbf{Leyes y Reglamentos Complementarios}
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{1-presentacion.png}
+\caption{Pantalla de presentación del SSSIFANB}
+\label{fig:presentacion}
+\end{figure}
+
+\section{Pantalla de Login}
+
+El acceso al sistema se realiza a través de la pantalla de autenticación:
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{1.1-login.png}
+\caption{Pantalla de inicio de sesión}
+\label{fig:login}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{1.2-validacion-2FA.png}
+\caption{Validación 2FA}
+\label{fig:2fa}
+\end{minipage}
+\end{figure}
+
+\subsection*{Campos del Formulario}
+
+\begin{longtable}{p{3cm}p{9cm}}
+\toprule
+\textbf{Campo} & \textbf{Descripción} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Campos del formulario de login}
+\label{tab:campos-login}
+\endlastfoot
+
+\textbf{Usuario} & Cédula de identidad del afiliado \\
+\textbf{Clave} & Contraseña personal de acceso \\
+\textbf{Código 2FA} & Código de 6 dígitos (si está habilitado) \\
+\end{longtable}
+
+\section{Autenticación de Dos Factores}
+
+Para mayor seguridad, el sistema implementa autenticación de dos factores (2FA/TOTP):
+
+\begin{enumerate}[leftmargin=*]
+    \item Acceda a la configuración desde su perfil
+    \item Seleccione la opción de habilitar 2FA
+    \item Escanee el código QR con su aplicación autenticadora
+    \item Ingrese el código de verificación
+    \item Guarde los códigos de respaldo
+\end{enumerate}
+
+\begin{tcolorbox}[
+    colback=sandraSoft,
+    colframe=sandraGreen,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Tip de Seguridad}: Nunca comparta sus códigos de verificación. El IPSFANB nunca solicitará su contraseña por teléfono o correo.
+\end{tcolorbox}
+
+\section{Pantalla Principal}
+
+Una vez autenticado, el usuario accede a la pantalla principal del sistema:
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{2-principal.png}
+\caption{Pantalla principal}
+\label{fig:pantalla-principal}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{2.1-principal-configuracion.png}
+\caption{Acceso a configuración}
+\label{fig:config-acceso}
+\end{minipage}
+\end{figure}
+
+La pantalla principal incluye:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Barra superior}: Logo, nombre del usuario, notificaciones
+    \item \textbf{Menú lateral}: Navegación a los módulos (Afiliación, Beneficiarios, TIM, Prestaciones, Nómina)
+    \item \textbf{Área de contenido}: Información del módulo seleccionado
+    \item \textbf{Pie de página}: Información institucional
+\end{itemize}
+
+\section{Configuración de Usuario}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{2.2-configuracion.png}
+\caption{Panel de configuración}
+\label{fig:config-panel}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{2.3-cambiar-clave.png}
+\caption{Cambio de contraseña}
+\label{fig:cambiar-clave}
+\end{minipage}
+\end{figure}
+
+\subsection*{Cambio de Contraseña}
+
+Requisitos de contraseña:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Longitud mínima}: 8 caracteres
+    \item \textbf{Mayúsculas y minúsculas}: Al menos una de cada
+    \item \textbf{Números}: Al menos un dígito
+    \item \textbf{Caracteres especiales}: Al menos un símbolo
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{2.4-permitir-2FA.png}
+\caption{Habilitar 2FA}
+\label{fig:permitir-2fa}
+\end{minipage}
+\end{figure}
+
+\section{Cierre de Sesión}
+
+Para cerrar sesión de manera segura:
+
+\begin{enumerate}[leftmargin=*]
+    \item Haga clic en su nombre de usuario
+    \item Seleccione \textbf{Cerrar Sesión}
+    \item Confirme la acción
+\end{enumerate}
+
+El sistema invalidará el token y lo redirigirá a login.
+
+\section{Arquitectura Técnica del Sistema}
+
+El SSSIFANB está desarrollado con las siguientes tecnologías:
+
+\begin{longtable}{p{3cm}p{9cm}}
+\toprule
+\textbf{Componente} & \textbf{Tecnología} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Tecnologías del sistema}
+\label{tab:tecnologias}
+\endlastfoot
+
+\textbf{Frontend} & Angular CLI v17+ (Standalone Components) \\
+\textbf{Runtime} & Node.js 18.x \\
+\textbf{Capa de datos} & API RESTful hacia Sandra Server \\
+\textbf{Autenticación} & OAuth2 con Tokens JWT \\
+\end{longtable}
+
+\subsection*{Estructura de Directorios}
+
+\begin{verbatim}
+src/
+├── app/
+│   ├── core/           # Servicios core (API, interceptors, interfaces)
+│   ├── feature/        # Módulos de interacción (pages, layouts)
+│   └── shared/         # Componentes reutilizables
+\end{verbatim}
+
+\newpage

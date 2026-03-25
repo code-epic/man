@@ -1,0 +1,81 @@
+%======================================================================
+% CAPÍTULO 10 - INTRODUCCIÓN
+%======================================================================
+\chapter{Introducción}
+
+\bigskip
+
+\dropcap{S}{andra Sentinel} es un núcleo de procesamiento de alto rendimiento desarrollado en el lenguaje de programación Rust, diseñado específicamente para la auditoría, fusión computacional y proyección de nóminas masivas en entornos jerárquicos complejos. El sistema actúa como un auditor determinista: consume datos crudos de fuentes heredadas, aplica reglas de negocio modernas y genera una estructura de datos unificada y validada.
+
+\bigskip
+
+\section{Contexto y Problemática}
+
+Los sistemas de nómina heredados, desarrollados hace décadas bajo paradigmas tecnológicos diferentes, enfrentan desafíos significativos cuando se procesan grandes volúmenes de datos con reglas de negocio complejas. La acumulación de décadas de modificaciones, ajustes normativos y parches correctivos ha generado sistemas difíciles de mantener, auditar y evolucionar.
+
+\bigskip
+
+\begin{cajaDefinicion}
+\textbf{Auditoría Determinista}: Proceso mediante el cual se recalculan todos los componentes de nómina desde cero, sin confiar en los valores heredados, permitiendo la detección de inconsistencias y la verificación de la integridad de los datos fuente.
+\end{cajaDefinicion}
+
+\bigskip
+
+Sentinel aborda esta problemática mediante un enfoque fundamentalmente diferente: en lugar de modificar los sistemas existentes, implementa un motor de cálculo paralelo que consume los datos crudos, procesa toda la lógica de negocio en memoria, y genera resultados completamente auditables.
+
+\bigskip
+
+\section{Objetivos del Sistema}
+
+\begin{enumerate}
+    \item \textbf{Auditoría Determinista}: Recalcular todos los componentes de nómina desde cero, detectando inconsistencias en los datos fuente.
+    \item \textbf{Alto Rendimiento}: Procesar 500.000+ registros en segundos mediante computación en memoria.
+    \item \textbf{Flexibilidad}: Permitir ejecución controlada mediante manifiestos JSON.
+    \item \textbf{Trazabilidad}: Generar archivos de exportación con todos los cálculos para auditoría.
+    \item \textbf{Precisión Matemática}: Garantizar exactitud en los cálculos monetarios mediante aritmética de enteros.
+\end{enumerate}
+
+\bigskip
+
+\section{Stack Tecnológico}
+
+Sentinel está construido sobre un stack tecnológico moderno que garantiza rendimiento, seguridad y mantenibilidad:
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Componente} & \textbf{Tecnología} & \textbf{Versión} \\
+\midrule
+Lenguaje & Rust & 2021 Edition \\
+Runtime Asíncrono & Tokio & Última \\
+Protocolo & gRPC & Protobuf v3 \\
+Serialización & NDJSON & serde\_json \\
+Paralelismo & Rayon & Última \\
+Scripting & Rhai & Última \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section{Arquitectura General}
+
+Sentinel sigue una Arquitectura Hexagonal (Ports \& Adapters), donde el núcleo lógico está totalmente desacoplado de las interfaces de entrada (gRPC Streams) y salida (CLI/CSV).
+
+\bigskip
+
+El sistema se organiza en las siguientes capas:
+
+\begin{enumerate}
+    \item \textbf{CLI (Interfaz de Línea de Comandos)}: Punto de entrada que parsea argumentos y coordina la ejecución mediante manifiestos JSON.
+    \item \textbf{Kernel (Orquestador)}: Centro de procesamiento que orquesta la carga de datos, fusión de entidades, cálculos de nómina y exportación.
+    \item \textbf{Cargador (Cliente gRPC)}: Módulo responsable de la conexión al servidor Sandra, streaming de datos y deserialización paralela.
+    \item \textbf{Motor Rhai}: Motor de scripting para evaluación de fórmulas de primas con compilación de expresiones y ejecución paralela.
+    \item \textbf{Motor de Cálculo}: Calculadora nativa en Rust que procesa los componentes de nómina.
+    \item \textbf{Exportador}: Genera archivos CSV con los resultados para auditoría.
+\end{enumerate}
+
+\vfill
+\newpage

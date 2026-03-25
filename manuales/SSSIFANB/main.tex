@@ -1,0 +1,224 @@
+%======================================================================
+% MANUAL DE USUARIO - SSSIFANB
+% Sistema de Seguridad Social de la Fuerza Armada Nacional Bolivariana
+% Instituto de Previsión Social de la FANB
+%======================================================================
+% Autor: Carlos Peña
+% Versión: 1.0.0
+% Fecha: Marzo 2026
+%======================================================================
+
+\documentclass[
+    11pt,
+    oneside,
+    openright,
+    spanish,
+    a4paper
+]{book}
+
+\usepackage{iftex}
+\ifPDFTeX
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{mathpazo}
+\else
+    \usepackage{fontspec}
+    \setmainfont{Helvetica Neue}[
+        UprightFont = *,
+        BoldFont = * Bold,
+        ItalicFont = * Italic,
+        BoldItalicFont = * Bold Italic
+    ]
+\fi
+
+\usepackage[
+    margin=2.5cm,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+]{geometry}
+
+\usepackage{graphicx}
+\usepackage{fontawesome5}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{emptypage}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{makeidx}
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{lettrine}
+\usepackage{microtype}
+\usepackage{eso-pic}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{eqparbox}
+\tcbuselibrary{skins,hooks,raster}
+
+\usetikzlibrary{calc, shapes.geometric, backgrounds, shadows.blur, positioning, arrows.meta}
+
+\definecolor{sandraDark}{HTML}{2D5A4A}
+\definecolor{sandraGreen}{HTML}{4CAF93}
+\definecolor{sandraLight}{HTML}{B2E0D0}
+\definecolor{sandraAccent}{HTML}{FFC107}
+\definecolor{sandraSoft}{HTML}{F5FAF8}
+\definecolor{sandraGray}{HTML}{616161}
+\definecolor{textDark}{HTML}{263238}
+\definecolor{textLight}{HTML}{78909C}
+
+%--------------------------------------------------------------------
+% LISTINGS
+%--------------------------------------------------------------------
+\lstset{
+    backgroundcolor=\color{sandraSoft},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{sandraDark},
+    stringstyle=\color{sandraGreen},
+    commentstyle=\color{textLight},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    frame=single,
+    framesep=2pt,
+    framerule=0.5pt,
+    rulecolor=\color{sandraGreen},
+    breaklines=true
+}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, const, let, if, in, while, do, else, case, break},
+  keywordstyle=\color{sandraDark}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{textLight}\bfseries,
+  identifierstyle=\color{textDark},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{textLight}\ttfamily,
+  stringstyle=\color{sandraGreen}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+%--------------------------------------------------------------------
+% COMANDOS PERSONALIZADOS
+%--------------------------------------------------------------------
+\newcommand{\sssi}{\textbf{SSSIFANB}}
+\newcommand{\leynegroprimero}{\textit{Ley Orgánica de Seguridad Social de la FANB}}
+\newcommand{\techref}[1]{\textcolor{sandraDark}{\textbf{#1}}}
+\newcommand{\keyconcept}[1]{\textbf{\color{sandraDark}#1}}
+
+%--------------------------------------------------------------------
+% INDICE
+%--------------------------------------------------------------------
+\makeindex
+\usepackage[
+    spanish,
+    bookmarks=true,
+    colorlinks=true,
+    linkcolor=sandraDark,
+    citecolor=sandraDark,
+    urlcolor=sandraGreen,
+    pdftitle={SSSIFANB - Manual de Usuario},
+    pdfauthor={Carlos Peña},
+    pdfsubject={Sistema de Seguridad Social de la Fuerza Armada Nacional Bolivariana},
+    pdfkeywords={IPSFANB, FANB, Seguridad Social, Venezuela, Militar},
+    pdfcreator={LaTeX - SandraManuals Framework},
+    pdfproducer={XeLaTeX}
+]{hyperref}
+
+\usepackage[spanish]{babel}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\textcolor{sandraDark}{\small\nouppercase{\rightmark}}}
+\fancyhead[L]{\textcolor{sandraGray}{\small Manual SSSIFANB v1.0}}
+\fancyfoot[C]{\textcolor{textLight}{\thepage}}
+\fancyfoot[R]{\textcolor{sandraGreen}{\textit{IPSFANB - FANB}}}
+
+\geometry{headsep=1cm, footskip=1.2cm, headheight=15pt}
+
+\titleformat{\chapter}[display]
+    {\normalfont\Large\bfseries\color{sandraDark}}
+    {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+\titleformat{\section}
+    {\normalfont\large\bfseries\color{sandraDark}}
+    {\thesection}{15pt}{\large}
+
+\titleformat{\subsection}
+    {\normalfont\normalsize\bfseries\color{sandraGreen}}
+    {\thesubsection}{10pt}{\normalsize}
+
+\graphicspath{
+    {./}
+    {./sssifanb-anexos/}
+    {../sssifanb-anexos/}
+    {../../assets/logos/}
+}
+
+\renewcommand{\arraystretch}{1.4}
+\setlength{\tabcolsep}{10pt}
+
+\begin{document}
+
+\setstretch{1.4}
+
+\input{portada}
+
+\frontmatter
+\pagenumbering{roman}
+
+\input{preambulo/pagina_inicio}
+\input{preambulo/filosofia}
+\input{preambulo/glosario}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatter
+\pagenumbering{arabic}
+
+\part{Fundamentos y Primeros Pasos}
+\input{capitulos/01-inicio-sesion}
+
+\part{Módulo de Afiliación}
+\input{capitulos/02-afiliacion}
+
+\part{Tarjeta de Identificación Militar}
+\input{capitulos/03-tarjeta-tim}
+
+\part{Prestaciones Sociales}
+\input{capitulos/04-prestaciones}
+
+\part{Nómina de Pensionados}
+\input{capitulos/05-nomina-pensionados}
+
+\part{Configuraciones del Sistema}
+\input{capitulos/06-configuracion}
+
+% \appendix
+% \part{Anexos Técnicos}
+% \input{anexos/anexos}
+
+
+\backmatter
+\printindex
+
+\end{document}

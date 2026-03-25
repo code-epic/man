@@ -1,0 +1,27 @@
+manual:
+  nombre: "Sandra UI Consola"
+  version: "1.0.0"
+  autor: "Carlos Peña"
+  entorno: "sandra_desktop"
+
+estructura:
+  portada: true
+  preliminares:
+    - presentacion
+    - resumen
+  capitulos:
+    - introduccion
+    - interfaz-principal
+    - configuracion
+    - monitoreo
+    - gestion-usuarios
+    - reportes
+    - integraciones
+    - solucion-problemas
+    - referencias-tecnicas
+    - conclusiones
+
+configuracion:
+  idioma: "es"
+  formato: "a4"
+  orientacion: "portrait"

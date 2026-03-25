@@ -1,0 +1,39 @@
+# SandraManuals - Modelo de Datos para Manuales
+# Esquema YAML para configuracion de manuales
+
+manual:
+  nombre: "Nombre del Manual"
+  version: "1.0.0"
+  autor: "Carlos Pena"
+  fecha: "2026-03-05"
+  descripcion: "Descripcion del manual"
+  entorno: "hibrido"  # sandra_ecosystem, sandra_desktop, hibrido, minimalista
+
+estructura:
+  portada: true
+  preliminares:
+    - presentacion
+    - resumen
+    - indice
+  capitulos:
+    - introduccion
+    - instalacion
+    - dashboard
+  anexos: true
+  glosario: false
+  referencias: true
+
+metadatos:
+  paleta: "universal"  # teal-soft, dark-professional, universal, custom
+  fuentes:
+    principal: "Inter"
+    codigo: "FiraCode"
+  iconos: true
+  logo: "logos/sandra.png"
+
+build:
+  motor: "xelatex"
+  opciones:
+    - "-interaction=nonstopmode"
+    - "-shell-escape"
+  salida: "manual.pdf"

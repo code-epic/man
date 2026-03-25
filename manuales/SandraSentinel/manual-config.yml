@@ -1,0 +1,47 @@
+# Configuración del Manual
+# Sandra Sentinel - Motor de Cálculo de Nómina
+
+manual:
+  nombre: "Sandra Sentinel"
+  version: "1.0.0"
+  autor: "Carlos Peña"
+  fecha: "2026-03-14"
+  descripcion: "Motor de Cálculo de Nómina de Alto Rendimiento"
+  entorno: "hibrido"
+
+estructura:
+  portada: true
+  preliminares:
+    - dedicatoria
+    - prologo
+    - presentacion
+    - agradecimientos
+    - resumen
+  capitulos:
+    - introduccion
+    - marco_teorico
+    - arquitectura
+    - modelo_datos
+    - motor_calculo
+    - algoritmo_fusion
+    - distribucion_aportes
+    - manifiestos
+    - implementacion
+    - conclusiones
+  anexos: true
+  glosario: false
+  referencias: true
+
+metadatos:
+  paleta: "cientifico"
+  fuentes:
+    principal: "Inter"
+    codigo: "FiraCode"
+  iconos: false
+  logo: "assets/sentinel.png"
+
+build:
+  motor: "xelatex"
+  opciones:
+    - "-interaction=nonstopmode"
+  salida: "main.pdf"

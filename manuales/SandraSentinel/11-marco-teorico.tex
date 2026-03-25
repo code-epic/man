@@ -1,0 +1,98 @@
+%======================================================================
+% CAPÍTULO 11 - MARCO TEÓRICO
+%======================================================================
+\chapter{Marco Teórico}
+
+\dropcap{E}{l} desarrollo de sistemas de nómina de alto rendimiento se fundamenta en principios de la ingeniería de sistemas, la computación de alto rendimiento y las matemáticas financieras. Este capítulo establece las bases teóricas que sustentan el diseño de Sentinel.
+
+\section{Computación en Memoria}
+
+La computación en memoria representa un paradigma donde los datos se procesan completamente en la memoria RAM del sistema, eliminando la latencia asociada a las operaciones de entrada/salida contra bases de datos tradicionales.
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Tipo de Acceso} & \textbf{Latencia} & \textbf{Orden} \\
+\midrule
+Memoria RAM & 100 ns & $10^{-7}$ s \\
+Disco SSD & 100 $\mu$s & $10^{-4}$ s \\
+Disco Mecánico & 10 ms & $10^{-2}$ s \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Esta diferencia de hasta cinco órdenes de magnitud justifica el enfoque de Sentinel:
+
+\begin{itemize}
+    \item \textbf{Sin consultas SQL}: Durante el procesamiento no hay acceso a base de datos
+    \item \textbf{Búsquedas O(1)}: Mediante tablas hash en memoria
+    \item \textbf{Procesamiento paralelo}: Todos los núcleos de CPU trabajan simultáneamente
+    \item \textbf{Tiempos reducidos}: De horas a segundos en el procesamiento
+\end{itemize}
+
+\section{Arquitectura Hexagonal}
+
+La arquitectura hexagonal, también conocida como \textit{Ports and Adapters}, es un patrón de diseño que busca desacoplar la lógica de negocio de las dependencias externas.
+
+\textbf{Ports:} Interfaces abstractas que definen cómo el núcleo de la aplicación interactúa con el mundo exterior.
+
+\textbf{Adapters:} Implementaciones concretas de los ports que conectan con tecnologías específicas (gRPC, archivos, bases de datos).
+
+En Sentinel el desacoplamiento se manifiesta así:
+
+\begin{itemize}
+    \item \textbf{Núcleo}: Motor de cálculo, lógica de fusión, algoritmos de distribución
+    \item \textbf{Ports de entrada}: Manifiestos JSON, streams gRPC
+    \item \textbf{Ports de salida}: Archivos CSV, logs de auditoría
+    \item \textbf{Adapters}: Cliente gRPC, exportador CSV
+\end{itemize}
+
+\section{Paralelismo de Datos con Rayon}
+
+Rayon es una biblioteca de Rust que proporciona paralelismo de datos con una API mínima. Utiliza un modelo de \textit{work stealing} que distribuye automáticamente el trabajo entre los núcleos disponibles.
+
+Para un conjunto de datos de tamaño $N$ procesado en $P$ núcleos, el speedup teórico máximo es $P$. En la práctica, el speedup está limitado por la fracción secuencial según la \textbf{Ley de Amdahl}:
+
+\[
+S = \frac{1}{(1 - f) + \frac{f}{P}}
+\]
+
+donde $f$ es la fracción paralelizable del algoritmo.
+
+Sentinel utiliza Rayon para paralelizar:
+
+\begin{itemize}
+    \item Cálculo de nómina por beneficiario
+    \item Evaluación de fórmulas de primas
+    \item Generación de archivos de exportación
+\end{itemize}
+
+\section{Precisión en Cálculos Monetarios}
+
+Los cálculos financieros requieren precisión absoluta. El estándar IEEE 754 para números de punto flotante puede introducir errores de redondeo que, acumulados en millones de registros, generan diferencias significativas.
+
+\textbf{Problema:} $0.1 + 0.2 \neq 0.3$ en punto flotante (produce $0.30000000000000004$)
+
+\textbf{Solución:} Sentinel usa aritmética de enteros. Todos los valores monetarios se convierten a centavos:
+
+\[
+\text{valor\_centavos} = \lfloor \text{valor\_decimal} \times 100 + 0.5 \rfloor
+\]
+
+Las operaciones se realizan con enteros de 64 bits (\texttt{i64}) y el resultado final se reconvierte dividiendo por 100.
+
+\section{Pipeline Asíncrono}
+
+El procesamiento asíncrono permite solapamiento de operaciones de E/S con procesamiento de CPU, maximizando la utilización de recursos.
+
+En un pipeline optimizado:
+\begin{itemize}
+    \item Mientras la CPU procesa el lote $N$
+    \item La red descarga el lote $N+1$
+    \item El disco escribe el lote $N-1$
+\end{itemize}
+
+Sentinel implementa este patrón mediante Tokio, utilizando streams asíncronos para consumo de datos gRPC, spawn de tareas para procesamiento paralelo, y \textit{back-pressure} para evitar sobrecarga de memoria.
+
+\vfill
+\newpage

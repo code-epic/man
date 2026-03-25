@@ -1,0 +1,83 @@
+%======================================================================
+% REFERENCIAS TÉCNICAS
+%======================================================================
+
+\chapter{Referencias Técnicas}
+
+Este capítulo proporciona información técnica adicional sobre los estándares y tecnologías utilizadas en Sandra UI Consola.
+
+\section{Normativas y Estándares Internacionales}
+
+El desarrollo de Sandra UI Consola está alineado con los marcos más estrictos de la industria:
+
+\subsection{ISO/IEC 27001: Gestión de Seguridad}
+
+La consola implementa un SGSI (Sistema de Gestión de Seguridad de la Información):
+
+\begin{itemize}
+\item \textbf{Confidencialidad}: Solo usuarios autorizados acceden a información sensible.
+\item \textbf{Integridad}: Protección contra modificaciones no autorizadas.
+\item \textbf{Disponibilidad}: El sistema está listo cuando el negocio lo requiere.
+\end{itemize}
+
+La certificación ISO 27001 demuestra el compromiso de la organización con la gestión de riesgos de seguridad de la información.
+
+\subsection{ISO 22301: Continuidad del Negocio}
+
+El sistema está diseñado para la Resiliencia Operativa:
+
+\begin{itemize}
+\item \textbf{BIA (Business Impact Analysis)}: Identificación de procesos críticos y establecimiento de RTO/RPO.
+\item \textbf{Gestión de Respaldos}: Herramientas para generación de dumps y restores.
+\item \textbf{Alta Disponibilidad}: Arquitectura distribuida que soporta fallos en nodos.
+\end{itemize}
+
+Un RTO (Recovery Time Objective) bajo es crítico para sistemas financieros donde cada minuto de inactividad representa pérdidas significativas.
+
+\subsection{ISO/IEC 25010: Calidad del Software}
+
+\begin{itemize}
+\item \textbf{Adecuación Funcional}: Cobertura completa de necesidades operativas.
+\item \textbf{Eficiencia de Desempeño}: Tiempos de respuesta ultrarrápidos con Rust y Go.
+\item \textbf{Mantenibilidad}: Código limpio y modular para evoluciones constantes.
+\end{itemize}
+
+La calidad del software se mide no solo en funcionalidad, sino también en métricas como mantenibilidad, eficiencia y portabilidad.
+
+\section{Endpoints API}
+
+La API de Sandra UI proporciona los siguientes endpoints principales:
+
+\begin{itemize}
+    \item \textbf{GET /api/status}: Estado del sistema
+    \item \textbf{GET /api/metrics}: Métricas en tiempo real
+    \item \textbf{POST /api/auth/login}: Inicio de sesión
+    \item \textbf{GET /api/users}: Listar usuarios
+    \item \textbf{POST /api/users}: Crear usuario
+    \item \textbf{GET /api/logs}: Obtener logs
+\end{itemize}
+
+\section{Configuración JSON}
+
+Ejemplo de configuración de conexión:
+
+\begin{verbatim}
+{
+  "server": {
+    "host": "localhost",
+    "port": 8080,
+    "protocol": "https",
+    "timeout": 30000
+  },
+  "security": {
+    "mfa_enabled": true,
+    "session_timeout": 3600
+  },
+  "notifications": {
+    "email_enabled": true,
+    "slack_webhook": "https://..."
+  }
+}
+\end{verbatim}
+
+\clearpage

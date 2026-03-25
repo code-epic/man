@@ -1,0 +1,193 @@
+%======================================================================
+% CAPÍTULO 14 - MOTOR DE CÁLCULO DE NÓMINA
+%======================================================================
+\chapter{Motor de Cálculo de Nómina}
+
+\bigskip
+
+El motor de cálculo constituye el corazón de Sentinel. Este capítulo detalla la arquitectura del motor, las fórmulas implementadas y la secuencia de cálculos.
+
+\bigskip
+
+\section{Arquitectura del Motor}
+
+El motor de cálculo se divide en dos componentes fundamentales:
+
+\bigskip
+
+\begin{enumerate}
+    \item Motor Rhai: Evalúa fórmulas de primas definidas en la base de datos.
+    \item Calculadora Nativa: Calcula componentes de nómina en Rust nativo.
+\end{enumerate}
+
+\bigskip
+
+El motor de cálculo implementa un enfoque de pipeline secuencial, donde cada paso depende del resultado del anterior, garantizando la coherencia de los cálculos.
+
+\bigskip
+
+\section{Secuencia de Cálculos}
+
+El cálculo de nómina se ejecuta en el siguiente orden para garantizar la correcta dependencia entre valores:
+
+\bigskip
+
+\begin{enumerate}
+    \item Tiempo de Servicio
+    \item Antigüedad Grado
+    \item Sueldo Base
+    \item Calcular Primas (Rhai)
+    \item Sueldo Mensual
+    \item Alicuota Aguinaldo
+    \item Alicuota Vacaciones
+    \item Sueldo Integral
+    \item Asignación Antigüedad
+    \item Garantías
+    \item Días Adicionales
+    \item No Depositado Banco
+\end{enumerate}
+
+\bigskip
+
+\section{Fórmulas de Cálculo}
+
+\subsection{Cálculo de Antigüedad}
+
+El sistema calcula el tiempo de servicio utilizando aritmética de fechas con precisión de días:
+
+\[
+\text{Antigüedad} = \text{Fecha\_Actual} - \text{Fecha\_Ingreso}
+\]
+
+\[
+\text{Antigüedad\_Grado} = \text{Fecha\_Actual} - \text{Fecha\_Último\_Ascenso}
+\]
+
+\bigskip
+
+\subsection{Sueldo Mensual}
+
+\[
+\text{Sueldo Mensual} = \text{Sueldo Base} + \sum \text{Primas}
+\]
+
+Donde:
+\begin{itemize}
+    \item Sueldo Base: Obtenido de la tabla de sueldos (Directiva).
+    \item Primas: Suma de todas las primas calculadas por el Motor Rhai.
+\end{itemize}
+
+\bigskip
+
+\subsection{Alicuota de Aguinaldo}
+
+\[
+\text{Alicuota Aguinaldo} = \frac{\text{Días\_Aguinaldo} \times \text{Sueldo Mensual}}{30 \times 12}
+\]
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Condición} & \textbf{Días de Aguinaldo} \\
+\midrule
+Retiro $<$ 2016 & 90 \\
+2016-10-01 a 2016-12-31 & 105 \\
+Retiro $\ge$ 2017-01-01 & 120 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\subsection{Alicuota de Vacaciones}
+
+\[
+\text{Alicuota Vacaciones} = \frac{\text{Días\_Vacaciones} \times \text{Sueldo Mensual}}{30 \times 12}
+\]
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Tiempo de Servicio} & \textbf{Días de Vacaciones} \\
+\midrule
+1-14 años & 40 \\
+15-24 años & 45 \\
+25+ años & 50 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\subsection{Sueldo Integral}
+
+\[
+\text{Sueldo Integral} = \text{Sueldo Mensual} + \text{Alicuota Vacaciones} + \text{Alicuota Aguinaldo}
+\]
+
+\bigskip
+
+\subsection{Asignación de Antigüedad}
+
+\[
+\text{Asignación Antigüedad} = \text{Sueldo Integral} \times \text{Tiempo de Servicio (años)}
+\]
+
+\bigskip
+
+\subsection{Garantías}
+
+\[
+\text{Garantías} = \frac{\text{Sueldo Integral}}{30} \times 15
+\]
+
+\bigskip
+
+\subsection{Días Adicionales}
+
+\[
+\text{Factor} = \min(\text{Tiempo de Servicio}, 15)
+\]
+
+\[
+\text{Días Adicionales} = \frac{\text{Sueldo Mensual}}{30} \times 2 \times \text{Factor}
+\]
+
+\bigskip
+
+\subsection{No Depositado en Banco}
+
+\[
+\text{No Depositado} = \text{Asignación Antigüedad} - \text{Depósito Banco} - \text{Garantías} - \text{Días Adicionales}
+\]
+
+\bigskip
+
+\section{Motor Rhai: Evaluación de Primas}
+
+Las primas se definen como expresiones Rhai en la base de datos, permitiendo modificación sin recompilación.
+
+\bigskip
+
+Ejemplo de fórmula Rhai para prima de antigüedad:
+\begin{verbatim}
+prima_antiguedad = if antiguedad > 0 { 
+    (sueldo_base * antiguedad) / 100.0 
+} else { 0.0 }
+\end{verbatim}
+
+\bigskip
+
+Ejemplo de fórmula para prima de hijos:
+\begin{verbatim}
+prima_hijos = if n_hijos > 0 {
+    (sueldo_base * n_hijos * 0.05)
+} else { 0.0 }
+\end{verbatim}
+
+\vfill
+\newpage

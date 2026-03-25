@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sandra Ecosystem - Documento Completo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --textdark: #263238;
+            --primary: #455A64;
+            --secondary: #90A4AE;
+            --accent: #66BB6A;
+            --teallight: #B2E0D0;
+            --tealpastel: #E8F5E9;
+            --sandraDark: #1A2634;
+            --sandraTeal: #00796B;
+            --sandraGold: #FF8F00;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: 11pt; }
+        
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.7;
+            color: #37474F;
+        }
+        
+        /* PÁGINAS */
+        @page {
+            size: letter;
+            margin: 1.3cm 1.6cm;
+            
+            @bottom-right {
+                content: counter(page);
+                font-size: 9pt;
+                color: #607D8B;
+            }
+            
+            @bottom-left {
+                content: "Sandra Ecosystem • Tecnología Sovereign • 2026";
+                font-size: 7.5pt;
+                color: #90A4AE;
+            }
+        }
+        
+        @page:first { margin: 0; }
+        
+        /* PÁGINA DE PORTADA COMPLETA */
+        .cover-page {
+            page: cover;
+            page-break-after: always;
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #263238;
+            margin: 0;
+        }
+        
+        @page cover { margin: 0; }
+        
+        /* Fondo de rejilla técnica */
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(144, 164, 174, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(144, 164, 174, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px, 40px 40px;
+        }
+        
+        /* Olas inferiores */
+        .cover-page .waves-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: 
+                radial-gradient(ellipse 80% 100% at 50% 100%, rgba(102, 187, 106, 0.4) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 80% at 30% 100%, rgba(102, 187, 106, 0.25) 0%, transparent 60%),
+                radial-gradient(ellipse 70% 90% at 70% 100%, rgba(144, 164, 174, 0.15) 0%, transparent 65%);
+        }
+        
+        /* Olas superiores */
+        .cover-page .waves-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30%;
+            background: 
+                radial-gradient(ellipse 50% 60% at 50% 0%, rgba(102, 187, 106, 0.3) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 50% at 60% 0%, rgba(144, 164, 174, 0.1) 0%, transparent 50%);
+        }
+        
+        /* Contenido de la portada */
+        .cover-content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2cm;
+        }
+        
+        /* Círculo del logo */
+        .logo-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, #FFFFFF 0%, #B2E0D0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid #66BB6A;
+            box-shadow: 
+                0 0 0 6px rgba(102, 187, 106, 0.2),
+                0 0 0 12px rgba(102, 187, 106, 0.1),
+                0 0 40px rgba(102, 187, 106, 0.3);
+            margin-bottom: 1.5cm;
+        }
+        
+        .logo-circle img {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+        }
+        
+        .cover-content h1 {
+            font-size: 42pt;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 0.3cm;
+        }
+        
+        .cover-content .subtitle {
+            font-size: 14pt;
+            color: #66BB6A;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1cm;
+        }
+        
+        .cover-content .divider {
+            width: 200px;
+            height: 2px;
+            background: #90A4AE;
+            position: relative;
+            margin-bottom: 1cm;
+        }
+        
+        .cover-content .divider::after {
+            content: '◆';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #263238;
+            padding: 0 0.5cm;
+            color: #66BB6A;
+            font-size: 10pt;
+        }
+        
+        .cover-content .tagline {
+            font-size: 13pt;
+            color: #B2E0D0;
+            font-weight: 500;
+            margin-bottom: 0.5cm;
+        }
+        
+        .cover-content .version {
+            font-size: 11pt;
+            color: #90A4AE;
+        }
+        
+        /* Caja del autor */
+        .author-box {
+            position: absolute;
+            bottom: 2cm;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(38, 50, 56, 0.9);
+            border: 1px solid #455A64;
+            border-radius: 10px;
+            padding: 0.8cm 1.5cm;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .author-box .label {
+            font-size: 9pt;
+            color: #66BB6A;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.3cm;
+        }
+        
+        .author-box .name {
+            font-size: 16pt;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .author-box .company {
+            font-size: 9pt;
+            color: #B2E0D0;
+            margin-top: 0.2cm;
+        }
+        
+        .author-box .location {
+            font-size: 8pt;
+            color: #90A4AE;
+            text-transform: uppercase;
+            margin-top: 0.2cm;
+        }
+        
+        /* PÁGINAS PRELIMINARES - Una por página */
+        .preliminar-page {
+            page: preliminar;
+            min-height: 80vh;
+            padding: 3cm 2cm;
+            position: relative;
+        }
+        
+        @page preliminar { margin: 1.3cm 1.6cm; }
+        
+        .preliminar-page h1 {
+            font-size: 24pt;
+            font-weight: 600;
+            color: #1A2634;
+            text-align: center;
+            margin-bottom: 1.5cm;
+            padding-bottom: 0.5cm;
+            border-bottom: 2px solid #00796B;
+        }
+        
+        .preliminar-page p {
+            margin-bottom: 0.5cm;
+            text-align: justify;
+            max-width: 14cm;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .preliminar-page .dedicatoria-text {
+            text-align: center;
+            font-style: italic;
+            font-size: 14pt;
+            padding: 3cm 0;
+            max-width: 12cm;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .preliminar-page .firma {
+            text-align: right;
+            margin-top: 2cm;
+            max-width: 14cm;
+            margin-left: auto;
+        }
+        
+        /* ÍNDICE DETALLADO */
+        .indice-page {
+            padding: 2cm;
+        }
+        
+        .indice-page h1 {
+            font-size: 22pt;
+            font-weight: 600;
+            color: #1A2634;
+            text-align: center;
+            margin-bottom: 1cm;
+            padding-bottom: 0.3cm;
+            border-bottom: 2px solid #00796B;
+        }
+        
+        .indice-section {
+            margin-bottom: 0.8cm;
+        }
+        
+        .indice-section .title {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #00796B;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3cm;
+        }
+        
+        .indice-section ul {
+            list-style: none;
+        }
+        
+        .indice-section li {
+            padding: 0.15cm 0;
+            font-size: 10pt;
+            border-bottom: 0.5pt dotted #E0E0E0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .indice-section .subitem {
+            padding-left: 0.5cm;
+            font-size: 9pt;
+            color: #607D8B;
+        }
+        
+        /* CAPÍTULOS */
+        .chapter-page {
+            page: chapter;
+            page-break-after: always;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #1A2634 0%, #0D1B2A 100%);
+            color: white;
+            position: relative;
+            margin: 0;
+        }
+        
+        @page chapter { margin: 0; background: #1A2634; }
+        
+        .chapter-page::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 121, 107, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 143, 0, 0.08) 0%, transparent 40%);
+        }
+        
+        .chapter-page::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: #FF8F00;
+        }
+        
+        .chapter-number {
+            position: absolute;
+            right: 1.5cm;
+            bottom: 1cm;
+            font-size: 180pt;
+            font-weight: 700;
+            color: rgba(255,255,255,0.06);
+            line-height: 1;
+        }
+        
+        .chapter-label {
+            position: absolute;
+            top: 1cm;
+            right: 1.5cm;
+            font-size: 9pt;
+            font-weight: 500;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .chapter-page h1 {
+            font-size: 36pt;
+            font-weight: 700;
+            margin-bottom: 0.2cm;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .chapter-page .divider {
+            width: 50px;
+            height: 2px;
+            background: #26A69A;
+            margin: 0.5cm 0;
+        }
+        
+        .chapter-page .subtitle {
+            font-size: 12pt;
+            font-weight: 300;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .chapter-page .author {
+            position: absolute;
+            bottom: 1.2cm;
+            font-size: 9pt;
+            color: rgba(255,255,255,0.4);
+        }
+        
+        /* CONTENIDO DE CAPÍTULOS */
+        .chapter-content {
+            padding: 0.8cm 0;
+        }
+        
+        h2 {
+            font-size: 13pt;
+            font-weight: 600;
+            color: #1A2634;
+            margin: 1.2cm 0 0.4cm 0;
+            padding-top: 0.3cm;
+            border-top: 2px solid #00796B;
+        }
+        
+        h3 {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #00796B;
+            margin: 0.8cm 0 0.2cm 0;
+        }
+        
+        h4 {
+            font-size: 10pt;
+            font-weight: 600;
+            color: #37474F;
+            margin: 0.5cm 0 0.15cm 0;
+        }
+        
+        p {
+            margin-bottom: 0.35cm;
+            text-align: justify;
+            hyphens: auto;
+        }
+        
+        p.drop-cap::first-letter {
+            font-size: 32pt;
+            font-weight: 700;
+            float: left;
+            line-height: 0.7;
+            margin-right: 5pt;
+            margin-top: 2pt;
+            color: #1A2634;
+        }
+        
+        /* CAJAS */
+        .nota-editorial {
+            background: #FAFAFA;
+            border-left: 4px solid #00796B;
+            padding: 0.4cm 0.5cm;
+            margin: 0.5cm 0;
+        }
+        
+        .estandar-iso {
+            background: #E8F5E9;
+            border: 1px solid #1565C0;
+            border-radius: 3px;
+            padding: 0.35cm 0.45cm;
+            margin: 0.4cm 0;
+        }
+        
+        .alerta-iso {
+            background: #FFF8E1;
+            border: 1px solid #EF6C00;
+            border-radius: 3px;
+            padding: 0.35cm 0.45cm;
+            margin: 0.4cm 0;
+        }
+        
+        .caja {
+            background: #ECEFF1;
+            border: 1px solid #607D8B;
+            border-radius: 3px;
+            padding: 0.35cm 0.45cm;
+            margin: 0.4cm 0;
+        }
+        
+        .definicion {
+            background: #FAFAFA;
+            border-left: 3px solid #FF8F00;
+            padding: 0.35cm 0.45cm;
+            margin: 0.4cm 0;
+        }
+        
+        /* TABLAS */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.4cm 0;
+            font-size: 9pt;
+        }
+        
+        th {
+            background: #1A2634;
+            color: white;
+            padding: 0.2cm 0.25cm;
+            text-align: left;
+            font-weight: 600;
+            font-size: 8.5pt;
+        }
+        
+        td {
+            padding: 0.12cm 0.25cm;
+            border-bottom: 0.5pt solid #E0E0E0;
+            font-size: 8.5pt;
+            vertical-align: top;
+        }
+        
+        tbody tr:nth-child(even) { background: #FAFAFA; }
+        
+        caption {
+            font-size: 8.5pt;
+            font-weight: 600;
+            color: #1A2634;
+            margin-bottom: 0.12cm;
+            text-align: left;
+        }
+        
+        /* LISTAS */
+        ul, ol { margin: 0.25cm 0 0.25cm 0.5cm; }
+        li { margin-bottom: 0.1cm; font-size: 9.5pt; }
+        
+        /* SEPARADOR */
+        .separator {
+            text-align: center;
+            padding: 0.25cm 0;
+            margin: 0.4cm 0;
+        }
+        
+        .separator::before {
+            content: '';
+            display: inline-block;
+            width: 25px;
+            height: 1px;
+            background: #00796B;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- PORTADA PRINCIPAL -->
+    <!-- ========================================== -->
+    <div class="cover-page">
+        <div class="waves-top"></div>
+        <div class="waves-bottom"></div>
+        
+        <div class="cover-content">
+            <div class="logo-circle">
+                <img src="assets/sandra.png" alt="Sandra Logo">
+            </div>
+            
+            <h1>Sandra Ecosystem</h1>
+            <p class="subtitle">Plataforma Empresarial de Middleware</p>
+            
+            <div class="divider"></div>
+            
+            <p class="tagline">Documento Técnico e Ingeniería</p>
+            <p class="version">Versión 1.0 | Marzo 2026</p>
+        </div>
+        
+        <div class="author-box">
+            <p class="label">Autor del Proyecto</p>
+            <p class="name">Carlos Peña</p>
+            <p class="company">Code Epic Technologies • Arquitectura Sovereign</p>
+            <p class="location">Caracas, Venezuela</p>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- DEDICATORIA -->
+    <!-- ========================================== -->
+    <div class="preliminar-page">
+        <h1>Dedicatoria</h1>
+        
+        <p class="dedicatoria-text">
+            "A quienes creen en la tecnología como herramienta de transformación social,<br>
+            y a los profesionales venezolanos que cada día trabajan por construir<br>
+            un futuro tecnológico soberano para nuestra nación."
+        </p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PRÓLOGO -->
+    <!-- ========================================== -->
+    <div class="preliminar-page">
+        <h1>Prólogo</h1>
+        
+        <p>El presente documento representa la culminación de años de investigación, desarrollo y aplicación práctica de tecnologías de middleware en el contexto venezolano. Durante mi trayectoria profesional, he tenido la oportunidad de observar de cerca las necesidades tecnológicas de nuestras instituciones públicas y privadas, identificando una brecha significativa entre las soluciones disponibles en el mercado internacional y las realidades específicas de nuestro país.</p>
+        
+        <p>Las instituciones venezolanas enfrentan desafíos únicos que requieren soluciones igualmente únicas: desde la integración de sistemas heredados desarrollados hace décadas, hasta la necesidad de cumplir con marcos legales específicos como la Ley de Infogobierno y la Ley Especial contra los Delitos Informáticos. Esta realidad nos llevó a concebir Sandra Ecosystem no simplemente como un producto de software, sino como una respuesta integral a las necesidades de transformación digital de nuestras organizaciones.</p>
+        
+        <p>El ecosistema que se detalla en este Documento ha sido diseñado siguiendo principios de Soberanía Tecnológica, priorizando el uso de software libre, estándares abiertos y arquitecturas que permiten el control completo sobre la infraestructura tecnológica. Creemos firmemente que la independencia tecnológica es un pilar fundamental del desarrollo nacional, y este Documento busca compartir nuestra visión y avances en esta dirección.</p>
+        
+        <p>Este trabajo no habría sido posible sin el apoyo de Code Epic Technologies y de todos los profesionales que han contribuido al desarrollo del ecosistema. A ellos mi más sincero agradecimiento.</p>
+        
+        <div class="firma">
+            <p><em>Carlos Peña</em><br><em>Caracas, Marzo 2026</em></p>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PRESENTACIÓN -->
+    <!-- ========================================== -->
+    <div class="preliminar-page">
+        <h1>Presentación</h1>
+        
+        <p>Sandra Ecosystem representa una propuesta integral para la transformación digital de instituciones gubernamentales y empresariales en la República Bolivariana de Venezuela. Este Documento técnico tiene como propósito principal presentar de manera exhaustiva la arquitectura, componentes, funcionalidades y estándares que rigen el ecosistema, proporcionando una guía completa para comprender su diseño y potencial de implementación.</p>
+        
+        <p>El Documento está estructurado siguiendo los cánones de la documentación técnica académica, comenzando con un marco teórico que contextualiza el proyecto dentro del panorama tecnológico actual, seguido de un marco legal que fundamenta la propuesta desde la perspectiva normativa venezolana. Posteriormente, se presenta la arquitectura general del ecosistema y el detalle de cada uno de sus componentes principales.</p>
+        
+        <p>La relevancia de este trabajo radica en la necesidad creciente de nuestras instituciones de contar con soluciones tecnológicas propias, capaces de adaptarse a las particularidades del contexto nacional mientras mantienen los más altos estándares de calidad, seguridad y rendimiento. Sandra Ecosystem responde a esta necesidad ofreciendo una plataforma robusta, escalable y completamente adaptable.</p>
+        
+        <p>Este Documento está dirigido a profesionales de tecnología, directivos de instituciones, arquitectos de sistemas y todos aquellos interesados en comprender las capacidades y el potencial del ecosistema. Se espera que el lector adquiera una comprensión integral de la plataforma que le permita evaluar su aplicabilidad en diferentes contextos organizacionales.</p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- AGRADECIMIENTOS -->
+    <!-- ========================================== -->
+    <div class="preliminar-page">
+        <h1>Agradecimientos</h1>
+        
+        <p>Quiero expresar mi más sincero agradecimiento a todas las personas que han hecho posible la creación de Sandra Ecosystem y este Documento:</p>
+        
+        <p>A mis colegas de Code Epic Technologies, cuyo esfuerzo conjunto ha permitido convertir una visión en una realidad tangible. Su dedicación y profesionalismo son el corazón de este proyecto.</p>
+        
+        <p>A las instituciones que han confiado en nuestra tecnología, permitiéndonos validar y mejorar continuamente el ecosistema mediante aplicaciones reales.</p>
+        
+        <p>A la comunidad de software libre, cuyos principios y herramientas han sido fundamentales para el desarrollo de esta plataforma.</p>
+        
+        <p>A mis familiares y amigos, por su paciencia y apoyo incondicional durante las largas horas de trabajo que este proyecto ha requerido.</p>
+        
+        <p>Finalmente, a Venezuela, por inspirarnos a crear soluciones que respondan a nuestras propias necesidades y realidades.</p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- RESUMEN -->
+    <!-- ========================================== -->
+    <div class="preliminar-page">
+        <h1>Resumen</h1>
+        
+        <p>El presente trabajo documenta el diseño, desarrollo e implementación de Sandra Ecosystem, una plataforma empresarial integral de middleware desarrollada en Venezuela para abordar las necesidades específicas de instituciones gubernamentales y empresariales del país. El ecosistema está compuesto por cuatro proyectos principales: Sandra Server (middleware en Go), Sandra UI Consola (interfaz administrativa en Angular), Sandra Desktop Container (contenedor de escritorio en Tauri/Rust) y Sandra Sentinel (motor de cálculo de nóminas en Rust). La arquitectura implementa principios de Seguridad por Diseño y Confianza Cero, cumpliendo con estándares internacionales y normativas venezolanas como la Ley de Infogobierno y la Ley Especial contra los Delitos Informáticos.</p>
+        
+        <p><strong>Palabras clave:</strong> Middleware, Enterprise Service Bus, Soberanía Tecnológica, Go, Rust, Angular, Tauri, gRPC, Seguridad, Venezuela, Transformación Digital</p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- DERECHOS -->
+    <!-- ========================================== -->
+    <div class="preliminar-page">
+        <h1>Derechos de Autor y Licencia</h1>
+        
+        <p><strong>© 2024-2026 Carlos Peña. Todos los derechos reservados.</strong></p>
+        
+        <p>Este Documento es parte del proyecto Sandra Ecosystem desarrollado por Code Epic Technologies. Queda prohibida la reproducción total o parcial de este Documento sin la autorización escrita del autor, excepto para fines educativos y de investigación citando apropiadamente la fuente.</p>
+        
+        <p><strong>Propiedad Intelectual:</strong> El código fuente, arquitecturas, diseños y metodologías descritas en este Documento son propiedad intelectual del autor y están protegidos por las leyes de propiedad intelectual vigentes en la República Bolivariana de Venezuela.</p>
+        
+        <p><strong>Licencia de Uso:</strong> El software componente del ecosistema Sandra está disponible bajo licencia comercial. Para información sobre licenciamiento, contacte a Code Epic Technologies.</p>
+        
+        <p style="margin-top: 1cm;">
+            <strong>Versión del Documento:</strong> 1.0<br>
+            <strong>Fecha de publicación:</strong> Marzo 2026<br>
+            <strong>Última modificación:</strong> 02 de Marzo de 2026
+        </p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- ÍNDICE DETALLADO -->
+    <!-- ========================================== -->
+    <div class="indice-page">
+        <h1>Índice General</h1>
+        
+        <div class="indice-section">
+            <div class="title">Preliminares</div>
+            <ul>
+                <li><span>Dedicatoria</span><span>2</span></li>
+                <li><span>Prólogo</span><span>3</span></li>
+                <li><span>Presentación</span><span>4</span></li>
+                <li><span>Agradecimientos</span><span>5</span></li>
+                <li><span>Resumen</span><span>6</span></li>
+                <li><span>Derechos de Autor</span><span>7</span></li>
+            </ul>
+        </div>
+        
+        <div class="indice-section">
+            <div class="title">Contenido Principal</div>
+            <ul>
+                <li><span>1. Introducción General</span><span>8</span></li>
+                <li class="subitem">- La Relevancia de la Capa 7</li>
+                <li class="subitem">- Abstracción Lógica</li>
+                <li class="subitem">- Orquestación de Intención</li>
+                <li class="subitem">- Zero-Trust L7</li>
+                <li class="subitem">- Contextualización del Problema</li>
+                <li class="subitem">- Justificación del Proyecto</li>
+                <li class="subitem">- Objetivos</li>
+                <li class="subitem">- Alcance del Documento</li>
+            </ul>
+        </div>
+        
+        <div class="indice-section">
+            <ul>
+                <li><span>2. Marco Teórico</span><span>12</span></li>
+                <li class="subitem">- Estado del Arte</li>
+                <li class="subitem">- Fundamentos de Middleware</li>
+                <li class="subitem">- Arquitectura de Microservicios</li>
+                <li class="subitem">- Modelo Zero Trust</li>
+                <li class="subitem">- Tecnologías del Ecosistema</li>
+            </ul>
+        </div>
+        
+        <div class="indice-section">
+            <ul>
+                <li><span>3. Marco Legal</span><span>18</span></li>
+                <li class="subitem">- Ley de Infogobierno</li>
+                <li class="subitem">- Ley Especial contra los Delitos Informáticos</li>
+                <li class="subitem">- Ley sobre Mensajes de Datos</li>
+                <li class="subitem">- Estándares Internacionales</li>
+                <li class="subitem">- Licenciamiento Soberano</li>
+            </ul>
+        </div>
+        
+        <div class="indice-section">
+            <ul>
+                <li><span>4. Arquitectura del Ecosistema</span><span>24</span></li>
+                <li class="subitem">- Visión General</li>
+                <li class="subitem">- Componentes Principales</li>
+                <li class="subitem">- Modelo de Comunicación</li>
+            </ul>
+        </div>
+        
+        <div class="indice-section">
+            <ul>
+                <li><span>5. Sandra Server</span><span>28</span></li>
+                <li class="subitem">- Fundamentación Teórica de Middleware</li>
+                <li class="subitem">- Enterprise Service Bus (ESB)</li>
+                <li class="subitem">- Módulos de Sandra Server</li>
+            </ul>
+        </div>
+        
+        <div class="indice-section">
+            <ul>
+                <li><span>6. Sandra UI Consola</span><span>35</span></li>
+                <li class="subitem">- Introducción y Contexto</li>
+                <li class="subitem">- Ecosistema Tecnológico</li>
+                <li class="subitem">- Angular 16+</li>
+            </ul>
+        </div>
+        
+        <div class="indice-section">
+            <ul>
+                <li><span>7. Sandra Desktop Container</span><span>42</span></li>
+                <li class="subitem">- Visión Técnica y Propósito</li>
+                <li class="subitem">- Stack Tecnológico</li>
+                <li class="subitem">- Características de Seguridad</li>
+            </ul>
+        </div>
+        
+        <div class="indice-section">
+            <ul>
+                <li><span>8. Sandra Sentinel</span><span>48</span></li>
+                <li class="subitem">- Introducción y Propósito</li>
+                <li class="subitem">- Requisitos del Sistema</li>
+                <li class="subitem">- Definición del Sistema</li>
+            </ul>
+        </div>
+        
+        <div class="indice-section">
+            <ul>
+                <li><span>9. Estándares de Seguridad</span><span>54</span></li>
+                <li class="subitem">- Modelo de Seguridad Multicapa</li>
+                <li class="subitem">- Principios de Seguridad</li>
+                <li class="subitem">- Criptografía Implementada</li>
+                <li class="subitem">- Cumplimiento Normativo</li>
+            </ul>
+        </div>
+        
+        <div class="indice-section">
+            <ul>
+                <li><span>10. Conclusiones</span><span>58</span></li>
+                <li class="subitem">- Conclusiones</li>
+                <li class="subitem">- Recomendaciones</li>
+            </ul>
+        </div>
+        
+        <div class="indice-section">
+            <div class="title">Complementarios</div>
+            <ul>
+                <li><span>Referencias</span><span>60</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CAPÍTULO 1: INTRODUCCIÓN -->
+    <!-- ========================================== -->
+    <div class="chapter-page">
+        <span class="chapter-label">Capítulo 01</span>
+        <span class="chapter-number">01</span>
+        <h1>Introducción General</h1>
+        <div class="divider"></div>
+        <p class="subtitle">La relevancia de la Capa 7 en la transformación digital</p>
+        <p class="author">Carlos Peña</p>
+    </div>
+    
+    <div class="chapter-content">
+        
+        <h2>La Relevancia de la Capa 7</h2>
+        
+        <p class="drop-cap">Mientras los sistemas operativos tradicionales gestionan hardware y controladores, Sandra gestiona intenciones y relaciones lógicas. En la arquitectura de red, la Capa 7 (Aplicación) es donde reside la inteligencia del negocio.</p>
+        
+        <h3>Abstracción Lógica</h3>
+        <p>Oculta la heterogeneidad de redes, sistemas operativos y lenguajes (PHP, Go, Rust), permitiendo una comunicación fluida mediante una Capa Común (Interlogical).</p>
+        
+        <h3>Orquestación de Intención</h3>
+        <p>Sandra no solo mueve datos; los interpreta. Decide flujos, valida contextos de dispositivos y sincroniza estados en tiempo real basándose en la intención de la transacción.</p>
+        
+        <h3>Zero-Trust L7</h3>
+        <p>Cada mensaje es autenticado y autorizado individualmente. La validación no ocurre en el puerto de red, sino en la estructura profunda del mensaje (Deep Packet Logic) antes de iniciar cualquier operación.</p>
+        
+        <div class="separator"></div>
+        
+        <h2>Contextualización del Problema</h2>
+        
+        <p>La transformación digital se ha convertido en una necesidad imperativa para las organizaciones gubernamentales y empresariales en Venezuela. Sin embargo, esta transformación enfrenta obstáculos significativos que incluyen la heterogeneidad de los sistemas existentes, la dependencia de tecnologías extranjeras, y la necesidad de cumplir con marcos regulatorios específicos.</p>
+        
+        <p>Las instituciones públicas venezolanas manejan una gran cantidad de sistemas heredados desarrollados en diferentes épocas y tecnologías. Esta heterogeneidad genera silos de información que dificultan la toma de decisiones y limitan la capacidad de ofrecer servicios digitales integrados.</p>
+        
+        <p>El problema central que aborda Sandra Ecosystem es la falta de soluciones de middleware que respondan a las necesidades específicas del contexto venezolano.</p>
+        
+        <div class="estandar-iso">
+            <strong>Soberanía Tecnológica:</strong> Implica la capacidad de las naciones de controlar su propia infraestructura tecnológica, desarrollar capacidades locales y reducir la dependencia de proveedores externos.
+        </div>
+        
+        <div class="separator"></div>
+        
+        <h2>Justificación del Proyecto</h2>
+        
+        <h3>Integración de Sistemas</h3>
+        <p>Las instituciones venezolanas necesitan integrar sistemas desarrollados en diferentes tecnologías. Los sistemas legados deben interconectarse con nuevas aplicaciones sin migración completa.</p>
+        
+        <h3>Soberanía Tecnológica</h3>
+        <p>El Estado venezolano promueve el uso de software libre y soluciones propias. Sandra Ecosystem responde directamente a esta política.</p>
+        
+        <h3>Cumplimiento Normativo</h3>
+        <p>Las instituciones públicas deben cumplir con la Ley de Infogobierno. El ecosistema fue diseñado considerando estos requisitos.</p>
+        
+        <div class="separator"></div>
+        
+        <h2>Objetivos</h2>
+        
+        <h3>Objetivo General</h3>
+        <p>Documentar la arquitectura del ecosistema Sandra como plataforma de middleware para la transformación digital soberana de instituciones venezolanas.</p>
+        
+        <h3>Objetivos Específicos</h3>
+        <ul>
+            <li>Presentar el marco teórico que fundamenta el diseño</li>
+            <li>Detallar el marco legal venezolano aplicable</li>
+            <li>Describir la arquitectura general del ecosistema</li>
+            <li>Explicar las tecnologías seleccionadas</li>
+            <li>Documentar las funcionalidades de cada componente</li>
+            <li>Presentar los estándares de seguridad implementados</li>
+        </ul>
+        
+        <div class="separator"></div>
+        
+        <h2>Alcance del Documento</h2>
+        <p>Este Documento abarca todos los aspectos técnicos, arquitectónicos y legales del ecosistema Sandra, incluyendo las cuatro aplicaciones principales y los estándares de seguridad implementados.</p>
+    </div>
+
+    <!-- CAPÍTULO 2: MARCO TEÓRICO -->
+    <div class="chapter-page">
+        <span class="chapter-label">Capítulo 02</span>
+        <span class="chapter-number">02</span>
+        <h1>Marco Teórico</h1>
+        <div class="divider"></div>
+        <p class="subtitle">Fundamentos tecnológicos y arquitectura de sistemas</p>
+        <p class="author">Carlos Peña</p>
+    </div>
+    
+    <div class="chapter-content">
+        
+        <h2>Estado del Arte</h2>
+        
+        <p class="drop-cap">El middleware empresarial ha evolucionado significativamente hasta convertirse en plataformas complejas de integración.</p>
+        
+        <p>El mercado ofrece soluciones consolidadas como IBM Integration Bus, MuleSoft, Apache Camel y Spring Integration.</p>
+        
+        <div class="nota-editorial">
+            <strong>Nota del Autor:</strong> El desarrollo de middleware propio representa una oportunidad estratégica para garantizar la soberanía tecnológica.
+        </div>
+        
+        <div class="separator"></div>
+        
+        <h2>Fundamentos de Middleware</h2>
+        
+        <p>El middleware actúa como puente entre aplicaciones y el sistema operativo.</p>
+        
+        <div class="estandar-iso">
+            <strong>Implementación en Sandra:</strong> Server utiliza Go para proporcionar un ESB de alto rendimiento.
+        </div>
+        
+        <h3>Definición de Middleware</h3>
+        <div class="definicion">
+            <strong>Middleware:</strong> Software que actúa como capa intermedia entre las aplicaciones y el sistema operativo.
+        </div>
+        
+        <div class="separator"></div>
+        
+        <h2>Arquitectura de Microservicios</h2>
+        
+        <p>Servicios pequeños, autónomos y débilmente acoplados.</p>
+        
+        <div class="estandar-iso">
+            <strong>Ecosistema Sandra:</strong> Server, Consola, SDC, Sentinel
+        </div>
+        
+        <table>
+            <caption>Componentes del ecosistema Sandra</caption>
+            <thead>
+                <tr><th>Componente</th><th>Descripción</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Server</strong></td><td>Middleware central de comunicaciones</td></tr>
+                <tr><td><strong>Consola</strong></td><td>Interfaz administrativa web</td></tr>
+                <tr><td><strong>SDC</strong></td><td>Aplicación de escritorio multiplataforma</td></tr>
+                <tr><td><strong>Sentinel</strong></td><td>Procesamiento especializado de eventos</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="separator"></div>
+        
+        <h2>Modelo Zero Trust</h2>
+        
+        <p>Elimina la confianza implícita, verificando cada solicitud independientemente de su origen.</p>
+        
+        <div class="estandar-iso">
+            <strong>ISO 27001:</strong> Sistema de Gestión de Seguridad
+        </div>
+        
+        <div class="alerta-iso">
+            <strong>Consideración importante:</strong> Zero Trust requiere cambio cultural organizacional.
+        </div>
+        
+        <div class="separator"></div>
+        
+        <h2>Tecnologías del Ecosistema</h2>
+        
+        <ul>
+            <li><strong>Go 1.24:</strong> Rendimiento y concurrencia</li>
+            <li><strong>Rust 2021:</strong> Seguridad de memoria</li>
+            <li><strong>Angular 16+:</strong> Framework frontend</li>
+            <li><strong>Tauri 2.0:</strong> Aplicaciones de escritorio</li>
+            <li><strong>gRPC:</strong> Comunicación entre servicios</li>
+            <li><strong>WebSockets:</strong> Tiempo real</li>
+        </ul>
+    </div>
+
+    <!-- CAPÍTULO 3: MARCO LEGAL -->
+    <div class="chapter-page">
+        <span class="chapter-label">Capítulo 03</span>
+        <span class="chapter-number">03</span>
+        <h1>Marco Legal</h1>
+        <div class="divider"></div>
+        <p class="subtitle">Normativas y cumplimiento legal en Venezuela</p>
+        <p class="author">Carlos Peña</p>
+    </div>
+    
+    <div class="chapter-content">
+        
+        <h2>Ley de Infogobierno</h2>
+        
+        <p class="drop-cap">Establece normas para el uso de tecnologías de información en el sector público venezolano.</p>
+        
+        <table>
+            <caption>Cumplimiento con la Ley de Infogobierno</caption>
+            <thead>
+                <tr><th>Requisito</th><th>Implementación</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Software Libre</td><td>Código abierto</td></tr>
+                <tr><td>Estándares Abiertos</td><td>REST, gRPC, JSON</td></tr>
+                <tr><td>Interoperabilidad</td><td>APIs documentadas</td></tr>
+                <tr><td>Seguridad</td><td>AES-256, JWT, MFA, TLS</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="separator"></div>
+        
+        <h2>Delitos Informáticos</h2>
+        
+        <ul>
+            <li><strong>Acceso no autorizado:</strong> MFA</li>
+            <li><strong>Interceptación:</strong> Cifrado</li>
+            <li><strong>Falsificación:</strong> Firmas y logs</li>
+            <li><strong>Destrucción:</strong> Backup</li>
+        </ul>
+        
+        <div class="separator"></div>
+        
+        <h2>Estándares Internacionales</h2>
+        
+        <div class="estandar-iso"><strong>ISO 27001:</strong> Gestión de Seguridad</div>
+        <div class="estandar-iso"><strong>ISO 27002:</strong> 93 controles</div>
+        <div class="estandar-iso"><strong>NIST SP 800-53:</strong> Controles de seguridad</div>
+        
+        <div class="separator"></div>
+        
+        <h2>Licenciamiento Soberano</h2>
+        
+        <div class="alerta-iso">
+            <strong>Nota Estratégica:</strong> Licencias permisivas permiten privatizar innovaciones.
+        </div>
+        
+        <table>
+            <caption>Análisis de licenciamiento</caption>
+            <thead>
+                <tr><th>Licencia</th><th>Implicación</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Apache 2.0 / MIT</td><td>Permite clasificar módulos</td></tr>
+                <tr><td>GPL v3 / AGPL</td><td>Copyleft prohíbe cierre</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- CAPÍTULO 4: ARQUITECTURA -->
+    <div class="chapter-page">
+        <span class="chapter-label">Capítulo 04</span>
+        <span class="chapter-number">04</span>
+        <h1>Arquitectura del Ecosistema</h1>
+        <div class="divider"></div>
+        <p class="subtitle">Componentes y modelo de comunicación</p>
+        <p class="author">Carlos Peña</p>
+    </div>
+    
+    <div class="chapter-content">
+        
+        <h2>Visión General</h2>
+        
+        <p class="drop-cap">El ecosistema adopta una arquitectura de microservicios donde cada componente cumple funciones específicas.</p>
+        
+        <table>
+            <caption>Componentes del ecosistema</caption>
+            <thead>
+                <tr><th>Componente</th><th>Tecnología</th><th>Función</th><th>Puerto</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Sandra Server</td><td>Go 1.24.3</td><td>Middleware/ESB</td><td>443, 8443</td></tr>
+                <tr><td>Sandra Consola</td><td>Angular 16+</td><td>Panel Admin</td><td>4200</td></tr>
+                <tr><td>Sandra SDC</td><td>Tauri 2.0</td><td>Escritorio</td><td>-</td></tr>
+                <tr><td>Sandra Sentinel</td><td>Rust 2021</td><td>Motor Cálculo</td><td>50051</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="separator"></div>
+        
+        <h2>Componentes Principales</h2>
+        
+        <h3>Sandra Server</h3>
+        <p>Núcleo del ecosistema: WebSocket Hub, API REST, Seguridad JWT/MFA, Utilidades.</p>
+        
+        <h3>Sandra UI Consola</h3>
+        <p>Panel de administración en Angular 16+.</p>
+        
+        <h3>Sandra Desktop Container</h3>
+        <p>Orquestador de entornos seguros en Tauri/Rust.</p>
+        
+        <h3>Sandra Sentinel</h3>
+        <p>Motor de cálculo de alto rendimiento en Rust.</p>
+        
+        <div class="separator"></div>
+        
+        <h2>Modelo de Comunicación</h2>
+        
+        <ul>
+            <li><strong>REST/HTTPS:</strong> Operaciones transaccionales</li>
+            <li><strong>WebSockets:</strong> Tiempo real</li>
+            <li><strong>gRPC:</strong> Transferencia eficiente</li>
+        </ul>
+    </div>
+
+    <!-- CAPÍTULO 5: SANDRA SERVER -->
+    <div class="chapter-page">
+        <span class="chapter-label">Capítulo 05</span>
+        <span class="chapter-number">05</span>
+        <h1>Sandra Server</h1>
+        <div class="divider"></div>
+        <p class="subtitle">Middleware empresarial de última generación</p>
+        <p class="author">Carlos Peña</p>
+    </div>
+    
+    <div class="chapter-content">
+        
+        <h2>Fundamentación Teórica</h2>
+        
+        <p class="drop-cap">El término middleware designa a un conjunto de servicios que actúan como capa intermedia.</p>
+        
+        <p>Según la IEEE Computer Society, el middleware es un software que asiste a una aplicación para comunicarse con otras.</p>
+        
+        <h3>Evolución del Middleware</h3>
+        
+        <ul>
+            <li><strong>MCM:</strong> Colas de mensajes (IBM MQ)</li>
+            <li><strong>OMT:</strong> CORBA y DCOM</li>
+            <li><strong>EAI:</strong> Integración empresarial</li>
+            <li><strong>ESB:</strong> Arquitectura de servicios</li>
+        </ul>
+        
+        <div class="definicion">
+            <strong>ESB:</strong> Arquitectura de software que proporciona servicios de integración entre aplicaciones.
+        </div>
+        
+        <div class="separator"></div>
+        
+        <h2>Características de Sandra Server</h2>
+        
+        <ul>
+            <li>Protocolos híbridos (REST, WebSockets, gRPC)</li>
+            <li>Procesamiento en tiempo real</li>
+            <li>Escalabilidad horizontal</li>
+            <li>Seguridad integrada</li>
+        </ul>
+        
+        <div class="estandar-iso">
+            <strong>Módulos:</strong> Seguridad, Mensajería, Utilidades (PDF, QR, cifrado)
+        </div>
+    </div>
+
+    <!-- CAPÍTULO 6: CONSOLA -->
+    <div class="chapter-page">
+        <span class="chapter-label">Capítulo 06</span>
+        <span class="chapter-number">06</span>
+        <h1>Sandra UI Consola</h1>
+        <div class="divider"></div>
+        <p class="subtitle">Panel de administración enterprise</p>
+        <p class="author">Carlos Peña</p>
+    </div>
+    
+    <div class="chapter-content">
+        
+        <h2>Introducción</h2>
+        
+        <p class="drop-cap">Sandra UI Consola es la capa de presentación del ecosistema.</p>
+        
+        <p>Proporciona una interfaz administrativa robusta y segura.</p>
+        
+        <div class="nota-editorial">
+            <strong>Arquitectura Enterprise:</strong> Equilibrio entre experiencia de usuario, seguridad y rendimiento.
+        </div>
+        
+        <div class="separator"></div>
+        
+        <h2>Ecosistema Tecnológico</h2>
+        
+        <div class="caja">
+            <strong>Backend Core:</strong> Go para concurrencia, Rust para componentes críticos.
+        </div>
+        
+        <div class="caja">
+            <strong>Protocolos:</strong> gRPC, REST API, WebSockets, AES-256, TLS 1.3
+        </div>
+        
+        <div class="separator"></div>
+        
+        <h2>Angular 16+</h2>
+        
+        <p>Componentes standalone, inyección de dependencias, TypeScript.</p>
+    </div>
+
+    <!-- CAPÍTULO 7: SDC -->
+    <div class="chapter-page">
+        <span class="chapter-label">Capítulo 07</span>
+        <span class="chapter-number">07</span>
+        <h1>Sandra Desktop Container</h1>
+        <div class="divider"></div>
+        <p class="subtitle">Plataforma de orquestación segura</p>
+        <p class="author">Carlos Peña</p>
+    </div>
+    
+    <div class="chapter-content">
+        
+        <h2>Visión Técnica</h2>
+        
+        <p class="drop-cap">SDC es una arquitectura de grado militar para la gestión de micro-aplicaciones.</p>
+        
+        <div class="definicion">
+            <strong>Contenedor de Escritorio:</strong> Capa de software que aísla y protege la ejecución de aplicaciones.
+        </div>
+        
+        <div class="nota-editorial">
+            <strong>Defensa en Profundidad:</strong> Múltiples capas de seguridad.
+        </div>
+        
+        <div class="separator"></div>
+        
+        <h2>Stack Tecnológico</h2>
+        
+        <ul>
+            <li><strong>Rust:</strong> Seguridad de memoria</li>
+            <li><strong>Tauri 2.0:</strong> Runtime</li>
+            <li><strong>Angular:</strong> Interfaz</li>
+        </ul>
+    </div>
+
+    <!-- CAPÍTULO 8: SENTINEL -->
+    <div class="chapter-page">
+        <span class="chapter-label">Capítulo 08</span>
+        <span class="chapter-number">08</span>
+        <h1>Sandra Sentinel</h1>
+        <div class="divider"></div>
+        <p class="subtitle">Motor de cálculo de alto rendimiento</p>
+        <p class="author">Carlos Peña</p>
+    </div>
+    
+    <div class="chapter-content">
+        
+        <h2>Introducción</h2>
+        
+        <p class="drop-cap">Sandra Sentinel es un núcleo de procesamiento en Rust.</p>
+        
+        <p>Actúa como auditor determinista: consume datos, aplica reglas y genera estructura unificada.</p>
+        
+        <div class="nota-editorial">
+            <strong>Arquitectura Hexagonal:</strong> Separa lógica de negocio de mecanismos de E/S.
+        </div>
+        
+        <div class="separator"></div>
+        
+        <h2>Características</h2>
+        
+        <ul>
+            <li>Auditoría determinista</li>
+            <li>Procesamiento masivo</li>
+            <li>Reglas flexibles</li>
+            <li>Rendimiento en Rust</li>
+        </ul>
+    </div>
+
+    <!-- CAPÍTULO 9: SEGURIDAD -->
+    <div class="chapter-page">
+        <span class="chapter-label">Capítulo 09</span>
+        <span class="chapter-number">09</span>
+        <h1>Estándares de Seguridad</h1>
+        <div class="divider"></div>
+        <p class="subtitle">Controles y modelo de seguridad</p>
+        <p class="author">Carlos Peña</p>
+    </div>
+    
+    <div class="chapter-content">
+        
+        <h2>Modelo de Seguridad Multicapa</h2>
+        
+        <ol>
+            <li><strong>Capa de Red:</strong> TLS 1.3, firewall</li>
+            <li><strong>Capa de Aplicación:</strong> Autenticación, autorización</li>
+            <li><strong>Capa de Datos:</strong> Cifrado en reposo</li>
+            <li><strong>Capa de Identidad:</strong> MFA, SSO</li>
+        </ol>
+        
+        <div class="separator"></div>
+        
+        <h2>Criptografía</h2>
+        
+        <table>
+            <caption>Algoritmos criptográficos</caption>
+            <thead>
+                <tr><th>Tipo</th><th>Algoritmo</th><th>Uso</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Simétrico</td><td>AES-256</td><td>Cifrado</td></tr>
+                <tr><td>Asimétrico</td><td>RSA 4096</td><td>Claves</td></tr>
+                <tr><td>Hash</td><td>SHA-256</td><td>Integridad</td></tr>
+                <tr><td>Transporte</td><td>TLS 1.3</td><td>Comunicación</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- CAPÍTULO 10: CONCLUSIONES -->
+    <div class="chapter-page">
+        <span class="chapter-label">Capítulo 10</span>
+        <span class="chapter-number">10</span>
+        <h1>Conclusiones</h1>
+        <div class="divider"></div>
+        <p class="subtitle">Resultados y recomendaciones</p>
+        <p class="author">Carlos Peña</p>
+    </div>
+    
+    <div class="chapter-content">
+        
+        <h2>Conclusiones</h2>
+        
+        <p class="drop-cap">Sandra Ecosystem representa una solución integral para la transformación digital soberana.</p>
+        
+        <ul>
+            <li>Arquitectura moderna de microservicios</li>
+            <li>Cumplimiento con Ley de Infogobierno</li>
+            <li>Soberanía tecnológica con código abierto</li>
+            <li>Seguridad Zero Trust</li>
+        </ul>
+        
+        <div class="separator"></div>
+        
+        <h2>Recomendaciones</h2>
+        
+        <div class="nota-editorial">
+            <strong>Continuar</strong> el desarrollo e implementar pruebas en entornos gubernamentales.
+        </div>
+    </div>
+
+    <!-- REFERENCIAS -->
+    <div class="chapter-page">
+        <span class="chapter-label">Referencias</span>
+        <span class="chapter-number">REF</span>
+        <h1>Referencias</h1>
+        <div class="divider"></div>
+        <p class="subtitle">Bibliografía y normativas</p>
+        <p class="author">Carlos Peña</p>
+    </div>
+    
+    <div class="chapter-content">
+        
+        <h2>Referencias</h2>
+        
+        <ul>
+            <li>Ley de Infogobierno Venezuela</li>
+            <li>Ley Especial contra los Delitos Informáticos</li>
+            <li>Ley sobre Mensajes de Datos</li>
+            <li>ISO/IEC 27001:2022</li>
+            <li>ISO/IEC 27002:2022</li>
+            <li>NIST SP 800-53</li>
+            <li>Enterprise Integration Patterns - Hohpe, Woolf</li>
+            <li>Building Microservices - Sam Newman</li>
+        </ul>
+    </div>
+
+</body>
+</html>

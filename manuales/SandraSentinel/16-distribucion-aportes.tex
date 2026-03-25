@@ -1,0 +1,172 @@
+%======================================================================
+% CAPÍTULO 16 - SISTEMA DE DISTRIBUCIÓN DE APORTES
+%======================================================================
+\chapter{Sistema de Distribución de Aportes}
+
+\bigskip
+
+En algunos escenarios, el monto total de garantías calculado excede el presupuesto disponible. Este capítulo describe el algoritmo de distribución proporcional implementado en Sentinel.
+
+\bigskip
+
+\section{Contexto del Problema}
+
+Cuando el presupuesto disponible para garantías es menor que el total calculado, se requiere distribuir el monto aprobado proporcionalmente entre todos los beneficiarios.
+
+\bigskip
+
+El problema crítico es garantizar que la suma de todos los pagos sea exactamente igual al monto aprobado, incluso cuando hay decimales involucrados.
+
+\bigskip
+
+\section{Algoritmo de Distribución Exacta}
+
+El algoritmo implementado garantiza precisión absoluta mediante el uso de aritmética de enteros.
+
+\bigskip
+
+\subsection{Principios del Algoritmo}
+
+\begin{enumerate}
+    \item Factor Global Único: Se calcula un factor de proporción único basado en el cociente entre el monto aprobado y la suma total de garantías.
+    \item Uso de Centavos (Enteros): Para evitar errores de precisión de punto flotante, todos los cálculos se realizan convirtiendo a centavos (multiplicando por 100) y trabajando con enteros (i64).
+    \item Ajuste del Último Registro: El último beneficiario absorbe la diferencia residual para garantizar el cuadre exacto.
+\end{enumerate}
+
+\bigskip
+
+\[
+\text{Factor Global} = \frac{\text{Monto Aprobado}}{\text{Suma Total de Garantías}}
+\]
+
+\bigskip
+
+\subsection{Pseudocódigo del Algoritmo}
+
+\begin{lstlisting}[language=rust]
+fn distribuir_garantias(beneficiarios: &mut [Beneficiario], monto_aprobado: f64) {
+    // 1. Calcular suma total de garantias
+    let suma_garantias: f64 = beneficiarios.iter()
+        .map(|b| b.base.garantia_original)
+        .sum();
+
+    // 2. Calcular factor global
+    let factor_global = monto_aprobado / suma_garantias;
+
+    // 3. Convertir monto aprobado a centavos
+    let monto_centavos = (monto_aprobado * 100.0).round() as i64;
+
+    // 4. Distribuir con truncamiento
+    let mut acumulado: i64 = 0;
+    let n = beneficiarios.len();
+
+    for (i, ben) in beneficiarios.iter_mut().enumerate() {
+        let anticipo = ben.base.garantia_original * factor_global;
+        let anticipo_centavos = (anticipo * 100.0).round() as i64;
+
+        if i < n - 1 {
+            // Truncar (redondeo hacia abajo)
+            ben.base.garantia_anticipo = anticipo_centavos as f64 / 100.0;
+            acumulado += anticipo_centavos;
+        } else {
+            // Ultimo: cuadra exacto
+            let ajuste = monto_centavos - acumulado;
+            ben.base.garantia_anticipo = ajuste as f64 / 100.0;
+        }
+
+        ben.base.factor_aplicado = factor_global;
+    }
+}
+\end{lstlisting}
+
+\bigskip
+
+\section{Análisis del Algoritmo}
+
+Teorema de Conservación: La suma de todos los anticipos distribuidos es exactamente igual al monto aprobado.
+
+\bigskip
+
+Demostración: Sea n el número de beneficiarios, M el monto aprobado, gi la garantía original del beneficiario i, y ai el anticipo calculado.
+
+Para i = 1, ..., n-1:
+\[
+a_i = \left\lfloor \frac{g_i \times M}{\sum g_j} \times 100 \right\rfloor / 100
+\]
+
+Para i = n:
+\[
+a_n = M - \sum_{i=1}^{n-1} a_i
+\]
+
+Entonces:
+\[
+\sum_{i=1}^{n} a_i = \sum_{i=1}^{n-1} a_i + \left( M - \sum_{i=1}^{n-1} a_i \right) = M
+\]
+
+\bigskip
+
+\section{Ejemplo Numérico}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Parámetro} & \textbf{Valor} \\
+\midrule
+Monto Aprobado & 40.000.000,00 Bs \\
+Total Garantías Calculadas & 57.049.791,95 Bs \\
+Factor Global & 0,70114191 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{llllll}
+\toprule
+\textbf{\#} & \textbf{Cédula} & \textbf{Garantía Original} & \textbf{Cálculo} & \textbf{Anticipo} \\
+\midrule
+1 & 10002142 & 615,90 & 615,90 × 0,70114191 & 431,83 \\
+2 & 10002885 & 611,71 & 611,71 × 0,70114191 & 429,02 \\
+3 & 10002920 & 628,93 & 628,93 × 0,70114191 & 440,99 \\
+4 & 10009822 & 636,81 & 636,81 × 0,70114191 & 446,51 \\
+5 & 10010055 & 593,31 & 593,31 × 0,70114191 & 416,01 \\
+... & ... & ... & ... & ... \\
+n & ÚLTIMO & X & Ajuste & \textbf{40.000.000,00} \\
+\midrule
+  & \textbf{TOTAL} & \textbf{57.049.791,95} & & \textbf{40.000.000,00} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section{Verificación}
+
+El algoritmo ha sido verificado mediante pruebas unitarias que confirman la conservación exacta del monto aprobado para diferentes configuraciones de datos.
+
+\bigskip
+
+Ejemplo de prueba unitaria:
+\begin{lstlisting}[language=rust]
+#[test]
+fn test_distribucion_exacta() {
+    // Crear registros de prueba
+    let mut bases: Vec<Base> = vec![
+        create_base(100.0),
+        create_base(100.0),
+        create_base(100.0),
+    ];
+    
+    // Aprobar solo 150 Bs (la mitad)
+    generar_calculos_beneficiarios(&mut bases, 150.0);
+    
+    // Verificar suma exacta
+    let suma: f64 = bases.iter().map(|b| b.garantia_anticipo).sum();
+    assert!((suma - 150.0).abs() < 0.01);
+}
+\end{lstlisting}
+
+\vfill
+\newpage

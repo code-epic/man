@@ -1,0 +1,43 @@
+# Configuración del Manual
+# Sandra Desktop Container - Manual de Usuario
+
+manual:
+  nombre: "Sandra Desktop Container"
+  version: "2026.1"
+  autor: "Carlos Peña"
+  fecha: "2026-03-05"
+  descripcion: "Plataforma de Orquestación Segura para Aplicaciones Distribuidas"
+  entorno: "sandra_desktop"
+
+estructura:
+  portada: true
+  preliminares:
+    - presentacion
+    - filosofia
+    - glosario
+  capitulos:
+    - onboarding
+    - dashboard
+    - gestion
+    - seguridad
+    - visor
+    - chat
+    - configuracion
+  anexos: true
+  glosario: true
+  referencias: true
+
+metadatos:
+  paleta: "teal-soft"
+  fuentes:
+    principal: "Helvetica Neue"
+    codigo: "FiraCode"
+  iconos: true
+  logo: "../../assets/logos/sandra.png"
+
+build:
+  motor: "xelatex"
+  opciones:
+    - "-interaction=nonstopmode"
+    - "-shell-escape"
+  salida: "Sandra Desktop Container.pdf"

@@ -1,0 +1,55 @@
+%======================================================================
+% sssifanb-estilos.sty - Estilos específicos para SSSIFANB
+%======================================================================
+% Instituto de Previsión Social de la FANB
+%======================================================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{estilos/sssifanb-estilos}[2026.03.18 Estilos SSSIFANB]
+
+% Paleta de colores institucional
+\definecolor{ipsfaBlue}{HTML}{1A237E}
+\definecolor{ipsfaGold}{HTML}{FFB300}
+\definecolor{ipsfaDark}{HTML}{0D1B2A}
+\definecolor{ipsfaLight}{HTML}{E8EAF6}
+
+% Reutilizar estilos de Sandra si están disponibles
+\@ifpackageloaded{../../estilos/sandra-estilos}{}{
+    \input{../../estilos/sandra-estilos.sty}
+}
+
+% Comandos específicos para SSSIFANB
+\newcommand{\ipsfa}{\textbf{IPSFA}}
+\newcommand{\sssifanb}{\textbf{SSSIFANB}}
+
+% Configuración de listings para código
+\lstset{
+    backgroundcolor=\color{sandraSoft},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{sandraDark}\bfseries,
+    commentstyle=\color{textLight},
+    stringstyle=\color{sandraAccent},
+    numbers=left,
+    numberstyle=\tiny\color{textLight},
+    stepnumber=1,
+    numbersep=5pt,
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{sandraGreen},
+    breaklines=true,
+    literate=
+        {á}{{\"a}}1
+        {é}{{\"e}}1
+        {í}{{\"i}}1
+        {ó}{{\"o}}1
+        {ú}{{\"u}}1
+        {ñ}{{\"n}}1
+        {Á}{{\"A}}1
+        {É}{{\"E}}1
+        {Í}{{\"I}}1
+        {Ó}{{\"O}}1
+        {Ú}{{\"U}}1
+        {Ñ}{{\"N}}1
+}
+
+\endinput

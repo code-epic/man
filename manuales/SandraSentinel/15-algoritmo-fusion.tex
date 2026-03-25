@@ -1,0 +1,165 @@
+%======================================================================
+% CAPÍTULO 15 - ALGORITMO DE FUSIÓN (HASH JOIN)
+%======================================================================
+\chapter{Algoritmo de Fusión (Hash Join)}
+
+\bigskip
+
+El algoritmo de fusión es responsable de unir las tres fuentes de datos (Base, Movimientos, Beneficiarios) en un expediente digital unificado. Este capítulo detalla la implementación del Hash Join en memoria.
+
+\bigskip
+
+\section{Descripción del Problema}
+
+El sistema debe unir tres fuentes de datos distintas:
+
+\bigskip
+
+\begin{enumerate}
+    \item Beneficiarios: Stream principal de registros.
+    \item Base: Datos estructurales del personal.
+    \item Movimientos: Datos financieros transaccionales.
+\end{enumerate}
+
+\bigskip
+
+El desafío principal es realizar esta fusión de manera eficiente para 500,000+ registros. Las consultas SQL tradicionales (JOIN) resultan extremadamente costosas en términos de tiempo cuando se procesan grandes volúmenes.
+
+\bigskip
+
+\section{Implementación del Hash Join}
+
+Sentinel implementa una variante del algoritmo Hash Join en memoria, aprovechando la velocidad de acceso a RAM para lograr tiempos de procesamiento del orden de segundos.
+
+\bigskip
+
+\subsection{Fase de Indexación (Build Phase)}
+
+\bigskip
+
+En la fase de indexación, se cargan las entidades Base y Movimientos en memoria y se construyen tablas hash optimizadas. La complejidad de esta fase es:
+
+\[
+\mathcal{O}(n + m)
+\]
+
+donde n es el número de registros Base y m es el número de registros de Movimientos.
+
+\bigskip
+
+\begin{enumerate}
+    \item Se cargan los registros Base desde gRPC.
+    \item Se crea un HashMap para búsqueda O(1) con la clave patterns.
+    \item Se cargan los registros de Movimientos.
+    \item Se crea un HashMap con la clave cédula.
+\end{enumerate}
+
+\bigskip
+
+Ejemplo de código de indexación:
+\begin{verbatim}
+let mut base_index: HashMap<String, &Base> = HashMap::new();
+for base in bases.iter() {
+    base_index.insert(base.patterns.clone(), &base);
+}
+
+let mut movimiento_index: HashMap<String, Vec<&Movimiento>> = HashMap::new();
+for movimiento in movimientos.iter() {
+    movimiento_index
+        .entry(movimiento.cedula.clone())
+        .or_insert_with(Vec::new)
+        .push(&movimiento);
+}
+\end{verbatim}
+
+\bigskip
+
+\subsection{Fase de Sondeo (Probe Phase)}
+
+\bigskip
+
+En la fase de sondeo, el stream de Beneficiarios entra al sistema y para cada registro se realiza una búsqueda O(1) en los índices. La complejidad total es:
+
+\[
+\mathcal{O}(k)
+\]
+
+donde k es el número de Beneficiarios.
+
+\bigskip
+
+\begin{enumerate}
+    \item Se recibe el stream de Beneficiarios.
+    \item Para cada Beneficiario, se busca su Base por patterns.
+    \item Se buscan sus Movimientos por cédula.
+    \item Se fusionan en un Beneficiario enriquecido.
+\end{enumerate}
+
+\bigskip
+
+Ejemplo de código de sondeo:
+\begin{verbatim}
+for beneficiario in beneficiarios {
+    // Búsqueda O(1) en índice Base
+    if let Some(base) = base_index.get(&beneficiario.patterns) {
+        // Búsqueda O(1) en índice Movimientos
+        if let Some(movs) = movimiento_index.get(&beneficiario.cedula) {
+            // Fusionar
+            let fusionado = BeneficiarioEnriquecido {
+                base: base.clone(),
+                movimientos: movs.clone(),
+                ..beneficiario
+            };
+            resultados.push(fusionado);
+        }
+    }
+}
+\end{verbatim}
+
+\bigskip
+
+\section{Complejidad Algorítmica}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Operación} & \textbf{Complejidad} & \textbf{Descripción} \\
+\midrule
+Indexación Base & O(n) & Crear HashMap de Base \\
+Indexación Movimientos & O(m) & Crear HashMap de Movimientos \\
+Sondeo & O(k) & Búsqueda O(1) por registro \\
+\midrule
+\textbf{Total} & \textbf{O(n + m + k)} & Lineal \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section{Teorema de Optimalidad}
+
+El algoritmo Hash Join en memoria es óptimo para el problema de fusión de entidades cuando:
+
+\begin{enumerate}
+    \item Los datos caben en memoria.
+    \item La clave de búsqueda tiene buena distribución (baja colisión).
+    \item Se requiere acceso aleatorio a los datos.
+\end{enumerate}
+
+\bigskip
+
+\section{Ventajas del Enfoque}
+
+El enfoque In-Memory Hash Join ofrece las siguientes ventajas sobre los JOINs tradicionales:
+
+\bigskip
+
+\begin{itemize}
+    \item Eliminación de latencia de I/O: Sin consultas a base de datos durante el procesamiento.
+    \item Búsqueda O(1): Tiempo de acceso constante independiente del tamaño de los datos.
+    \item Paralelizable: Las búsquedas pueden distribuirse entre múltiples núcleos.
+    \item Reproducible: Los mismos datos siempre producen el mismo resultado.
+\end{itemize}
+
+\vfill
+\newpage

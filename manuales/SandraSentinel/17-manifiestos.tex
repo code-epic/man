@@ -1,0 +1,156 @@
+%======================================================================
+% CAPÍTULO 17 - MANIFIESTOS DE EJECUCIÓN
+%======================================================================
+\chapter{Manifiestos de Ejecución}
+
+\dropcap{P}{ara} auditorías, pruebas específicas o ejecuciones de producción controladas, Sentinel soporta un Manifiesto de Ejecución en formato JSON. Este capítulo detalla la estructura y uso de los manifiestos.
+
+\section{Estructura del Manifiesto}
+
+El manifiesto JSON define todos los parámetros de una ejecución:
+
+\begin{lstlisting}[language=json]
+{
+  "nombre": "Nomina Enero 2026 - Oficial",
+  "ciclo": "2026-01",
+  "descripcion": "Ejecucion final con ajustes de decreto.",
+  "autor": "Admin. Sistemas",
+  "fecha": "2026-01-31 08:00:00",
+  "version": "1.0.0",
+  
+  "aportes": {
+    "habilitar": true,
+    "monto_aprobado_garantias": 40000000.00
+  },
+  
+  "cargas": {
+    "CPrimasFunciones": {
+      "sql_filter": "f.oidd = 81"
+    },
+    "CDirectiva": {
+      "sql_filter": "dd.directiva_sueldo_id = 81"
+    },
+    "CConceptos": {
+      "sql_filter": "directiva_sueldo_id = 81"
+    },
+    "CBase": {
+      "sql_filter": "status_id = 201"
+    },
+    "CBeneficiarios": {
+      "sql_filter": "bnf.status_id = 201"
+    }
+  }
+}
+\end{lstlisting}
+
+\section{Secciones del Manifiesto}
+
+\subsection{Sección de Metadatos}
+
+\begin{center}
+\begin{tabular}{llp{8cm}}
+\toprule
+\textbf{Campo} & \textbf{Tipo} & \textbf{Descripción} \\
+\midrule
+nombre & string & Nombre descriptivo de la ejecución \\
+ciclo & string & Identificador del ciclo de nómina \\
+descripcion & string & Descripción de la ejecución \\
+autor & string & Usuario que autoriza la ejecución \\
+fecha & datetime & Fecha y hora de la ejecución \\
+version & string & Versión del manifest \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Sección de Aportes}
+
+\begin{center}
+\begin{tabular}{llp{8cm}}
+\toprule
+\textbf{Campo} & \textbf{Tipo} & \textbf{Descripción} \\
+\midrule
+habilitar & boolean & Activa/desactiva la generación del archivo de aportes \\
+monto\_aprobado\_garantias & float & Monto total a distribuir entre garantías \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Si habilitar es false, el sistema no generará el archivo de distribución de aportes, aunque calculará las garantías normalmente.
+
+\subsection{Sección de Cargas}
+
+Define filtros SQL para cada fuente de datos:
+
+\begin{center}
+\begin{tabular}{llp{8cm}}
+\toprule
+\textbf{Función} & \textbf{Descripción} & \textbf{Ejemplo de Filtro} \\
+\midrule
+CPrimasFunciones & Funciones de prima con fórmulas Rhai & f.oidd = 81 \\
+CDirectiva & Tabla de sueldos base por grado & dd.directiva\_sueldo\_id = 81 \\
+CConceptos & Conceptos de nómina & directiva\_sueldo\_id = 81 \\
+CBase & Datos base de personal & status\_id = 201 \\
+CBeneficiarios & Beneficiarios principales & bnf.status\_id = 201 \\
+CMovimientos & Movimientos financieros & (vacío = todos) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Ejecución con Manifiesto}
+
+\begin{cajaAdvertencia}
+Los filtros SQL deben ser cuidadosamente validados para evitar cargar conjuntos de datos incorrectos o excesivamente grandes.
+\end{cajaAdvertencia}
+
+\subsection{Comando de Ejecución}
+
+\begin{lstlisting}[language=bash,numbers=none]
+cargo run -- -x -m nomina_2026.json
+\end{lstlisting}
+
+Las banderas disponibles:
+
+\begin{itemize}
+    \item \texttt{-x}: Ejecutar el ciclo completo
+    \item \texttt{-m <manifiesto>}: Especificar el archivo de manifest
+    \item \texttt{-v}: Modo verbose (logs detallados)
+\end{itemize}
+
+\section{Ejemplos de Manifiestos}
+
+\subsection{Manifiesto de Prueba}
+
+\begin{lstlisting}[language=json]
+{
+  "nombre": "Prueba Unitaria - 100 Registros",
+  "ciclo": "test-001",
+  "descripcion": "Ejecucion de prueba con subset pequeno",
+  "cargas": {
+    "CBase": {
+      "sql_filter": "cedula IN (10002142, 10002885, 10002920)"
+    }
+  }
+}
+\end{lstlisting}
+
+\subsection{Manifiesto de Producción}
+
+\begin{lstlisting}[language=json]
+{
+  "nombre": "Nomina Marzo 2026 - Produccion",
+  "ciclo": "2026-03",
+  "descripcion": "Ejecucion oficial de nomina",
+  "aportes": {
+    "habilitar": true,
+    "monto_aprobado_garantias": 35000000.00
+  },
+  "cargas": {
+    "CBase": {
+      "sql_filter": "status_id = 201 AND componente_id IN (1,2,3)"
+    }
+  }
+}
+\end{lstlisting}
+
+\vfill
+\newpage

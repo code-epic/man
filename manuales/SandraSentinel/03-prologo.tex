@@ -1,0 +1,58 @@
+%======================================================================
+% PRÓLOGO
+%======================================================================
+\chapter*{Prólogo}
+\addcontentsline{toc}{chapter}{Prólogo}
+
+\begin{center}
+    \textit{<<La ciencia es el alma de la prosperidad de las naciones>>}
+    
+    \vspace{0.5cm}
+    
+    \textbf{--- Francis Bacon}
+\end{center}
+
+\bigskip
+
+\bigskip
+
+El presente documento constituye la descripción técnico-científica de \textbf{Sandra Sentinel}, un sistema de procesamiento de nómina de alto rendimiento desarrollado bajo los principios de la ingeniería de sistemas moderna y la computación de alto rendimiento (\textit{High Performance Computing}).
+
+Este trabajo surge de la necesidad de auditoria y verificación determinista de los cálculos de nómina en entornos jerárquicos complejos, donde la precisión matemática y la trazabilidad completa son requisitos fundamentales. Los sistemas de nómina convencionales, desarrollados hace décadas bajo paradigmas tecnológicos diferentes, presentan limitaciones significativas cuando se enfrentan al procesamiento de grandes volúmenes de datos con reglas de negocio complejas y cambiantes.
+
+\bigskip
+
+\section*{Naturaleza del Problema}
+
+El cálculo de nóminas en organizaciones jerárquicas militares implica la evaluación de múltiples variables interdependientes: antigüedad del personal, grado militar, componente organizacional, bonificaciones, deducciones, beneficios contractuales, y variaciones regulatorias que se acumulan décadas de historia institucional. La complejidad algorítmica de estos sistemas ha crecido exponencialmente, mientras que las tecnologías subyacentes han envejecido sin una migración adecuada.
+
+Sentinel aborda este problema desde una perspectiva fundamentalmente diferente: en lugar de intentar modificar los sistemas legados, implementa un \textbf{motor de cálculo paralelo} que consume los datos crudos, recalcula todos los componentes desde cero, y genera una estructura de datos unificada y validable. Este enfoque de \textit{auditoría determinista} permite verificar la integridad de los cálculos heredados sin modificar las fuentes originales.
+
+\bigskip
+
+\section*{Enfoque Metodológico}
+
+La arquitectura de Sentinel se fundamenta en tres pilares técnicos:
+
+\begin{enumerate}
+    \item \textbf{Computación en Memoria (In-Memory Computing):} Eliminación de la latencia de base de datos mediante carga masiva y procesamiento en RAM.
+    \item \textbf{Paralelismo de Datos (Data Parallelism):} Utilización de todos los núcleos de CPU mediante iteradores paralelos.
+    \item \textbf{Aritmética de Precisión Controlada:} Manipulación de valores monetarios mediante enteros de centsavo para evitar errores de punto flotante.
+\end{enumerate}
+
+\bigskip
+
+\section*{Organización del Documento}
+
+Este documento está estructurado siguiendo las convenciones de la documentación científica técnica. Los capítulos iniciales establecen el marco teórico y la arquitectura del sistema. Los capítulos centrales describen en detalle los algoritmos de fusión, el motor de cálculo de nómina, y el sistema de distribución de aportes. Finalmente, los capítulos finales abordan la implementación, el manifiestaje de ejecución, y las conclusiones.
+
+\bigskip
+
+\begin{flushright}
+    \textbf{Carlos Peña} \\
+    \textit{Caracas, Venezuela} \\
+    \textit{Marzo 2026}
+\end{flushright}
+
+\vfill
+\newpage

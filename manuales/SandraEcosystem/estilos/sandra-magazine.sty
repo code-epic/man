@@ -1,0 +1,211 @@
+%======================================================================
+% ESTILOS SANDRA MAGAZINE - Diseño Revista Científica
+%======================================================================
+\RequirePackage{tikz}
+\RequirePackage{fontawesome}
+
+%--------------------------------------------------------------------
+% COLORES REVISTA CIENTÍFICA
+%--------------------------------------------------------------------
+\definecolor{sandraMagDark}{HTML}{1A3A4A}
+\definecolor{sandraMagAccent}{HTML}{00A896}
+\definecolor{sandraMagGold}{HTML}{D4A574}
+\definecolor{sandraMagLight}{HTML}{F4F8F9}
+\definecolor{sandraMagGray}{HTML}{E8ECF0}
+\definecolor{isoBlue}{HTML}{0066CC}
+\definecolor{isoGreen}{HTML}{00875A}
+\definecolor{isoOrange}{HTML}{FF8B00}
+\definecolor{isoRed}{HTML}{DE350B}
+
+%--------------------------------------------------------------------
+% CONFIGURACIÓN DE COLUMNAS
+%--------------------------------------------------------------------
+\newlength{\sidebarwidth}
+\newlength{\maincontentwidth}
+\ifdefined\paperwidth
+    \setlength{\sidebarwidth}{0.22\linewidth}
+    \setlength{\maincontentwidth}{0.75\linewidth}
+\else
+    \setlength{\sidebarwidth}{4cm}
+    \setlength{\maincontentwidth}{13cm}
+\fi
+
+%--------------------------------------------------------------------
+% CAJAS LATERALES - ESTILO REVISTA
+%--------------------------------------------------------------------
+\newenvironment{cajadestacada}[1]
+{\begin{tcolorbox}[
+    colback=sandraMagLight,
+    colframe=sandraMagAccent,
+    title={\ faIcon{lightbulb}\ #1},
+    title style={sandraMagDark, font=\bfseries},
+    boxrule=1pt,
+    rounded corners,
+    after skip=1em
+]}
+{\end{tcolorbox}}
+
+\newenvironment{cajaISO}[1]
+{\begin{tcolorbox}[
+    colback=sandraMagGray,
+    colframe=isoBlue,
+    title={\ faIcon{certificate}\ #1},
+    title style={isoBlue, font=\bfseries},
+    boxrule=2pt,
+    sharp corners,
+    after skip=1em
+]}
+{\end{tcolorbox}}
+
+\newenvironment{cajaAdvertencia}
+{\begin{tcolorbox}[
+    colback=#FFF3E0,
+    colframe=isoOrange,
+    title={\ faIcon{exclamation-triangle}\ ADVERTENCIA},
+    title style={isoOrange, font=\bfseries},
+    boxrule=2pt,
+    rounded corners,
+    after skip=1em
+]}
+{\end{tcolorbox}}
+
+\newenvironment{cajaInfo}
+{\begin{tcolorbox}[
+    colback=#E3F2FD,
+    colframe=isoBlue,
+    title={\ faIcon{info-circle}\ INFORMACIÓN},
+    title style={isoBlue, font=\bfseries},
+    boxrule=1pt,
+    rounded corners,
+    after skip=1em
+]}
+{\end{tcolorbox}}
+
+%--------------------------------------------------------------------
+% ICONOS DE TECNOLOGÍA
+%--------------------------------------------------------------------
+\newcommand{\iconogo}{\textbf{\textcolor{sandraMagAccent}{Go}}}
+\newcommand{\iconorust}{\textbf{\textcolor{sandraMagGold}{Rust}}}
+\newcommand{\iconoangular}{\textbf{\textcolor{isoRed}{Angular}}}
+\newcommand{\iconotauri}{\textbf{\textcolor{sandraMagDark}{Tauri}}}
+\newcommand{\iconogrpc}{\textbf{\textcolor{isoGreen}{gRPC}}}
+\newcommand{\iconotls}{\textbf{\textcolor{isoBlue}{TLS}}}
+\newcommand{\iconozero}{\textbf{\textcolor{isoOrange}{Zero Trust}}}
+
+%--------------------------------------------------------------------
+% ICONOS NORMA ISO
+%--------------------------------------------------------------------
+\newcommand{\iso27001}[1]{%
+\tikz[baseline=(char.base)]{
+    \node[circle, fill=isoBlue, text=white, font=\bfseries\scriptsize, inner sep=2pt] (char) {27001};
+    \node[above right=-2pt of char, font=\tiny] {#1};
+}%
+}
+
+\newcommand{\iso27002}[1]{%
+\tikz[baseline=(char.base)]{
+    \node[circle, fill=isoGreen, text=white, font=\bfseries\scriptsize, inner sep=2pt] (char) {27002};
+    \node[above right=-2pt of char, font=\tiny] {#1};
+}%
+}
+
+%--------------------------------------------------------------------
+% BANNER DE CAPÍTULO - ESTILO MAGAZINE
+%--------------------------------------------------------------------
+\newcommand{\bannerCapitulo}[3]{%
+\begin{tikzpicture}[remember picture, overlay]
+    % Fondo
+    \fill[sandraMagDark] (current page.north west) -- (current page.north east) --
+        (current page.south east) -- (current page.south west) -- cycle;
+    
+    % Barra decorativa superior
+    \fill[sandraMagAccent] (current page.north west) rectangle ([yshift=-5mm] current page.north east);
+    
+    % Título del capítulo
+    \node[anchor=west, text=white, font=\fontsize{32}{38}\selectfont\bfseries] at ([xshift=2cm, yshift=-2.5cm] current page.north west) {#1};
+    
+    % Subtítulo
+    \node[anchor=west, text=sandraMagAccent, font=\fontsize{14}{18}\selectfont] at ([xshift=2cm, yshift=-4cm] current page.north west) {#2};
+    
+    % Número de capítulo
+    \node[anchor=east, text=sandraMagGold, font=\fontsize{72}{86}\selectfont\bfseries] at ([xshift=-2cm, yshift=-3cm] current page.north east) {#3};
+    
+    % Línea decorativa
+    \draw[sandraMagGold, line width=3pt] ([xshift=2cm, yshift=-4.5cm] current page.north west) -- ([xshift=-8cm, yshift=-4.5cm] current page.north east);
+\end{tikzpicture}
+\clearpage
+}
+
+%--------------------------------------------------------------------
+% DIAGRAMA DE ARQUITECTURA SIMPLIFICADA
+%--------------------------------------------------------------------
+\newcommand{\diagramaArquitectura}[1]{%
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+        node distance=1.5cm,
+        component/.style={rectangle, draw, rounded corners, minimum width=2.5cm, minimum height=1cm, fill=white, drop shadow},
+        arrow/.style={->, thick, -stealth}
+    ]
+        #1
+    \end{tikzpicture}
+    \caption{#1}
+\end{figure}
+}
+
+%--------------------------------------------------------------------
+% DROP CAP MEJORADO
+%--------------------------------------------------------------------
+\newcommand{\dropcap}[2]{%
+\lettrine[lines=3, lhang=0.2, findent=0.5em, nindent=0em]{#1}{#2}%
+}
+
+%--------------------------------------------------------------------
+% CABECERA DE SECCIÓN - ESTILO MAGAZINE
+%--------------------------------------------------------------------
+\titleformat{\section}
+{\normalfont\LARGE\bfseries\sandraMagDark}
+{\thesection}{1em}{\raggedright}
+
+\titleformat{name=\section,numberless}
+{\normalfont\LARGE\bfseries\sandraMagDark}
+{}{0pt}{}
+
+%--------------------------------------------------------------------
+% PIE DE PÁGINA ESTILO MAGAZINE
+%--------------------------------------------------------------------
+\fancyfoot[LE,RO]{%
+    \begin{tikzpicture}[remember picture, overlay, baseline=(current page.south)]
+        \fill[sandraMagDark, opacity=0.05] (current page.south west) rectangle (current page.south east);
+    \end{tikzpicture}
+    \textcolor{sandraMagDark}{\thepage}
+}
+\fancyfoot[C]{\textcolor{secondary}{\ \textbar\ }}
+\fancyfoot[RE,LO]{\textcolor{sandraMagAccent}{\textit{Sandra Ecosystem}}}
+
+%--------------------------------------------------------------------
+% CAJA DE DEFINICIÓN MEJORADA
+%--------------------------------------------------------------------
+\newenvironment{definicionMagazine}
+{\begin{tcolorbox}[
+    colback=sandraMagLight,
+    colframe=sandraMagAccent,
+    title={\ faIcon{book}\ \textbf{Definición}},
+    title style={sandraMagDark},
+    boxrule=1pt,
+    rounded corners,
+    after skip=1em,
+    fontupper=\itshape
+]}
+{\end{tcolorbox}}
+
+%--------------------------------------------------------------------
+% LISTA DE TECNOLOGÍAS CON ICONOS
+%--------------------------------------------------------------------
+\newenvironment{listaTecnologias}
+{\begin{itemize}[
+    itemsep=0.5em,
+    parsep=0.3em,
+    label={\ faIcon{cog}\ }
+]}
+{\end{itemize}}

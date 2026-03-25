@@ -1,0 +1,78 @@
+%======================================================================
+% CAPÍTULO 3: MARCO LEGAL
+%======================================================================
+\chapter{Marco Legal}
+
+\section{Ley de Infogobierno}
+
+La Ley de Infogobierno establece normas para el uso de tecnolog\'{\i}as de informaci\'on en el sector p\'ublico, promoviendo la Soberan\'{\i}a Tecnol\'ogica y el uso de Software Libre.
+
+\begin{table}[H]
+\centering
+\caption{Cumplimiento con la Ley de Infogobierno}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Requisito} & \textbf{Implementaci\'on} \\ \hline
+Software Libre & Todas las tecnolog\'{\i}as son c\'odigo abierto \\ \hline
+Est\'andares Abiertos & REST, gRPC, JSON, Protocol Buffers \\ \hline
+Interoperabilidad & APIs documentadas, adaptadores \\ \hline
+Seguridad & Cifrado AES-256, JWT, MFA, TLS 1.3 \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Ley Especial contra los Delitos Inform\'aticos}
+
+Esta ley establece conductas penalizadas relacionadas con el uso indebido de sistemas inform\'aticos. Sandra Ecosystem implementa controles que ayudan a prevenir y detectar estas conductas:
+
+\begin{itemize}
+\item Acceso no autorizado: Autenticaci\'on multifactor
+\item Interceptaci\'on de datos: Cifrado en tránsito y en reposo
+\item Falsificaci\'on de datos: Firmas digitales y logs de auditoría
+\item Destrucci\'on de datos: Sistemas de backup y redundancia
+\end{itemize}
+
+\section{Ley sobre Mensajes de Datos}
+
+Establece el marco legal para las firmas electr\'onicas y los mensajes de datos. El ecosistema implementa:
+\begin{itemize}
+\item Firmas digitales reconocidas
+\item Sellos de tiempo
+\item Certificados digitales
+\end{itemize}
+
+\section{Est\'andares ISO}
+
+\begin{caja}{Est\'andares ISO Aplicables}
+\begin{itemize}
+\item \textbf{ISO/IEC 27001}: Sistema de Gesti\'on de Seguridad de la Informaci\'on
+\item \textbf{ISO 22301}: Sistema de Gesti\'on de Continuidad del Negocio
+\item \textbf{ISO/IEC 27002}: Controles de seguridad
+\item \textbf{NIST SP 800-53}: Controles de seguridad y privacidad
+\end{itemize}
+\end{caja}
+
+\section{Estrategia y Defensa: Licenciamiento Soberano}
+
+La elección de licencias en el Proyecto Sandra no es solo legal, es \textbf{estratégica}. Priorizamos licencias que garantizan la autonomía tecnológica y la protección de la propiedad intelectual en entornos críticos orientados a la defensa y la soberanía del Estado.
+
+\subsection{Privatizaci\'on de C\'odigo Derivado}
+Las licencias permisivas permiten que innovaciones basadas en código abierto puedan ser "privatizadas" y clasificadas, un requerimiento fundamental para el sector defensa y la seguridad nacional.
+
+\subsection{Cumplimiento y Clasificaci\'on}
+El ecosistema hace uso estratégico de licencias permisivas como Apache 2.0 y MIT. Esto se hace para permitir que módulos especiales, como algoritmos de guiado o componentes altamente sensibles, sean eventualmente cerrados y protegidos bajo normativas de seguridad nacional, manteniendo abierto solo el ecosistema general.
+
+\subsection{An\'alisis de Impacto Estrat\'egico}
+\begin{table}[H]
+\centering
+\caption{Recomendaciones Estratégicas de Licenciamiento}
+\begin{tabular}{|l|p{8cm}|}
+\hline
+\textbf{Licencia} & \textbf{Recomendación} \\ \hline
+\textbf{Apache 2.0 / MIT} & \textbf{Recomendado:} Permite clasificar módulos críticos en un esquema de código propietario cerrado. \\ \hline
+\textbf{GPL v3 / AGPL} & \textbf{Restringido:} Su persistencia en el licenciamiento ("copyleft" fuerte) prohíbe el cierre estratégico de los códigos derivados. \\ \hline
+\end{tabular}
+\end{table}
+
+\notacientifica{<<Si desarrollas un módulo de guiado basado en un algoritmo abierto, una licencia como Apache 2.0 permite que el software final sea cerrado y clasificado sin comprometer el cumplimiento legal.>>}
+
+\newpage

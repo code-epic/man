@@ -1,0 +1,189 @@
+%======================================================================
+% ESTILOS SANDRA SENTINEL - Diseño Científico-Técnico
+%======================================================================
+\RequirePackage{tikz}
+\RequirePackage{fontawesome}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+
+%--------------------------------------------------------------------
+% COLORES CIENTÍFICOS
+%--------------------------------------------------------------------
+\definecolor{sentinelDark}{HTML}{006064}
+\definecolor{sentinelCyan}{HTML}{00ACC1}
+\definecolor{sentinelTeal}{HTML}{00838F}
+\definecolor{sentinelLight}{HTML}{E0F7FA}
+\definecolor{sentinelGreen}{HTML}{26A69A}
+\definecolor{sentinelGold}{HTML}{FFB300}
+\definecolor{sentinelRed}{HTML}{E53935}
+\definecolor{sandraDark}{HTML}{2D5A4A}
+\definecolor{sandraGreen}{HTML}{4CAF93}
+\definecolor{sandraLight}{HTML}{B2E0D0}
+
+%--------------------------------------------------------------------
+% CAJAS DESTACADAS - ESTILO CIENTÍFICO
+%--------------------------------------------------------------------
+\newenvironment{cajaFormula}[1]
+{\begin{tcolorbox}[
+    colback=sentinelLight,
+    colframe=sentinelCyan,
+    title={\ faIcon{calculator}\ #1},
+    title style={sentinelDark, font=\bfseries},
+    boxrule=1.5pt,
+    rounded corners,
+    after skip=1em
+]}
+{\end{tcolorbox}}
+
+\newenvironment{cajaTeorema}
+{\begin{tcolorbox}[
+    colback=#FFF8E1,
+    colframe=sentinelGold,
+    title={\ faIcon{flask}\ \textbf{Teorema}},
+    title style={sentinelDark, font=\bfseries},
+    boxrule=2pt,
+    sharp corners,
+    after skip=1em,
+    fontupper=\itshape
+]}
+{\end{tcolorbox}}
+
+\newenvironment{cajaDefinicion}
+{\begin{tcolorbox}[
+    colback=#E8F5E9,
+    colframe=sentinelGreen,
+    title={\ faIcon{book}\ \textbf{Definición}},
+    title style={sentinelDark, font=\bfseries},
+    boxrule=1.5pt,
+    rounded corners,
+    after skip=1em,
+    fontupper=\itshape
+]}
+{\end{tcolorbox}}
+
+\newenvironment{cajaAlgoritmo}
+{\begin{tcolorbox}[
+    colback=#ECEFF1,
+    colframe=sentinelDark,
+    title={\ faIcon{cogs}\ \textbf{Algoritmo}},
+    title style={sentinelDark, font=\bfseries},
+    boxrule=1.5pt,
+    rounded corners,
+    after skip=1em,
+    fontupper=\ttfamily
+]}
+{\end{tcolorbox}}
+
+\newenvironment{cajaAdvertencia}
+{\begin{tcolorbox}[
+    colback=#FFEBEE,
+    colframe=sentinelRed,
+    title={\ faIcon{exclamation-triangle}\ ADVERTENCIA},
+    title style={sentinelRed, font=\bfseries},
+    boxrule=2pt,
+    rounded corners,
+    after skip=1em
+]}
+{\end{tcolorbox}}
+
+\newenvironment{cajaInfo}
+{\begin{tcolorbox}[
+    colback=#E3F2FD,
+    colframe=sentinelCyan,
+    title={\ faIcon{info-circle}\ INFORMACIÓN},
+    title style={sentinelCyan, font=\bfseries},
+    boxrule=1pt,
+    rounded corners,
+    after skip=1em
+]}
+{\end{tcolorbox}}
+
+%--------------------------------------------------------------------
+% ICONOS DE TECNOLOGÍA
+%--------------------------------------------------------------------
+\newcommand{\iconorust}{\textbf{\textcolor{sentinelGold}{Rust}}}
+\newcommand{\iconogrpc}{\textbf{\textcolor{sentinelTeal}{gRPC}}}
+\newcommand{\iconotokio}{\textbf{\textcolor{sentinelCyan}{Tokio}}}
+\newcommand{\iconorayon}{\textbf{\textcolor{sentinelDark}{Rayon}}}
+\newcommand{\iconorhai}{\textbf{\textcolor{sentinelGreen}{Rhai}}}
+
+%--------------------------------------------------------------------
+% FORMATO DE ECUACIONES
+%--------------------------------------------------------------------
+\newcommand{\eqncaption}[1]{\caption{#1}\内科}
+\newenvironment{ecuacion}
+{\begin{equation}}
+{\end{equation}}
+
+\newenvironment{ecuacionA}
+{\begin{align}}
+{\end{align}}
+
+%--------------------------------------------------------------------
+% DIAGRAMA DE FLUJO CIENTÍFICO
+%--------------------------------------------------------------------
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=sentinelDark, fill=sentinelLight]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=sentinelCyan, fill=sentinelLight]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=sentinelDark, fill=white]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=sentinelGold, fill=#FFF8E1]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+%--------------------------------------------------------------------
+% BANNER DE CAPÍTULO
+%--------------------------------------------------------------------
+\newcommand{\bannerCapitulo}[3]{%
+\begin{tikzpicture}[remember picture, overlay]
+    \fill[sentinelDark] (current page.north west) -- (current page.north east) --
+        (current page.south east) -- (current page.south west) -- cycle;
+    
+    \fill[sentinelCyan] (current page.north west) rectangle ([yshift=-3mm] current page.north east);
+    
+    \node[anchor=west, text=white, font=\fontsize{32}{38}\selectfont\bfseries] at ([xshift=2cm, yshift=-2.5cm] current page.north west) {#1};
+    
+    \node[anchor=west, text=sentinelCyan, font=\fontsize{14}{18}\selectfont] at ([xshift=2cm, yshift=-4cm] current page.north west) {#2};
+    
+    \node[anchor=east, text=sentinelGold, font=\fontsize{72}{86}\selectfont\bfseries] at ([xshift=-2cm, yshift=-3cm] current page.north east) {#3};
+    
+    \draw[sentinelGold, line width=3pt] ([xshift=2cm, yshift=-4.5cm] current page.north west) -- ([xshift=-8cm, yshift=-4.5cm] current page.north east);
+\end{tikzpicture}
+\clearpage
+}
+
+%--------------------------------------------------------------------
+% PIE DE PÁGINA
+%--------------------------------------------------------------------
+\fancyfoot[LE,RO]{%
+    \begin{tikzpicture}[remember picture, overlay, baseline=(current page.south)]
+        \fill[sentinelDark, opacity=0.05] (current page.south west) rectangle (current page.south east);
+    \end{tikzpicture}%
+    \textcolor{textLight}{\thepage}
+}
+\fancyfoot[C]{\textcolor{sentinelCyan}{\ \textbar\ }}
+\fancyfoot[RE,LO]{\textcolor{sentinelGreen}{\textit{Sandra Sentinel}}}
+
+%--------------------------------------------------------------------
+% CABECERA DE SECCIÓN
+%--------------------------------------------------------------------
+\titleformat{\section}
+{\normalfont\LARGE\bfseries\sentinelDark}
+{\thesection}{1em}{\raggedright}
+
+\titleformat{name=\section,numberless}
+{\normalfont\LARGE\bfseries\sentinelDark}
+{}{0pt}{}
+
+%--------------------------------------------------------------------
+% TABLAS CIENTÍFICAS
+%--------------------------------------------------------------------
+\newcommand{\tableScientific}[1]{%
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{sentinelLight}{white}
+    #1
+\end{table}
+}
+
+%--------------------------------------------------------------------
+% COMPLEJIDAD ALGORÍTMICA
+%--------------------------------------------------------------------
+\newcommand{\BigO}[1]{\mathcal{O}(#1)}

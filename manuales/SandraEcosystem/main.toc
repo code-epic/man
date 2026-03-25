@@ -1,0 +1,184 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{Prólogo}{\es@scroman {ii}}{chapter*.1}%
+\contentsline {chapter}{Presentación}{\es@scroman {iii}}{chapter*.2}%
+\contentsline {chapter}{Agradecimientos}{\es@scroman {iv}}{chapter*.3}%
+\contentsline {chapter}{\numberline {1}Introducci\'on General}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}La Relevancia de la Capa 7}{1}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Abstracci\'on L\'ogica}{1}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Orquestaci\'on de Intenci\'on}{1}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Zero-Trust L7}{1}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Contextualizaci\'on del Problema}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Justificaci\'on del Proyecto}{2}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Integraci\'on de Sistemas}{2}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Soberan\'{\i }a Tecnol\'ogica}{2}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}Cumplimiento Normativo}{2}{subsection.1.3.3}%
+\contentsline {section}{\numberline {1.4}Objetivos}{2}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Objetivo General}{3}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Objetivos Espec\'{\i }ficos}{3}{subsection.1.4.2}%
+\contentsline {section}{\numberline {1.5}Alcance del Documento}{3}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Marco Te\'orico}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Estado del Arte}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Fundamentos de Middleware}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Arquitectura de Microservicios}{5}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Seguridad de Confianza Cero}{5}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Tecnolog\'{\i }as Emergentes}{5}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Marco Legal}{6}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Ley de Infogobierno}{6}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Ley Especial contra los Delitos Inform\'aticos}{6}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Ley sobre Mensajes de Datos}{7}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Est\'andares ISO}{7}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Estrategia y Defensa: Licenciamiento Soberano}{7}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Privatizaci\'on de C\'odigo Derivado}{7}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Cumplimiento y Clasificaci\'on}{8}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}An\'alisis de Impacto Estrat\'egico}{8}{subsection.3.5.3}%
+\contentsline {chapter}{\numberline {4}Arquitectura del Ecosistema}{9}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Visi\'on General}{9}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Componentes Principales}{9}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Sandra Server}{9}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Sandra UI Consola}{10}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Sandra Desktop Container}{10}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Sandra Sentinel}{10}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}Modelo de Comunicaci\'on}{10}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Puertos y Protocolos}{11}{subsection.4.3.1}%
+\contentsline {chapter}{\numberline {5}Sandra Server: Middleware Empresarial de Última Generación}{1}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Fundamentación Teórica de Middleware}{1}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Definición y Evolución del Middleware}{1}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Enterprise Service Bus (ESB)}{2}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Arquitecturas Orientadas a Servicios (SOA)}{3}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.4}Middleware en el Contexto de Soberanía Tecnológica}{3}{subsection.5.1.4}%
+\contentsline {section}{\numberline {5.2}Objetivo de la Plataforma Sandra}{5}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Conectividad de Arquitecturas Heterogéneas}{5}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Orquestación de Environments (Desarrollo, QA, Producción)}{5}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Interoperabilidad y Normalización}{6}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Beneficios Estratégicos}{7}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5.3}Arquitectura Técnica}{8}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Stack Tecnológico}{8}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Capacidades de Rendimiento}{9}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Modelo de Despliegue}{9}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Módulos y Funcionalidades}{10}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}WSHub - Centro de WebSockets con Sharding}{10}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}ModulosAPP - Gestión Documental Inteligente}{11}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}ModulosSeguridad - Seguridad Ofensiva y Criptografía}{12}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Legacy \& PHP - Interoperabilidad Híbrida}{12}{subsection.5.4.4}%
+\contentsline {subsection}{\numberline {5.4.5}Identidad y Notificaciones}{13}{subsection.5.4.5}%
+\contentsline {subsection}{\numberline {5.4.6}Gestión Financiera - Módulo de Nóminas}{14}{subsection.5.4.6}%
+\contentsline {section}{\numberline {5.5}Arquitectura de Seguridad}{15}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Pilares de Seguridad}{15}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Criptografía y Protección de Datos}{15}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}Control de Acceso y Autenticación}{16}{subsection.5.5.3}%
+\contentsline {subsection}{\numberline {5.5.4}Detección de Anomalías}{17}{subsection.5.5.4}%
+\contentsline {section}{\numberline {5.6}Cumplimiento Normativo Legal}{18}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Ley de Infogobierno}{18}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Ley Especial contra los Delitos Informáticos}{19}{subsection.5.6.2}%
+\contentsline {subsection}{\numberline {5.6.3}Ley sobre Mensajes de Datos y Firmas Electrónicas}{19}{subsection.5.6.3}%
+\contentsline {subsection}{\numberline {5.6.4}Estándares Internacionales ISO}{20}{subsection.5.6.4}%
+\contentsline {section}{\numberline {5.7}Auditoría y Monitoreo}{21}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Sistema de Logs Inmutables}{21}{subsection.5.7.1}%
+\contentsline {subsection}{\numberline {5.7.2}Traza de Auditoría}{21}{subsection.5.7.2}%
+\contentsline {subsection}{\numberline {5.7.3}Detección de Intrusiones}{22}{subsection.5.7.3}%
+\contentsline {section}{\numberline {5.8}Conclusiones del Capítulo}{23}{section.5.8}%
+\contentsline {chapter}{\numberline {6}Sandra UI Consola: Panel de Administración Enterprise}{24}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introducción y Contexto}{24}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Ecosistema Tecnológico}{25}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Backend Core}{25}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Comunicación}{25}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Base de Datos}{26}{subsection.6.2.3}%
+\contentsline {section}{\numberline {6.3}Arquitectura Angular Enterprise}{26}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Stack Tecnológico}{26}{subsection.6.3.1}%
+\contentsline {section}{\numberline {6.4}Navegación y Estructura de la Consola}{27}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Módulos de Navegación Principal}{27}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Dashboard Principal}{27}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}Seguridad Informática}{28}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Seguridad Basada en Tokens (JWT)}{28}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Web Application Firewall (WAF)}{29}{subsection.6.5.2}%
+\contentsline {subsection}{\numberline {6.5.3}Autenticación Multifactor (MFA)}{29}{subsection.6.5.3}%
+\contentsline {section}{\numberline {6.6}Monitoreo de Red y Observabilidad}{30}{section.6.6}%
+\contentsline {subsection}{\numberline {6.6.1}Heartbeat y Latencia}{30}{subsection.6.6.1}%
+\contentsline {subsection}{\numberline {6.6.2}Análisis de Tráfico}{30}{subsection.6.6.2}%
+\contentsline {subsection}{\numberline {6.6.3}Salud de Nodos}{30}{subsection.6.6.3}%
+\contentsline {section}{\numberline {6.7}Bitácora y Trazabilidad}{31}{section.6.7}%
+\contentsline {subsection}{\numberline {6.7.1}Trazabilidad de Transacciones}{31}{subsection.6.7.1}%
+\contentsline {subsection}{\numberline {6.7.2}Logs de Auditoría}{31}{subsection.6.7.2}%
+\contentsline {section}{\numberline {6.8}Orquestación de Procesos (Fnx Engine)}{32}{section.6.8}%
+\contentsline {subsection}{\numberline {6.8.1}Gestión de PIDs}{32}{subsection.6.8.1}%
+\contentsline {subsection}{\numberline {6.8.2}Escaneo de Infraestructura}{33}{subsection.6.8.2}%
+\contentsline {section}{\numberline {6.9}Inteligencia Artificial y Soporte}{33}{section.6.9}%
+\contentsline {subsection}{\numberline {6.9.1}Sandra IA - Asistente Virtual}{33}{subsection.6.9.1}%
+\contentsline {section}{\numberline {6.10}Normativas y Estándares Internacionales}{33}{section.6.10}%
+\contentsline {subsection}{\numberline {6.10.1}ISO/IEC 27001: Gestión de Seguridad}{34}{subsection.6.10.1}%
+\contentsline {subsection}{\numberline {6.10.2}ISO 22301: Continuidad del Negocio}{34}{subsection.6.10.2}%
+\contentsline {subsection}{\numberline {6.10.3}ISO/IEC 25010: Calidad del Software}{34}{subsection.6.10.3}%
+\contentsline {section}{\numberline {6.11}Comunicación con Sandra Server}{35}{section.6.11}%
+\contentsline {section}{\numberline {6.12}Plugins y Herramientas}{35}{section.6.12}%
+\contentsline {subsection}{\numberline {6.12.1}Escanear Archivos (sanda\_scanf)}{35}{subsection.6.12.1}%
+\contentsline {subsection}{\numberline {6.12.2}Descargar Archivos Seguros (sanda\_dwl)}{35}{subsection.6.12.2}%
+\contentsline {section}{\numberline {6.13}Conclusiones del Capítulo}{35}{section.6.13}%
+\contentsline {chapter}{\numberline {7}Sandra Desktop Container: Plataforma de Orquestación Segura}{37}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Visión Técnica y Propósito}{37}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Definición del Sistema}{38}{subsection.7.1.1}%
+\contentsline {section}{\numberline {7.2}Stack Tecnológico}{38}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Core - Rust y Tauri 2.0}{38}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Interfaz - Angular Standalone}{39}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Estándares de Seguridad y Cumplimiento Normativo}{39}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Cifrado y Protección de Datos (ISO/IEC 27001)}{39}{subsection.7.3.1}%
+\contentsline {section}{\numberline {7.4}Arquitectura de Micro-Frontends Aislados}{40}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Sandboxing y Aislamiento}{40}{subsection.7.4.1}%
+\contentsline {section}{\numberline {7.5}Fundamentos Científicos y Técnicos}{40}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Seguridad de Memoria en Rust}{40}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}Criptografía Probabilística}{41}{subsection.7.5.2}%
+\contentsline {section}{\numberline {7.6}Derivación de Claves de Alta Resistencia}{41}{section.7.6}%
+\contentsline {section}{\numberline {7.7}Cumplimiento Legal y Hacking Ético}{42}{section.7.7}%
+\contentsline {subsection}{\numberline {7.7.1}Principio de Mínimo Privilegio (PoLP)}{42}{subsection.7.7.1}%
+\contentsline {section}{\numberline {7.8}Privacidad y Protección de Datos}{42}{section.7.8}%
+\contentsline {subsection}{\numberline {7.8.1}Cumplimiento GDPR/LOPD}{42}{subsection.7.8.1}%
+\contentsline {section}{\numberline {7.9}Capacidades del Contenedor}{42}{section.7.9}%
+\contentsline {subsection}{\numberline {7.9.1}Inspector y Depuración en Tiempo Real}{43}{subsection.7.9.1}%
+\contentsline {section}{\numberline {7.10}Telemetría y Monitorización}{43}{section.7.10}%
+\contentsline {section}{\numberline {7.11}Actualizaciones Atómicas y Virtualización}{43}{section.7.11}%
+\contentsline {section}{\numberline {7.12}Integración con el Ecosistema}{44}{section.7.12}%
+\contentsline {section}{\numberline {7.13}Beneficios del Ecosistema SDC}{44}{section.7.13}%
+\contentsline {section}{\numberline {7.14}Conclusiones del Capítulo}{45}{section.7.14}%
+\contentsline {chapter}{\numberline {8}Sandra Sentinel: Motor de Cálculo de Alto Rendimiento}{46}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Introducción y Propósito}{46}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}Definición del Sistema}{47}{subsection.8.1.1}%
+\contentsline {section}{\numberline {8.2}Arquitectura}{47}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Stack Tecnológico}{47}{subsection.8.2.1}%
+\contentsline {section}{\numberline {8.3}El Motor de Cálculo}{48}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Modelo de Datos Unificado}{48}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Algoritmo de Fusión (In-Memory Hash Join)}{49}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Fase de Indexación (Build Phase)}{49}{subsection.8.3.3}%
+\contentsline {subsection}{\numberline {8.3.4}Fase de Sondeo (Probe Phase)}{50}{subsection.8.3.4}%
+\contentsline {subsection}{\numberline {8.3.5}Lógica de Tiempo y Jerarquía}{50}{subsection.8.3.5}%
+\contentsline {section}{\numberline {8.4}Ingeniería de Rendimiento}{50}{section.8.4}%
+\contentsline {subsection}{\numberline {8.4.1}El Problema ``Stop-and-Wait''}{51}{subsection.8.4.1}%
+\contentsline {subsection}{\numberline {8.4.2}La Solución: Async Streaming \& Zero-Copy Deserialization}{51}{subsection.8.4.2}%
+\contentsline {section}{\numberline {8.5}Proyección y Auditoría}{52}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Ejecución Controlada (Manifiesto de Carga)}{53}{section.8.6}%
+\contentsline {subsection}{\numberline {8.6.1}Estructura del Manifiesto}{53}{subsection.8.6.1}%
+\contentsline {section}{\numberline {8.7}Conclusiones del Capítulo}{54}{section.8.7}%
+\contentsline {chapter}{\numberline {9}Est\'andares de Seguridad}{55}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Modelo de Seguridad Multicapa}{55}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Principios de Seguridad}{55}{section.9.2}%
+\contentsline {subsection}{\numberline {9.2.1}Seguridad por Dise\~no (Security by Design)}{55}{subsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.2.2}Confianza Cero (Zero Trust)}{56}{subsection.9.2.2}%
+\contentsline {section}{\numberline {9.3}Criptograf\'{\i }a Implementada}{56}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Cifrado de Datos}{56}{subsection.9.3.1}%
+\contentsline {subsection}{\numberline {9.3.2}Gesti\'on de Contrase\~nas}{56}{subsection.9.3.2}%
+\contentsline {section}{\numberline {9.4}Autenticaci\'on y Autorizaci\'on}{57}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}Autenticaci\'on Multifactor (MFA)}{57}{subsection.9.4.1}%
+\contentsline {subsection}{\numberline {9.4.2}Autorizaci\'on}{57}{subsection.9.4.2}%
+\contentsline {section}{\numberline {9.5}Cumplimiento Normativo}{57}{section.9.5}%
+\contentsline {section}{\numberline {9.6}Gesti\'on de Incidentes}{58}{section.9.6}%
+\contentsline {chapter}{\numberline {10}Conclusiones y Recomendaciones}{59}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Conclusiones}{59}{section.10.1}%
+\contentsline {subsection}{\numberline {10.1.1}Arquitectura Moderna}{59}{subsection.10.1.1}%
+\contentsline {subsection}{\numberline {10.1.2}Soberan\'{\i }a Tecnol\'ogica}{59}{subsection.10.1.2}%
+\contentsline {subsection}{\numberline {10.1.3}Cumplimiento Legal}{59}{subsection.10.1.3}%
+\contentsline {subsection}{\numberline {10.1.4}Seguridad}{60}{subsection.10.1.4}%
+\contentsline {subsection}{\numberline {10.1.5}Escalabilidad}{60}{subsection.10.1.5}%
+\contentsline {section}{\numberline {10.2}Recomendaciones}{60}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Trabajo Futuro}{60}{section.10.3}%
+\contentsline {chapter}{Referencias Bibliogr\'aficas}{62}{chapter*.26}%
+\contentsline {chapter}{\numberline {A}Anexos}{64}{appendix.Alph1}%
+\contentsline {section}{\numberline {A.1}Anexo A: Glosario de T\'erminos}{64}{section.Alph1.1}%
+\contentsfinish 

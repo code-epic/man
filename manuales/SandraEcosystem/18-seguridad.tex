@@ -1,0 +1,120 @@
+%======================================================================
+% CAPÍTULO 9: ESTÁNDARES DE SEGURIDAD
+%======================================================================
+\chapter{Est\'andares de Seguridad}
+
+Sandra Ecosystem implementa un modelo de seguridad multicapa que cumple con los est\'andares internacionales y las normativas venezolanas.
+
+\section{Modelo de Seguridad Multicapa}
+
+El ecosistema implementa seguridad en todas las capas:
+
+\begin{enumerate}
+\item \textbf{Capa de Red}: TLS 1.3, firewall, segmentaci\'on
+\item \textbf{Capa de Aplicaci\'on}: Autenticaci\'on, autorizaci\'on, validaci\'on
+\item \textbf{Capa de Datos}: Cifrado en reposo, hashing seguro
+\item \textbf{Capa de Identidad}: MFA, SSO, gesti\'on de identidades
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\begin{center}
+[Figura: Capas de seguridad del ecosistema]
+\end{center}
+\end{minipage}
+\end{figure}
+
+\section{Principios de Seguridad}
+
+\subsection{Seguridad por Dise\~no (Security by Design)}
+\begin{itemize}
+\item Seguridad integrada desde la concepci\'on
+\item M\'{\i}nimo privilegio
+\item Defense in depth
+\item Fail secure
+\end{itemize}
+
+\subsection{Confianza Cero (Zero Trust)}
+\begin{itemize}
+\item Nunca confiar, siempre verificar
+\item Verificaci\'on continua
+\item Acceso con menor privilegio
+\item Asunci\'on de brecha
+\end{itemize}
+
+\section{Criptograf\'{\i}a Implementada}
+
+\begin{table}[H]
+\centering
+\caption{Algoritmos criptogr\'aficos}
+\begin{tabular}{|l|l|p{4cm}|}
+\hline
+\textbf{Operaci\'on} & \textbf{Algoritmo} & \textbf{Est\'andar} \\ \hline
+Cifrado sim\'etrico & AES-256-GCM & NIST SP 800-175B \\ \hline
+Hashing & SHA-256, Argon2 & NIST FIPS 180-4 \\ \hline
+Firmas digitales & RSA-4096, Ed25519 & RFC 8032 \\ \hline
+Transporte & TLS 1.3 & RFC 8446 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Cifrado de Datos}
+\begin{itemize}
+\item AES-256-GCM para datos en reposo
+\item TLS 1.3 para datos en tr\'ansito
+\item Claves rotativas peri\'odicamente
+\item Almacenamiento seguro de claves
+\end{itemize}
+
+\subsection{Gesti\'on de Contrase\~nas}
+\begin{itemize}
+\item Argon2 para hashing de contrasenas
+\item Longitud m\'{\i}nima de 8 caracteres
+\item Pol\'{\i}ticas de complejidad
+\item Bloqueo de cuenta tras intentos fallidos
+\end{itemize}
+
+\section{Autenticaci\'on y Autorizaci\'on}
+
+\subsection{Autenticaci\'on Multifactor (MFA)}
+\begin{itemize}
+\item TOTP (Time-based One-Time Password)
+\item Tokens JWT con expiraci\'on
+\item Sesiones con duraci\'on limitada
+\item Cierre de sesi\'on remoto
+\end{itemize}
+
+\subsection{Autorizaci\'on}
+\begin{itemize}
+\item Control de acceso basado en roles (RBAC)
+\item Pol\'{\i}ticas de permisos granulares
+\item Auditor\'{\i}a de accesos
+\end{itemize}
+
+\section{Cumplimiento Normativo}
+
+\begin{table}[H]
+\centering
+\caption{Cumplimiento con est\'andares internacionales}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Normativa} & \textbf{Cumplimiento} \\ \hline
+Ley de Infogobierno & Total \\ \hline
+Ley Especial contra Delitos Inform\'aticos & Total \\ \hline
+ISO/IEC 27001 & Parcial (procesos) \\ \hline
+NIST SP 800-53 & Total (controles t\'ecnicos) \\ \hline
+OWASP Top 10 & Total \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Gesti\'on de Incidentes}
+
+El ecosistema incluye:
+\begin{itemize}
+\item Logs de auditor\'{\i}a inmutables
+\item Alertas en tiempo real
+\item Procedimientos de respuesta
+\item Capacidad de forense
+\end{itemize}
+
+\newpage

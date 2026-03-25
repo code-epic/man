@@ -1,0 +1,75 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{Filosofía y Principios}{\es@scroman {iii}}{chapter*.1}%
+\contentsline {chapter}{Glosario de Términos}{\es@scroman {v}}{chapter*.2}%
+\contentsline {part}{I\hspace {1em}Fundamentos y Primeros Pasos}{1}{part.1}%
+\contentsline {chapter}{\numberline {1}Inicio de Sesión}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Presentación del Sistema}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Pantalla de Login}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Autenticación de Dos Factores}{4}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Pantalla Principal}{4}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Configuración de Usuario}{5}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Cierre de Sesión}{6}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Arquitectura Técnica del Sistema}{6}{section.1.7}%
+\contentsline {part}{II\hspace {1em}Módulo de Afiliación}{8}{part.2}%
+\contentsline {chapter}{\numberline {2}Módulo de Afiliación}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Descripción General}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Acceso al Módulo}{9}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Datos Militares}{10}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Datos de Sueldo e Indicadores}{11}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Asignaciones y Complementos}{12}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Dirección y Datos Físicos}{12}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Consultar Netos}{12}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Grupo Familiar (Art. 8)}{13}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Emitir TIM}{14}{section.2.9}%
+\contentsline {section}{\numberline {2.10}Liberaciones}{15}{section.2.10}%
+\contentsline {part}{III\hspace {1em}Tarjeta de Identificación Militar}{16}{part.3}%
+\contentsline {chapter}{\numberline {3}Tarjeta de Identificación Militar (TIM)}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Introducción}{17}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Indicadores del Módulo}{17}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Liberación de TIM}{18}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Aprobación de TIM}{19}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Tipos de TIM}{20}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Datos en la TIM}{20}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Especificaciones de Fotografía}{21}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Estados de Solicitud}{21}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Red Sanitaria Militar}{22}{section.3.9}%
+\contentsline {part}{IV\hspace {1em}Prestaciones Sociales}{23}{part.4}%
+\contentsline {chapter}{\numberline {4}Módulo de Prestaciones Sociales}{24}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Descripción General}{24}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Acceso al Módulo}{24}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Submódulos Disponibles}{24}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Fundamento Matemático - Asignación de Antigüedad (Art. 57)}{25}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Anticipos del Fideicomiso}{25}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Lista y Solicitud de Anticipos}{26}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Finiquitos}{27}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Gestión Judicial (Art. 60 y 61)}{28}{section.4.8}%
+\contentsline {section}{\numberline {4.9}Movimientos del Fideicomiso}{29}{section.4.9}%
+\contentsline {section}{\numberline {4.10}Órdenes de Pago}{30}{section.4.10}%
+\contentsline {section}{\numberline {4.11}Procesamiento en Lote}{30}{section.4.11}%
+\contentsline {section}{\numberline {4.12}Reportes}{30}{section.4.12}%
+\contentsline {part}{V\hspace {1em}Nómina de Pensionados}{31}{part.5}%
+\contentsline {chapter}{\numberline {5}Módulo de Nómina de Pensionados}{32}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Descripción General}{32}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Submódulos Disponibles}{32}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Cálculos de Nómina - Reserva Activa (Art. 34 y 38)}{32}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Tabulador de Conceptos}{34}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Vector de Sobrevivientes e Invalidez (Art. 43 y 46)}{35}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Integración Sistema Patria}{36}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Retroactivos (Art. 39 - Homologación)}{36}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Calculadora de Pensiones}{37}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Estados del Cálculo}{37}{section.5.9}%
+\contentsline {section}{\numberline {5.10}Consulta de Pagos}{38}{section.5.10}%
+\contentsline {section}{\numberline {5.11}Reportes del Módulo}{38}{section.5.11}%
+\contentsline {part}{VI\hspace {1em}Configuraciones del Sistema}{40}{part.6}%
+\contentsline {chapter}{\numberline {6}Módulo de Configuración}{41}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Descripción General}{41}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Submódulos Disponibles}{41}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Parámetros del Sistema}{41}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Tasa del Banco Central de Venezuela}{43}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Directivas PDF}{43}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Auth Data (Seguridad)}{45}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Logs de Auditoría}{45}{section.6.7}%
+\contentsline {section}{\numberline {6.8}Bitácora de Cambios}{45}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Respaldo y Restauración}{46}{section.6.9}%
+\contentsline {section}{\numberline {6.10}Usuarios y Permisos}{47}{section.6.10}%
+\contentsfinish 

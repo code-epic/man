@@ -1,0 +1,339 @@
+%======================================================================
+% Sandra Sentinel - Motor de Cálculo de Nómina
+% Documento Científico-Técnico
+% Autor: Carlos Peña
+% Versión: 1.0 - Marzo 2026
+%======================================================================
+
+\documentclass[
+    11pt,
+    oneside,
+    openright,
+    spanish,
+    letterpaper
+]{book}
+
+%--------------------------------------------------------------------
+% PAQUETES (pdflatex)
+%--------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage{courier}
+\usepackage{helvet}
+\usepackage{times}
+
+\usepackage[
+    spanish,
+    bookmarks=true,
+    colorlinks=true,
+    linkcolor=sandraDark,
+    citecolor=sandraDark,
+    urlcolor=sandraDark,
+    pdftitle={Sandra Sentinel},
+    pdfauthor={Carlos Peña},
+    pdfsubject={Motor de Cálculo de Nómina de Alto Rendimiento},
+    pdfkeywords={Caracas, Venezuela, Sandra Sentinel, Nómina, Motor de Cálculo, Rust},
+    pdfcreator={LaTeX}
+]{hyperref}
+
+\usepackage[
+    margin=2.5cm,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2cm
+]{geometry}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{emptypage}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{makeidx}
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{lettrine}
+\usepackage{epigraph}
+\usepackage{microtype}
+\usepackage{eso-pic}
+\usepackage{tikz}
+\usetikzlibrary{calc, shapes.geometric, backgrounds, shadows.blur, positioning, arrows.meta, fadings, shadings, patterns}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+%--------------------------------------------------------------------
+% CONFIGURACIÓN DE COLORES (Paleta Sandra)
+%--------------------------------------------------------------------
+\definecolor{sandraDark}{HTML}{2D5A4A}
+\definecolor{sandraGreen}{HTML}{4CAF93}
+\definecolor{sandraLight}{HTML}{B2E0D0}
+\definecolor{sandraAccent}{HTML}{66BB6A}
+\definecolor{sandraSoft}{HTML}{F5FAF8}
+\definecolor{textDark}{HTML}{263238}
+\definecolor{textLight}{HTML}{546E7A}
+\definecolor{sentinelDark}{HTML}{006064}
+\definecolor{sentinelCyan}{HTML}{00ACC1}
+\definecolor{sentinelTeal}{HTML}{00838F}
+\definecolor{sentinelLight}{HTML}{E0F7FA}
+
+%--------------------------------------------------------------------
+% CONFIGURACIÓN DE PÁGINAS
+%--------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\textcolor{sandraDark}{\rightmark}}
+\fancyhead[L]{\textcolor{sandraDark}{\leftmark}}
+\fancyfoot[C]{%
+    \begin{tikzpicture}[remember picture, overlay]
+        \path[fill=sandraGreen, opacity=0.08] 
+            (current page.south west) .. controls ++(5cm, 3.5cm) and ++(-5cm, -1.5cm) .. (current page.south east) -- cycle;
+    \end{tikzpicture}%
+    \textbf{\textcolor{textLight}{\thepage}}%
+}
+\fancyfoot[R]{\textcolor{sandraAccent}{\rule{1em}{1em}} \textit{Sandra Sentinel} \textbar\ \textbf{Motor de Cálculo}}
+
+\geometry{headsep=1cm,footskip=1.5cm,headheight=32pt}
+
+%--------------------------------------------------------------------
+% BABEL ESPAÑOL
+%--------------------------------------------------------------------
+\usepackage[spanish]{babel}
+
+%--------------------------------------------------------------------
+% TÍTULOS
+%--------------------------------------------------------------------
+\titleformat{\chapter}[display]
+    {\normalfont\Large\bfseries\color{sandraDark}}
+    {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+\titleformat{\section}
+    {\normalfont\Large\bfseries\color{sandraDark}}
+    {\thesection}{15pt}{\Large}
+
+\titleformat{\subsection}
+    {\normalfont\large\bfseries\color{sandraGreen}}
+    {\thesubsection}{10pt}{\large}
+
+%--------------------------------------------------------------------
+% LISTINGS - Código Fuente
+%--------------------------------------------------------------------
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily\small\color{textDark},
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    framesep=4pt,
+    framerule=1pt,
+    rulecolor=\color{sandraAccent},
+    backgroundcolor=\color{sandraSoft},
+    string=[s]{"}{"},
+    stringstyle=\color{sandraGreen},
+    comment=[l]{:},
+    commentstyle=\color{textLight},
+    keywordstyle=\color{sandraDark}\bfseries,
+    numbers=left,
+    numberstyle=\tiny\color{textLight},
+    numbersep=8pt,
+    tabsize=2,
+    xleftmargin=15pt,
+    xrightmargin=5pt,
+    aboveskip=10pt,
+    belowskip=10pt
+}
+
+\lstdefinelanguage{bash}{
+    basicstyle=\ttfamily\small\color{textDark},
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    framesep=4pt,
+    framerule=1pt,
+    rulecolor=\color{sandraAccent},
+    backgroundcolor=\color{sandraSoft},
+    keywordstyle=\color{sandraDark}\bfseries,
+    commentstyle=\color{textLight}\itshape,
+    numbers=none,
+    tabsize=4,
+    xleftmargin=15pt,
+    xrightmargin=5pt,
+    aboveskip=10pt,
+    belowskip=10pt
+}
+
+\lstdefinelanguage{rust}{
+    basicstyle=\ttfamily\small\color{textDark},
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    framesep=4pt,
+    framerule=1pt,
+    rulecolor=\color{sandraAccent},
+    backgroundcolor=\color{sandraSoft},
+    keywordstyle=\color{sandraDark}\bfseries,
+    stringstyle=\color{sandraGreen},
+    commentstyle=\color{textLight}\itshape,
+    numbers=none,
+    tabsize=4,
+    xleftmargin=15pt,
+    xrightmargin=5pt,
+    aboveskip=10pt,
+    belowskip=10pt
+}
+
+\lstset{
+    backgroundcolor=\color{sandraSoft},
+    basicstyle=\ttfamily\small\color{textDark},
+    keywordstyle=\color{sandraDark}\bfseries,
+    stringstyle=\color{sandraGreen},
+    commentstyle=\color{textLight}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{textLight},
+    stepnumber=1,
+    numbersep=8pt,
+    frame=single,
+    framesep=4pt,
+    framerule=1pt,
+    rulecolor=\color{sandraAccent},
+    tabsize=4,
+    breaklines=true,
+    linewidth=\linewidth,
+    xleftmargin=10pt
+}
+
+%--------------------------------------------------------------------
+% ENTORNOS PERSONALIZADOS
+%--------------------------------------------------------------------
+\newtheoremstyle{scientifico}
+    {\topsep}
+    {\topsep}
+    {\normalfont}
+    {0pt}
+    {\bfseries}
+    {}
+    {0.5em}
+    {}
+
+\theoremstyle{scientifico}
+\newtheorem{definicion}{Definición}[chapter]
+
+\newenvironment{cajaDefinicion}
+{\begin{trivlist}\item[\hskip \labelsep \textbf{Definición: }]}
+{\end{trivlist}}
+
+\newenvironment{cajaFormula}
+{\begin{trivlist}\item[\hskip \labelsep \textbf{Fórmula: }]}
+{\end{trivlist}}
+
+\newenvironment{cajaInfo}
+{\begin{trivlist}\item[\hskip \labelsep \textbf{Información: }]}
+{\end{trivlist}}
+
+\newenvironment{cajaAdvertencia}
+{\begin{trivlist}\item[\hskip \labelsep \textbf{Advertencia: }]}
+{\end{trivlist}}
+
+\newenvironment{cajaAlgoritmo}
+{\begin{trivlist}\item[\hskip \labelsep \textbf{Algoritmo: }]}
+{\end{trivlist}}
+
+\newenvironment{cajaTeorema}
+{\begin{trivlist}\item[\hskip \labelsep \textbf{Teorema: }]}
+{\end{trivlist}}
+
+%--------------------------------------------------------------------
+% COMANDOS PERSONALIZADOS
+%--------------------------------------------------------------------
+\newcommand{\dropcap}[2]{%
+\lettrine[lines=3, lhang=0.2, findent=0.5em, nindent=0em]{#1}{#2}%
+}
+
+%--------------------------------------------------------------------
+% CONFIGURACIÓN DE ESPACIOS
+%--------------------------------------------------------------------
+\setstretch{1.5}
+\newlength{\Oldarraycolsep}
+\newlength{\Oldtabcolsep}
+\newenvironment{mytabular}{\setlength{\Oldarraycolsep}{\arraycolsep}\setlength{\Oldtabcolsep}{\tabcolsep}\setlength{\arraycolsep}{6pt}\setlength{\tabcolsep}{8pt}\begin{tabular}}{\end{tabular}\setlength{\arraycolsep}{\Oldarraycolsep}\setlength{\tabcolsep}{\Oldtabcolsep}}
+%\renewcommand{\arraystretch}{1.6}
+%\setlength{\tabcolsep}{12pt}
+
+%--------------------------------------------------------------------
+% ÍNDICE
+%--------------------------------------------------------------------
+\makeindex
+
+%--------------------------------------------------------------------
+% DOCUMENTO
+%--------------------------------------------------------------------
+\begin{document}
+
+%--------------------------------------------------------------------
+% PORTADA
+%--------------------------------------------------------------------
+\input{01-portada}
+
+%--------------------------------------------------------------------
+% PRELIMINARES
+%--------------------------------------------------------------------
+\frontmatter
+\pagenumbering{roman}
+
+\input{02-dedicatoria}
+\input{03-prologo}
+\input{04-presentacion}
+\input{05-agradecimientos}
+\input{06-contraportada}
+
+%--------------------------------------------------------------------
+% RESUMEN
+%--------------------------------------------------------------------
+\input{07-resumen}
+
+%--------------------------------------------------------------------
+% ÍNDICE
+%--------------------------------------------------------------------
+\tableofcontents
+
+%--------------------------------------------------------------------
+% CONTENIDO PRINCIPAL
+%--------------------------------------------------------------------
+\mainmatter
+\pagenumbering{arabic}
+
+\input{10-introduccion}
+\input{11-marco-teorico}
+\input{12-arquitectura}
+\input{13-modelo-datos}
+\input{14-motor-calculo}
+\input{15-algoritmo-fusion}
+\input{16-distribucion-aportes}
+\input{17-manifiestos}
+\input{18-implementacion}
+\input{19-conclusiones}
+
+%--------------------------------------------------------------------
+% REFERENCIAS (comentado)
+%--------------------------------------------------------------------
+% \input{20-referencias}
+
+%--------------------------------------------------------------------
+% ANEXOS
+%--------------------------------------------------------------------
+\appendix
+\input{anexos}
+
+\end{document}

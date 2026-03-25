@@ -1,0 +1,269 @@
+%======================================================================
+% CAPÍTULO 02: MÓDULO DE AFILIACIÓN
+%======================================================================
+% Gestión de datos del afiliado
+% Fundamento Legal: Art. 2, 8 de la Ley SSSIFANB
+%======================================================================
+
+\chapter{Módulo de Afiliación}
+\label{ch:afiliacion}
+
+\section{Descripción General}
+
+El Módulo de Afiliación permite gestionar todos los datos del afiliado al Sistema de Seguridad Social de la FANB. Es la puerta de entrada para el control riguroso del núcleo amparado por el sistema.
+
+\subsection*{Ámbito de Aplicación (Art. 2 de la Ley)}
+
+El sistema protege y administra a:
+
+\begin{itemize}[leftmargin=*]
+    \item Militar profesional en situación de actividad y de reserva activa
+    \item Cadetes, alumnos e integrantes de tropas alistadas y profesionales
+    \item Reserva y Milicia movilizada
+    \item Familiares inmediatos y sobrevivientes calificados en el Art. 8
+\end{itemize}
+
+\section{Acceso al Módulo}
+
+Para acceder:
+
+\begin{enumerate}[leftmargin=*]
+    \item Seleccione \textbf{Afiliación} en el menú lateral
+    \item Se mostrará el menú de opciones
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3-afiliacion.png}
+\caption{Módulo de Afiliación}
+\label{fig:afiliacion-modulo}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3.0-menu.png}
+\caption{Menú de opciones}
+\label{fig:afiliacion-menu}
+\end{minipage}
+\end{figure}
+
+\section{Datos Militares}
+
+La sección de Datos Militares contiene la información institucional del afiliado:
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3.1-datos-militares.png}
+\caption{Datos militares}
+\label{fig:datos-militares}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3.2-datos-sueldos.png}
+\caption{Datos de sueldo}
+\label{fig:datos-sueldos}
+\end{minipage}
+\end{figure}
+
+\subsection*{Campos Principales}
+
+\begin{longtable}{p{3.5cm}p{8.5cm}}
+\toprule
+\textbf{Campo} & \textbf{Descripción} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Campos de datos militares}
+\label{tab:datos-militares}
+\endlastfoot
+
+\textbf{Categoría} & Clasificación militar \\
+\textbf{Situación} & Activo, Reserva, Retiro \\
+\textbf{Clase} & Año de incorporación \\
+\textbf{Componente} & EB, ARM, AV, GNB, MLB \\
+\textbf{Grado} & Nivel jerárquico \\
+\textbf{Fecha de Ingreso} & Incorporación a la FANB \\
+\end{longtable}
+
+\section{Datos de Sueldo e Indicadores}
+
+\keyconcept{Variables Globales: Aportes y Contribuciones (Mandato Art. 13, 67 y 105)}\\
+El sistema monitorea algorítmicamente la recaudación requerida para mantener activo el Fideicomiso. Las funciones encargadas de generar la liquidación mensual inyectan descuentos mandatorios exactos según el estatus del militar:
+
+\begin{lstlisting}[language=Java, caption=Algoritmo de Deducciones Globales (Art. 13)]
+// 1. Personal Activo (Sueldo Integral Base)
+const deduccionesActivo = {
+    fondoPension: sueldoIntegral * 0.05,
+    fondoSalud: sueldoIntegral * 0.065,
+    fondoVivienda: sueldoIntegral * 0.01,
+    fondoRecreacion: sueldoIntegral * 0.015
+};
+
+// 2. Reserva Activa (Pensionados)
+const deduccionesReserva = {
+    fondoSalud: montoPension * 0.065 // Exclusivo
+};
+\end{lstlisting}
+
+\begin{tcolorbox}[
+    colback=sandraSoft,
+    colframe=sandraDark,
+    width=\textwidth,
+    title=\textbf{Deducción Mínima Legal Parametrizada}
+]
+\small
+El sistema aplica y verifica una retención consolidada equivalente al \textbf{14\%} del sueldo del militar activo mensualmente. Adicionalmente, sobre el Fondo de Vivienda, el componente patronal del Estado aporta algorítmicamente el equivalente a \texttt{factor * 2}.
+\end{tcolorbox}
+
+\section{Asignaciones y Complementos}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3.3-asignaciones.png}
+\caption{Asignaciones}
+\label{fig:asignaciones}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3.4-bancos.png}
+\caption{Cuentas bancarias}
+\label{fig:bancos}
+\end{minipage}
+\end{figure}
+
+El afiliado puede registrar hasta 3 cuentas bancarias activas para el pago de prestaciones.
+
+\section{Dirección y Datos Físicos}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3.5-direccion.png}
+\caption{Dirección}
+\label{fig:direccion}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3.6-fisicos.png}
+\caption{Datos físicos}
+\label{fig:fisicos}
+\end{minipage}
+\end{figure}
+
+\section{Consultar Netos}
+
+Permite verificar la capacidad de pago disponible:
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3.7-consultar-netos.png}
+\caption{Consultar netos}
+\label{fig:consultar-netos}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\end{minipage}
+\end{figure}
+
+\section{Grupo Familiar (Art. 8)}
+
+El sistema cataloga los vínculos inquebrantables del afiliado:
+
+\subsection*{Tipos de Beneficiarios}
+
+\begin{longtable}{p{3cm}p{4cm}p{5cm}}
+\toprule
+\textbf{Parentesco} & \textbf{Requisitos} & \textbf{Documentación} \\
+\midrule
+\endhead
+\bottomrule
+\caption{Tipos de parentesco}
+\label{tab:parentescos}
+\endlastfoot
+
+Cónyuge & Beneficiario principal & Acta de matrimonio \\
+Hijo & $<$18 años o estudiante hasta 26 & Partida de nacimiento \\
+Hijo con discapacidad & Sin límite de edad & Certificación médica \\
+Madre/Padre & Dependiente económico & Declaración jurada \\
+Concubina/o & Unión estable & Testimonio de vecinos \\
+\end{longtable}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3.9-agregar-familiares.png}
+\caption{Agregar familiar}
+\label{fig:agregar-familiar}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3.10-grupo-familiar.png}
+\caption{Grupo familiar}
+\label{fig:grupo-familiar}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3.11-ficha-familiar.png}
+\caption{Ficha familiar}
+\label{fig:ficha-familiar}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\end{minipage}
+\end{figure}
+
+\section{Emitir TIM}
+
+Desde el módulo de afiliación puede iniciar el proceso de emisión de la Tarjeta de Identificación Militar:
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{3.8-emitir-tim.png}
+\caption{Emitir TIM}
+\label{fig:emitir-tim}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\end{minipage}
+\end{figure}
+
+La TIM es fundamental para el acceso a la Red Sanitaria Militar (Art. 84 y 90). Sin ella, no es posible la atención en hospitales militares.
+
+\section{Liberaciones}
+
+Función de seguridad del sistema. Puede bloquear cuentas, pagos de medicamentos o anticipos en casos de inconsistencias documentales. Los operadores de alto rango desbloquean administrativamente al civil o militar tras justificar sus trámites en IPSFANB.
+
+\begin{tcolorbox}[
+    colback=sandraSoft,
+    colframe=sandraDark,
+    width=0.9\textwidth,
+    halign=center
+]
+\small
+\textbf{Operación CRUD}: El sistema brinda privilegios escalados de Crear, Actualizar y Eliminar (en caso de exclusión judicial) para la gestión completa de beneficiarios.
+\end{tcolorbox}
+
+\newpage

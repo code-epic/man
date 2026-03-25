@@ -1,0 +1,105 @@
+%======================================================================
+% CAPÍTULO 19 - CONCLUSIONES
+%======================================================================
+\chapter{Conclusiones}
+
+\bigskip
+
+El desarrollo de Sandra Sentinel representa un avance significativo en la automatización y verificación de los procesos de nómina en entornos complejos. Este capítulo sintetiza los logros alcanzados y las perspectivas futuras.
+
+\bigskip
+
+\section{Logros Alcanzados}
+
+\bigskip
+
+\subsection{Auditoría Determinista}
+
+Sentinel implementa por primera vez un sistema de auditoría determinista que recalcula todos los componentes de nómina desde cero. Esto permite:
+
+\begin{itemize}
+    \item Detección de inconsistencias en los datos fuente.
+    \item Verificación de la integridad de los cálculos heredados.
+    \item Trazabilidad completa de todos los cálculos.
+    \item Generación de reportes de auditoría.
+\end{itemize}
+
+\bigskip
+
+\subsection{Alto Rendimiento}
+
+El sistema procesa más de 500,000 registros complejos en segundos, representando una mejora de órdenes de magnitud respecto a los sistemas tradicionales:
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Métrica} & \textbf{Sistema Tradicional} & \textbf{Sentinel} \\
+\midrule
+Tiempo de procesamiento & Horas & Segundos \\
+Consultas a BD & Miles & Cero \\
+Latencia por registro & Alta & Mínima \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\subsection{Precisión Matemática}
+
+El algoritmo de distribución de aportes garantiza precisión absoluta mediante aritmética de enteros:
+
+\[
+\sum_{i=1}^{n} \text{anticipo}_i = \text{monto\_aprobado}
+\]
+
+\bigskip
+
+\section{Contribuciones}
+
+\bigskip
+
+\begin{enumerate}
+    \item Arquitectura Hexagonal: Implementación de una arquitectura desacoplada que facilita el mantenimiento y evolución del sistema.
+    \item Hash Join en Memoria: Algoritmo de fusión de datos con complejidad lineal O(n + m + k).
+    \item Motor de Cálculo Híbrido: Combinación de scripting Rhai con cálculo nativo en Rust.
+    \item Distribución Exacta: Algoritmo de distribución proporcional con garantía de precisión.
+\end{enumerate}
+
+\bigskip
+
+\section{Trabajos Futuros}
+
+\bigskip
+
+\begin{itemize}
+    \item Implementación de más módulos de cálculo (intereses, ajustes).
+    \item Integración con sistemas de reportes avanzada.
+    \item Optimización para hardware específico (GPU).
+    \item Dashboard de monitoreo en tiempo real.
+    \item API REST para consultas interactivas.
+\end{itemize}
+
+\bigskip
+
+\section{Reflexión Final}
+
+\bigskip
+
+Sandra Sentinel ejemplifica cómo la aplicación rigurosa de principios de ingeniería de sistemas modernos puede transformar radicalmente procesos que parecían intractable. La combinación de computación en memoria, paralelismo de datos y precisión matemática no es solo una mejora técnica, sino un cambio de paradigma en la forma de abordar la auditoría de sistemas heredados.
+
+\bigskip
+
+El sistema no pretende reemplazar los sistemas existentes, sino complementarlos con una capa de verificación y auditoría que garantiza la integridad de los cálculos críticos. En un contexto donde la precisión financiera es fundamental, Sentinel representa un paso hacia la excelencia operativa.
+
+\bigskip
+
+\begin{flushright}
+    \textbf{Carlos Peña} \\
+    \textit{Caracas, Venezuela} \\
+    \textit{Marzo 2026}
+\end{flushright}
+
+\vfill
+\newpage
