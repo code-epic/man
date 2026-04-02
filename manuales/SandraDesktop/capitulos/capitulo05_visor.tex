@@ -344,3 +344,234 @@ El proceso de seguridad del visor sigue estos pasos:
 \textbf{Responsabilidad del Usuario}\\
 Aunque el visor proporciona proteccion tecnica robusta, la seguridad final depende del comportamiento del usuario: no fotografiar la pantalla con dispositivos externos, no transcribir informacion sensible a otros medios, cerrar sesion al alejarse del equipo.
 \end{quote}
+
+\section{Huella Digital y Trazabilidad de Documentos}
+\label{sec:huella-digital}
+
+El Visor de Documentos integra el protocolo \keyconcept{Alquimia Invisible} para proporcionar trazabilidad completa de todos los documentos manipulados.
+
+\notacientifica{Chaque documento visualizado o exportado desde el Visor puede incluir un sello invisible de trazabilidad que permite rastrear su origen en caso de filtración.}
+
+\subsection{Sello de Trazabilidad SDC-Seal}
+
+Cuando se exporta un documento desde el Visor, el sistema inyecta automaticamente un sello de trazabilidad:
+
+\begin{caja}{Informacion del Sello}
+\begin{itemize}[leftmargin=1.5em, nosep]
+\item Identificador del dispositivo emisor
+\item Identificador del usuario que realizo la exportacion
+\item Timestamp de generacion
+\item Hash del contenido original
+\end{itemize}
+\end{caja}
+
+\notacientifica{El sello utiliza tecnicas de esteganografia avanzada (Zero-Width Bit Encoding) que son completamente invisibles al usuario pero verificables por el sistema.}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width=0.7\textwidth]{anexos/11 visor.huelladigital.png}}
+\caption{Activacion del sello de trazabilidad en el Visor}
+\label{fig:visor-huella}
+\end{figure}
+
+\notacientifica{El usuario puede activar o desactivar el sellado desde la interfaz del Visor. Por defecto, el sistema esta configurado para sellar automaticamente todos los documentos exportados.}
+
+\subsection{Huella Digital del Documento}
+
+El Visor muestra la huella digital de cada documento:
+
+\begin{caja}{Informacion de Huella}
+\begin{itemize}[leftmargin=1.5em, nosep]
+\item \textbf{Hash de contenido}: Identificador unico del contenido
+\item \textbf{Estado del sello}: Activo/Inactivo/Invalido
+\item \textbf{Fecha de creacion}: Cuando fue generado el documento
+\item \textbf{Origen}: Usuario y dispositivo que lo crearon
+\item \textbf{Trazabilidad}: Historial de movimientos del documento
+\end{itemize}
+\end{caja}
+
+\notacientifica{Esta informacion permite al usuario saber instantaneamente si un documento esta protegido por Alquimia Invisible.}
+
+\subsection{Exportacion con Proteccion SSE}
+
+El Visor soporta exportacion con cifrado del lado del servidor (Server-Side Encryption):
+
+\begin{caja}{Opciones de Exportacion Protegida}
+\begin{itemize}[leftmargin=1.5em, nosep]
+\item \textbf{Exportar SSE}: Cifrado con clave gestionada por SDC
+\item \textbf{Exportar GPG}: Cifrado con clave publica GPG
+\item \textbf{Exportar SSE + Sello}: Cifrado + trazabilidad invisible
+\end{itemize}
+\end{caja}
+
+\notacientifica{La combinacion de cifrado y trazabilidad proporciona multiple capas de proteccion para documentos sensibles.}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width=0.65\textwidth]{anexos/11 visor encriptar.png}}
+\caption{Opciones de cifrado en exportacion}
+\label{fig:visor-encriptar-opts}
+\end{figure}
+
+\notacientifica{Para mas detalles sobre el protocolo Alquimia Invisible, consulte el Capitulo 8 de este manual.}
+
+\section{Previsualizacion de Archivos CSV}
+\label{sec:preview-csv}
+
+El visor permite previsualizar archivos CSV de forma rapida y eficiente.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{anexos/12 preview-csv.png}
+\caption{Previsualizacion de archivo CSV}
+\label{fig:preview-csv}
+\end{figure}
+
+\subsection{Filtros y Busqueda}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width=0.65\textwidth]{anexos/12 preview-csv.filtro.png}}
+\caption{Filtros disponibles en previsualizacion CSV}
+\label{fig:csv-filtro}
+\end{figure}
+
+El sistema de previsualizacion CSV permite:
+
+\begin{itemize}[leftmargin=*]
+    \item Filtrar columnas por criterios especificos
+    \item Buscar valores en tiempo real
+    \item Ordenar datos por cualquier columna
+    \item Exportar solo la seleccion actual
+\end{itemize}
+
+\begin{caja}{Optimizacion de Rendimiento}
+Los archivos CSV grandes se previsualizan de forma paginada, cargando solo las primeras 1000 filas para mantener la fluidez de la interfaz. La busqueda opera sobre indices en memoria para respuestas instantaneas.
+\end{caja}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width=0.65\textwidth]{anexos/12 preview-csv.buscar.png}}
+\caption{Barra de busqueda en previsualizacion}
+\label{fig:csv-buscar}
+\end{figure}
+
+\notacientifica{El visor de CSV soporta codificacion UTF-8 y detecta automaticamente el delimitador (coma, punto y coma, tabulador).}
+
+\section{Eliminacion de Documentos}
+\label{sec:eliminar-doc}
+
+El sistema de eliminacion segura garantiza que los documentos borrados no puedan ser recuperados.
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width=0.7\textwidth]{anexos/11 visor.eliminar.nomina.png}}
+\caption{Panel de eliminacion segura de documentos}
+\label{fig:visor-eliminar}
+\end{figure}
+
+\subsection{Proceso de Eliminacion Segura}
+
+\begin{enumerate}
+    \item El usuario selecciona el documento a eliminar
+    \item SDC muestra confirmacion con resumen del documento
+    \item Se ejecuta borrado seguro (overwrite con datos aleatorios)
+    \item Se elimina la referencia de la base de datos
+    \item Se registra el evento en logs de auditoria
+\end{enumerate}
+
+\begin{caja}{Trazabilidad de Eliminacion}
+Cada eliminacion genera un registro de auditoria que incluye:
+\begin{itemize}[leftmargin=1.5em, nosep]
+    \item Usuario que realizo la eliminacion
+    \item Timestamp del evento
+    \item Hash del documento eliminado
+    \item Motivo de eliminacion (si se especifica)
+\end{itemize}
+\end{caja}
+
+\notacientifica{Los documentos eliminados no pueden ser recuperados ni por el usuario ni por administradores del sistema.}
+
+\section{Estados del Visor}
+\label{sec:estados-visor}
+
+El visor muestra diferentes estados durante su ciclo de vida:
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width=0.65\textwidth]{anexos/11 visor.cargando.png}}
+\caption{Estado de carga del documento}
+\label{fig:visor-cargando}
+\end{figure}
+
+\subsection{Estado: Cargando}
+
+\begin{itemize}[leftmargin=*]
+    \item Indicador de progreso de descarga
+    \item Descompresion de archivos comprimidos
+    \item Verificacion de integridad del documento
+    \item Preparacion del buffer de visualizacion
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width=0.65\textwidth]{anexos/14 visor encriptado.png}}
+\caption{Estado de documento encriptado}
+\label{fig:visor-encriptado-estado}
+\end{figure}
+
+\subsection{Estado: Encriptado}
+
+\begin{itemize}[leftmargin=*]
+    \item Indicador de candado activo
+    \item Requerimiento de clave para acceso
+    \item Vista previa de metadatos (sin contenido)
+    \item Opciones de desbloqueo disponibles
+\end{itemize}
+
+\notacientifica{El cambio entre estados es automatico y no requiere intervencion del usuario.}
+
+\section{Exportacion Avanzada}
+\label{sec:export-avanzada}
+
+\subsection{Exportacion GPG}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width=0.65\textwidth]{anexos/11 visor encriptar.gpg.png}}
+\caption{Exportacion con formato GPG}
+\label{fig:visor-export-gpg}
+\end{figure}
+
+El sistema permite exportar documentos con cifrado GPG:
+
+\begin{caja}{Opciones de Exportacion GPG}
+\begin{itemize}[leftmargin=1.5em, nosep]
+    \item \textbf{Cifrado simetrico}: Con passphrase definida por el usuario
+    \item \textbf{Cifrado asimetrico}: Con clave publica del destinatario
+    \item \textbf{Firma separada}: Genera archivo .sig adjunto
+    \item \textbf{Formato armored}: Salida ASCII readable (para email)
+\end{itemize}
+\end{caja}
+
+\notacientifica{Los archivos exportados en formato GPG son interoperables con cualquier sistema compatible OpenPGP.}
+
+\subsection{Exportacion SSE (Server-Side Encryption)}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width=0.65\textwidth]{anexos/11 visor exportar.sse.png}}
+\caption{Exportacion con cifrado del lado del servidor}
+\label{fig:visor-export-sse}
+\end{figure}
+
+La exportacion SSE proporciona:
+
+\begin{itemize}[leftmargin=*]
+    \item Cifrado con claves gestionadas por SDC
+    \item Posibilidad de agregar sello de trazabilidad
+    \item Registro de auditoria de la exportacion
+    \item Revocacion de acceso via URL
+\end{itemize}
+
+\notacientifica{La combinacion de SSE + Sello de Alquimia Invisible proporciona maxima proteccion para documentos sensibles.}

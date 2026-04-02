@@ -4,36 +4,50 @@
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Pantalla de vinculacion y deteccion de entorno}}{4}{figure.caption.10}%
 \contentsline {figure}{\numberline {1.3}{\ignorespaces Pantalla de bienvenida de SDC}}{5}{figure.caption.12}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Dashboard principal de Sandra Desktop Container}}{7}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Dashboard principal de Sandra Desktop Container}}{10}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Arquitectura general del sistema SDC}}{15}{figure.caption.21}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Interfaz de gestion de conexiones}}{13}{figure.caption.21}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Lista de aplicaciones disponibles e instaladas}}{15}{figure.caption.23}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Formulario completo de creacion de aplicacion}}{16}{figure.caption.24}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Monitor de conexiones activas}}{18}{figure.caption.29}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Monitor del sistema en tiempo real}}{19}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Interfaz de gestion de conexiones}}{19}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Lista de aplicaciones disponibles e instaladas}}{21}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Formulario completo de creacion de aplicacion}}{22}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Monitor de conexiones activas}}{24}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Monitor del sistema en tiempo real}}{25}{figure.caption.31}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Panel principal de configuracion de seguridad}}{21}{figure.caption.32}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Configuracion de politicas de contrasenas}}{22}{figure.caption.34}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Gestor de rutas proxy}}{24}{figure.caption.35}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Panel principal de configuracion de seguridad}}{40}{figure.caption.45}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Configuracion de politicas de contrasenas}}{41}{figure.caption.47}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Gestor de rutas proxy}}{43}{figure.caption.48}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Visor seguro de documentos}}{28}{figure.caption.37}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Lista de documentos en el visor}}{29}{figure.caption.39}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Proceso de encriptacion de documento}}{30}{figure.caption.40}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Documento en estado encriptado}}{32}{figure.caption.41}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Opciones de exportacion segura}}{33}{figure.caption.42}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Vista previa de documento protegido}}{35}{figure.caption.44}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Panel de autenticacion para desbloqueo}}{36}{figure.caption.45}%
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Documento en vista completa desbloqueada}}{37}{figure.caption.46}%
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Configurador del visor de documentos}}{38}{figure.caption.47}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Visor seguro de documentos}}{49}{figure.caption.51}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Lista de documentos en el visor}}{50}{figure.caption.53}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Proceso de encriptacion de documento}}{51}{figure.caption.54}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Documento en estado encriptado}}{53}{figure.caption.55}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Opciones de exportacion segura}}{54}{figure.caption.56}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Vista previa de documento protegido}}{56}{figure.caption.58}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Panel de autenticacion para desbloqueo}}{57}{figure.caption.59}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Documento en vista completa desbloqueada}}{58}{figure.caption.60}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Configurador del visor de documentos}}{59}{figure.caption.61}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Activacion del sello de trazabilidad en el Visor}}{62}{figure.caption.63}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Opciones de cifrado en exportacion}}{63}{figure.caption.64}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Previsualizacion de archivo CSV}}{63}{figure.caption.65}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Filtros disponibles en previsualizacion CSV}}{64}{figure.caption.66}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Barra de busqueda en previsualizacion}}{65}{figure.caption.67}%
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Panel de eliminacion segura de documentos}}{65}{figure.caption.68}%
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Estado de carga del documento}}{66}{figure.caption.69}%
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Estado de documento encriptado}}{67}{figure.caption.70}%
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Exportacion con formato GPG}}{68}{figure.caption.71}%
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Exportacion con cifrado del lado del servidor}}{69}{figure.caption.72}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Interfaz de chat de Sandra AI}}{42}{figure.caption.49}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Interfaz de chat de Sandra AI}}{71}{figure.caption.73}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Gestion de perfiles en el chat}}{78}{figure.caption.78}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Selector de temas visuales}}{49}{figure.caption.54}%
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Configuracion avanzada de red}}{51}{figure.caption.56}%
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Panel de control de acceso}}{52}{figure.caption.58}%
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Gestor de actualizaciones}}{54}{figure.caption.60}%
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Informacion detallada del sistema}}{55}{figure.caption.62}%
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Pantalla de cierre del sistema}}{57}{figure.caption.64}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Selector de temas visuales}}{81}{figure.caption.79}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Configuracion avanzada de red}}{83}{figure.caption.81}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Panel de control de acceso}}{84}{figure.caption.83}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Gestor de actualizaciones}}{86}{figure.caption.85}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Informacion detallada del sistema}}{87}{figure.caption.87}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Pantalla de cierre del sistema}}{89}{figure.caption.89}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Activación del sello de trazabilidad en el Visor de Documentos}}{108}{figure.caption.100}%
 \addvspace {10\p@ }
 \contentsfinish 
 \contentsfinish 

@@ -189,3 +189,92 @@ Botones de acceso rapido disponibles:
     \item \textbf{Tema Oscuro}: Optimizado para uso nocturno
     \item \textbf{Tema Alto Contraste}: Accesibilidad
 \end{itemize}
+
+\section{Arquitectura del Sistema}
+\label{sec:arquitectura-sdc}
+
+SDC esta construido sobre una arquitectura multicapa que combina el rendimiento de Rust con la versatilidad de Angular, proporcionando una experiencia robusta y segura.
+
+\notacientifica{La arquitectura de SDC sigue el principio de separacion de responsabilidades, manteniendo el nucleo de seguridad (Rust) completamente aislado de la capa de presentacion (Angular).}
+
+\subsection{Arquitectura Multicapa}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{anexos/arquitectura.y.comunicacion.png}
+\caption{Arquitectura general del sistema SDC}
+\label{fig:arquitectura}
+\end{figure}
+
+La arquitectura de SDC se organiza en cuatro capas distintas:
+
+\begin{caja}{Capas del Sistema}
+\begin{enumerate}
+\item \textbf{Capa de Presentacion (Angular UI)}: Interfaz de usuario desarrollada en Angular con Componentes Standalone, Signals y Observables para reactividad instantanea.
+
+\item \textbf{Capa de Puente (Tauri IPC)}: Puente de comunicacion entre la UI y el sistema operativo. Implementa un esquema de protocolo personalizado (sandra-app://) para el aislamiento de micro-frontends.
+
+\item \textbf{Capa de Core (Rust + Tokio)}: Nucleo del sistema escrito en Rust, gestionando criptografia, base de datos SQLite, WebSockets y entorno de sandboxing.
+
+\item \textbf{Capa de Sistema (OS Nativo)}: Integracion con el sistema operativo subyacente para gestion de archivos, red y procesos.
+\end{enumerate}
+\end{caja}
+
+\notacientifica{Esta separacion garantiza que las vulnerabilidades en la interfaz de usuario no puedan comprometer el nucleo de seguridad del sistema.}
+
+\subsection{Componentes de la Capa de Presentacion}
+
+La interfaz de usuario en Angular implementa una arquitectura basada en componentes:
+
+\begin{caja}{Servicios Principales de Angular}
+\begin{itemize}
+\item \textbf{SdcService}: Gestion de conexiones y estado del sistema
+\item \textbf{AppStateService}: Sincronizacion de telemetria en tiempo real
+\item \textbf{SecureStorageService}: Acceso cifrado al almacen local
+\item \textbf{WebSocketService}: Gestion de conexiones en tiempo real
+\end{itemize}
+\end{caja}
+
+\notacientifica{Los servicios utilizan patrones reactivos (Observables) para mantener la UI sincronizada con el estado del sistema en todo momento.}
+
+\subsection{Componentes de la Capa de Core (Rust)}
+
+El backend en Rust proporciona las siguientes capacidades fundamentales:
+
+\begin{caja}{Modulos de Rust Core}
+\begin{itemize}
+\item \textbf{Crypto Module}: Implementacion de AES-256-GCM, Argon2id
+\item \textbf{Database Module}: SQLite con cifrado para persistencia local
+\item \textbf{WebSocket Module}: Gestion de conexiones concurrentes con Tokio
+\item \textbf{Sandbox Module}: Aislamiento de aplicaciones de terceros
+\item \textbf{Inspector Module}: Interceptacion y registro de trafico de red
+\end{itemize}
+\end{caja}
+
+\notacientifica{El runtime asincrono Tokio permite manejar miles de conexiones WebSocket concurrentes con latencia cercana a cero, garantizando una experiencia fluida.}
+
+\subsection{Comunicacion entre Capas}
+
+La comunicacion entre Angular y Rust se realiza mediante el puente IPC de Tauri:
+
+\begin{caja}{Tipos de Comunicacion}
+\begin{itemize}
+\item \textbf{Commands}: Llamadas sincronas desde Angular a Rust para operaciones atomicas
+\item \textbf{Events}: Eventos asincronos desde Rust hacia Angular para notificaciones
+\item \textbf{Streams}: Flujos de datos continuos para sincronizacion masiva
+\end{itemize}
+\end{caja}
+
+\notacientifica{El puente IPC esta diseñado para impedir la inyeccion de codigo arbitrario, proporcionando un canal seguro entre la UI y el sistema.}
+
+\subsection{Protocolo Sandra-App}
+
+SDC implementa un esquema de protocolo personalizado para el aislamiento de micro-frontends:
+
+\begin{caja}{Formato del Protocolo}
+\begin{verbatim}
+sandra-app://[modulo]/[accion]?[parametros]
+\end{verbatim}
+\end{caja}
+
+\notacientifica{Este protocolo permite que las aplicaciones de terceros se ejecuten en contextos aislados, evitando el acceso no autorizado a recursos del sistema.}

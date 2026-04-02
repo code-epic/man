@@ -54,6 +54,7 @@
 \usepackage{subcaption}
 \usepackage{enumitem}
 \usepackage{float}
+\usepackage{tcolorbox}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{colortbl}
@@ -170,6 +171,24 @@
 \newcommand{\sandraai}{\textit{Sandra AI}}
 \newcommand{\techref}[2]{\textcolor{sandraDark}{\textbf{#1}}}
 \newcommand{\keyconcept}[1]{\textbf{\color{sandraDark}#1}}
+\newcommand{\notacientifica}[1]{\footnote{\color{textLight}\tiny #1}}
+
+\newenvironment{caja}[1]{%
+    \par\medskip
+    \begin{tcolorbox}[colback=sandraSoft, colframe=sandraGreen, title={#1}]
+}{%
+    \end{tcolorbox}
+    \par\medskip
+}
+
+\newenvironment{definicion}{%
+    \par\medskip
+    \begin{tcolorbox}[colback=sandraLight, colframe=sandraDark, borderline={0.5pt}{sandraDark}]
+    \itshape
+}{%
+    \end{tcolorbox}
+    \par\medskip
+}
 
 %--------------------------------------------------------------------
 % CONFIGURACION DE ESPACIOS
@@ -221,17 +240,26 @@
 \input{capitulos/capitulo02_dashboard}
 
 \part{Gestión y Operaciones}
+\clearpage
 \input{capitulos/capitulo03_gestion}
+\clearpage
 \input{capitulos/capitulo04_seguridad}
 
 \part{Seguridad Avanzada}
+\clearpage
 \input{capitulos/capitulo05_visor}
 
 \part{Inteligencia Artificial}
+\clearpage
 \input{capitulos/capitulo06_chat}
 
 \part{Configuración Avanzada}
+\clearpage
 \input{capitulos/capitulo07_configuracion}
+
+\part{Alquimia Invisible}
+\clearpage
+\input{capitulos/capitulo08_alquimia}
 
 %--------------------------------------------------------------------
 % ANEXOS

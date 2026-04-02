@@ -1,0 +1,301 @@
+%======================================================================
+% CAPÍTULO 9: SANDRA CONCILIATION FILE (SCF)
+%======================================================================
+\chapter{Sandra Conciliation File: Sistema de Conciliación de Archivos}
+
+\textbf{Sandra Conciliation File (SCF)} es una herramienta de comparación de archivos CSV de alto rendimiento, diseñada para identificar coincidencias y hallazgos entre dos fuentes de datos. Originalmente desarrollada como proyecto independiente, fue integrada en \textbf{Sentinel} como módulo de conciliación bancaria.
+
+\notacientifica{SCF implementa un algoritmo de Hash Join en memoria, permitiendo сравнения eficiente de grandes archivos sin necesidad de bases de datos.}
+
+\section{Introducción y Propósito}
+
+La conciliación de archivos es un proceso fundamental en entornos empresariales donde es necesario comparar registros de diferentes fuentes: sistemas internos vs. extractos bancarios, nóminas vs. transferencias, o bases de datos legacy vs. sistemas modernos.
+
+\begin{caja}{Caso de Uso}
+\begin{itemize}
+\item \textbf{Conciliación Bancaria}: Comparar movimientos del banco con registros del sistema de nómina.
+\item \textbf{Auditoría de Datos}: Identificar discrepancias entre dos bases de datos.
+\item \textbf{Validación de Carga}: Verificar que los datos cargados coinciden con los originales.
+\item \textbf{Detección de Duplicados}: Encontrar registros duplicados entre sistemas.
+\end{itemize}
+\end{caja}
+
+\notacientifica{La comparación eficiencia de archivos es crítica en entornos con miles o millones de registros, donde herramientas tradicionales como diff o grep resultan insuficientes.}
+
+\subsection{Definición del Sistema}
+
+\begin{definicion}
+\textbf{SCF (Sandra Conciliation File)} es una herramienta CLI que compara dos archivos CSV delimitados, identificando:
+\begin{itemize}
+\item \textbf{Coincidencias}: Registros del origen que existen en el archivo de comparación.
+\item \textbf{Hallazgos}: Registros del origen que NO existen en el archivo de comparación.
+\item \textbf{Errores}: Problemas de formato en los archivos de entrada.
+\end{itemize}
+\end{definicion}
+
+\notacientifica{SCF utiliza claves compuestas para la comparación, permitiendo definir qué columnas constituyen la identidad única de cada registro.}
+
+\section{Arquitectura}
+
+SCF está diseñado bajo principios de modularidad y eficiencia, con una arquitectura que facilita tanto el uso independiente como la integración en Sentinel:
+
+\subsection{Estructura de Módulos}
+
+\begin{caja}{Componentes del Sistema}
+\begin{itemize}
+\item \textbf{core/keys.rs}: Generador de claves de comparación.
+\item \textbf{core/comparator.rs}: Motor de comparación Hash Join.
+\item \textbf{io/mod.rs}: Lectura/escritura de archivos con buffering.
+\item \textbf{report/mod.rs}: Generación de reportes de resultados.
+\item \textbf{error.rs}: Manejo de errores personalizado.
+\item \textbf{cli.rs}: Interfaz de línea de comandos.
+\end{itemize}
+\end{caja}
+
+\notacientifica{La arquitectura modular permite reutilizar los componentes core en diferentes contextos, incluyendo la integración directa en Sentinel.}
+
+\subsection{Patrón de Comparación (Hash Join)}
+
+SCF implementa el algoritmo \textbf{Hash Join} para comparar archivos de manera eficiente:
+
+\begin{caja}{Fases del Algoritmo}
+\begin{enumerate}
+\item \textbf{Carga (Build Phase)}: Lee el archivo de comparación y genera un HashSet de claves.
+\item \textbf{Comparación (Probe Phase)}: Lee el archivo de origen y para cada registro verifica si su clave existe en el HashSet.
+\item \textbf{Resultado}: Escribe los registros en archivos separados según el resultado.
+\end{enumerate}
+\end{caja}
+
+\notacientifica{La complejidad del algoritmo Hash Join es O(N+M), significativamente más eficiente que algoritmos de comparación línea a línea.}
+
+\bigskip
+
+\subsection{Stack Tecnológico}
+
+\begin{caja}{Tecnologías del Stack}
+\begin{itemize}
+\item \textbf{Lenguaje}: Rust (Edición 2021).
+\item \textbf{CLI}: Clap para parsing de argumentos.
+\item \textbf{Concurrencia}: Rayon para procesamiento paralelo.
+\item \textbf{UI}: Indicatif para barras de progreso.
+\item \textbf{Errores}: Thiserror para manejo de errores tipado.
+\end{itemize}
+\end{caja}
+
+\notacientifica{El uso de Rayon permite paralelizar la comparación de grandes archivos, aprovechando todos los cores disponibles.}
+
+\section{Uso del Sistema}
+
+SCF puede utilizarse de dos maneras: como herramienta CLI independiente o como módulo integrado en Sentinel.
+
+\subsection{Como Herramienta Independiente}
+
+\begin{caja}{Sintaxis CLI}
+\begin{verbatim}
+scf <archivo_comparacion> -c <columnas> <archivo_origen> -o <columnas> [opciones]
+
+Opciones:
+  -d, --delimiter <CAR>    Delimitador (default: ;)
+  -O, --output <DIR>       Directorio de salida (default: out)
+  --skip-header            Omitir primera línea
+  -q, --quiet              Modo silencioso
+  -v, --verbose            Salida detallada
+\end{verbatim}
+\end{caja}
+
+\notacientifica{La flexibilidad en la definición de claves permite adaptar la comparación a cualquier formato de archivo.}
+
+\bigskip
+
+\subsection{Ejemplo de Uso}
+
+\begin{caja}{Ejemplo Práctico}
+\begin{verbatim}
+# Comparar movimientos bancarios vs. sistema de nómina
+scf banco.csv -c 0,1,2 nomina.csv -o 0,1,3
+
+# Output:
+# out/
+# ├── coincidencias.txt   # Registros que coinciden
+# ├── hallazgos.txt       # Registros en banco no en sistema
+# ├── log.txt           # Errores encontrados
+# └── reporte.txt      # Resumen de la operación
+\end{verbatim}
+\end{caja}
+
+\notacientifica{La estructura de salida facilita la integración con flujos de trabajo de auditoría.}
+
+\subsection{Como Comando de Sentinel}
+
+SCF está integrado en Sentinel como el comando \texttt{conciliate}:
+
+\begin{caja}{Sintaxis en Sentinel}
+\begin{verbatim}
+sandra-sentinel conciliate \
+  --comparison <archivo> \
+  --comparison-columns <col1,col2,...> \
+  --origin <archivo> \
+  --origin-columns <col1,col2,...> \
+  [--delimiter <char>] \
+  [--output <dir>] \
+  [--skip-header] \
+  [--quiet]
+\end{verbatim}
+\end{caja}
+
+\notacientifica{La integración en Sentinel permite combinar la conciliación de archivos con el resto de capacidades del motor de cálculo.}
+
+\section{Optimizaciones de Rendimiento}
+
+SCF implementa varias optimizaciones para manejar archivos de gran tamaño:
+
+\subsection{Pre-asignación de Memoria}
+
+\begin{caja}{Optimización de HashSet}
+\begin{itemize}
+\item Uso de \texttt{HashSet::with\_capacity(capacity)} para evitar rehashings.
+\item Pre-cálculo del tamaño basado en el archivo de comparación.
+\item Reducción significativa de asignaciones de memoria.
+\end{itemize}
+\end{caja}
+
+\notacientifica{La pre-asignación puede reducir el tiempo de ejecución en hasta 30\% para archivos grandes.}
+
+\bigskip
+
+\subsection{Buffered I/O}
+
+\begin{caja}{E/S con Buffer}
+\begin{itemize}
+\item \texttt{BufReader} con capacidad de 1MB para lectura.
+\item \texttt{BufWriter} para escritura eficiente.
+\item Reducción del número de syscalls al sistema operativo.
+\end{itemize}
+\end{caja}
+
+\notacientifica{El buffering es especialmente efectivo en sistemas con latency de disco alta.}
+
+\bigskip
+
+\subsection{Procesamiento Paralelo}
+
+\begin{caja}{Paralelización con Rayon}
+\begin{itemize}
+\item División del archivo de origen en chunks de 1000 líneas.
+\item Procesamiento paralelo de cada chunk.
+\item Reconstrucción de resultados en orden.
+\end{itemize}
+\end{caja}
+
+\notacientifica{Rayon transparenta la paralelización, permitiendo escalar a múltiples cores sin cambiar la lógica del código.}
+
+\bigskip
+
+\subsection{Barra de Progreso}
+
+\begin{caja}{Indicatif Progress Bar}
+\begin{itemize}
+\item Visualización en tiempo real del progreso.
+\item Estimación de tiempo restante.
+\item Actualización cada 10,000 líneas.
+\end{itemize}
+\end{caja}
+
+\notacientifica{La barra de progreso es especialmente útil para archivos de millones de líneas donde la operación puede tomar varios minutos.}
+
+\section{Formato de Archivos}
+
+SCF soporta archivos CSV con delimitador configurable:
+
+\begin{caja}{Especificación de Formato}
+\begin{itemize}
+\item \textbf{Delimitador}: Por defecto es punto y coma (;), configurable.
+\item \textbf{Codificación}: UTF-8.
+\item \textbf{Salto de línea}: LF o CRLF.
+\item \textbf{Encabezados}: Opcional, con flag \texttt{--skip-header}.
+\end{itemize}
+\end{caja}
+
+\notacientifica{La flexibilidad en el delimitador permite trabajar con diferentes estándares regionales.}
+
+\subsection{Definición de Claves}
+
+Las claves de comparación se definen mediante índices de columnas (0-based):
+
+\begin{caja}{Ejemplos de Claves}
+\begin{verbatim}
+# Clave simple (una columna)
+-c 0
+
+# Clave compuesta (múltiples columnas)
+-c 0,1,2
+
+# Diferentes claves por archivo
+-c 0,1,2  (comparación usa columnas 0,1,2)
+-o 0,3,4  (origen usa columnas 0,3,4)
+\end{verbatim}
+\end{caja}
+
+\notacientifica{Las claves compuestas permiten comparación precisa cuando un solo campo no es único.}
+
+\section{Salida del Sistema}
+
+\subsection{Archivos Generados}
+
+\begin{caja}{Archivos de Resultado}
+\begin{enumerate}
+\item \textbf{coincidencias.txt}: Registros del origen que existen en la comparación.
+\item \textbf{hallazgos.txt}: Registros del origen que NO existen en la comparación.
+\item \textbf{log.txt}: Errores de formato encontrados.
+\item \textbf{reporte.txt}: Resumen con conteo de líneas y tamaño de archivos.
+\end{enumerate}
+\end{caja}
+
+\notacientifica{La separación de resultados facilita el flujo de trabajo de auditoría.}
+
+\subsection{Formato del Reporte}
+
+\begin{caja}{Estructura del Reporte}
+\begin{verbatim}
+----------------------------------------
+Archivo          Líneas   Peso (bytes)
+----------------------------------------
+coincidencias.txt   1523   89234
+hallazgos.txt        287   12456
+log.txt                0      0
+\end{verbatim}
+\end{caja}
+
+\notacientifica{El reporte permite evaluar rápidamente el resultado de la conciliación.}
+
+\section{Integración con Sentinel}
+
+La integración de SCF en Sentinel permite un flujo de trabajo unificado:
+
+\begin{caja}{Flujo de Trabajo Integrado}
+\begin{enumerate}
+\item Sentinel carga datos de múltiples fuentes (Banco, Sistema, Legacy).
+\item SCF realiza la conciliación entre las fuentes.
+\item El resultado se pasa al Motor de Cálculo para procesamiento.
+\item Se genera la nómina auditada y validada.
+\end{enumerate}
+\end{caja}
+
+\notacientifica{La integración elimina la necesidad de herramientas externas para la conciliación.}
+
+\section{Conclusiones del Capítulo}
+
+Sandra Conciliation File representa una herramienta especializada dentro del ecosistema Sandra:
+
+\begin{caja}{Resumen de Capacidades}
+\begin{itemize}
+\item \textbf{Comparación Eficiente}: Algoritmo Hash Join O(N+M).
+\item \textbf{Formato Flexible}: Delimitador configurable.
+\item \textbf{Claves Compuestas}: Múltiples columnas para identificación.
+\item \textbf{Rendimiento Optimizado}: Buffered I/O, pre-alloc, paralelo.
+\item \textbf{Salida Estructurada}: Archivos separados para auditoría.
+\item \textbf{Integración Total}: Comando nativo en Sentinel.
+\end{itemize}
+\end{caja}
+
+\notacientifica{SCF complementa las capacidades de Sentinel, proporcionando una solución completa para la gestión y validación de datos en entornos empresariales.}

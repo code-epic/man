@@ -1,0 +1,115 @@
+%======================================================================
+% CAPÍTULO 6: SANDRA CONCILIATION FILE (SCF)
+%======================================================================
+\chapter{Sandra Conciliation File (SCF)}
+
+\section{Introducción al Módulo SCF}
+
+\textbf{SCF (Sandra Conciliation File)} es el módulo de conciliación de archivos CSV integrado en Sentinel. Permite comparar dos archivos para identificar coincidencias y hallazgos.
+
+\notacientifica{SCF utiliza un algoritmo de Hash Join en memoria, permitiendo comparar archivos de miles o millones de líneas eficientemente.}
+
+\section{Uso del Sistema}
+
+\subsection{Comando Conciliate}
+
+El comando \texttt{conciliate} permite comparar archivos CSV directamente desde Sentinel:
+
+\begin{verbatim}
+sandra-sentinel conciliate \
+  --comparison <archivo> \
+  --comparison-columns <col1,col2,...> \
+  --origin <archivo> \
+  --origin-columns <col1,col2,...> \
+  [--delimiter <char>] \
+  [--output <dir>] \
+  [--skip-header] \
+  [--quiet]
+\end{verbatim}
+
+\notacientifica{La integración de SCF en Sentinel permite un flujo de trabajo unificado para procesamiento y conciliación.}
+
+\subsection{Ejemplo Práctico}
+
+\begin{caja}{Ejemplo de Uso}
+\begin{verbatim}
+# Comparar movimientos bancarios vs. sistema de nómina
+sandra-sentinel conciliate \
+  --comparison banco.csv \
+  --comparison-columns 0,1,2 \
+  --origin sistema.csv \
+  --origin-columns 0,3,4 \
+  --output resultados/
+\end{verbatim}
+\end{caja}
+
+\section{Salida Generada}
+
+\begin{caja}{Archivos de Resultado}
+\begin{enumerate}
+\item \textbf{coincidencias.txt}: Registros que coinciden entre ambos archivos.
+\item \textbf{hallazgos.txt}: Registros del origen que no están en comparación.
+\item \textbf{log.txt}: Errores de formato encontrados.
+\item \textbf{reporte.txt}: Resumen con conteo de líneas.
+\end{enumerate}
+\end{caja}
+
+\notacientifica{La separación de resultados facilita el flujo de trabajo de auditoría y conciliación.}
+
+\section{Arquitectura de SCF}
+
+SCF está diseñado con módulos independientes:
+
+\begin{caja}{Módulos de SCF}
+\begin{itemize}
+\item \textbf{core/keys.rs}: Generación de claves de comparación.
+\item \textbf{core/comparator.rs}: Motor de comparación Hash Join.
+\item \textbf{io/mod.rs}: Lectura/escritura con buffering.
+\item \textbf{report/mod.rs}: Generación de reportes.
+\item \textbf{error.rs}: Manejo de errores personalizado.
+\end{itemize}
+\end{caja}
+
+\notacientifica{La arquitectura modular permite reutilizar los componentes en diferentes contextos.}
+
+\section{Algoritmo de Comparación}
+
+SCF utiliza el algoritmo \textbf{Hash Join} para comparar archivos:
+
+\begin{enumerate}
+\item \textbf{Fase de Carga}: Lee el archivo de comparación y genera un HashSet de claves.
+\item \textbf{Fase de Comparación}: Lee el archivo de origen y verifica cada registro contra el HashSet.
+\item \textbf{Fase de Resultado}: Escribe los registros en archivos separados según el resultado.
+\end{enumerate}
+
+\notacientifica{La complejidad del algoritmo Hash Join es O(N+M), significativamente más eficiente que algoritmos de comparación línea a línea.}
+
+\section{Integración con Sentinel}
+
+SCF está integrado en Sentinel como módulo interno, permitiendo:
+
+\begin{itemize}
+\item Uso directo desde CLI de Sentinel.
+\item Combinación con capacidades de cálculo del motor.
+\item Flujo de trabajo unificado de procesamiento.
+\item Integración con gRPC para procesamiento remoto.
+\end{itemize}
+
+\notacientifica{La integración elimina la necesidad de herramientas externas para la conciliación de archivos.}
+
+\section{Conclusiones}
+
+El módulo SCF complementa las capacidades de Sentinel proporcionando:
+
+\begin{caja}{Resumen de Capacidades}
+\begin{itemize}
+\item \textbf{Comparación Eficiente}: Algoritmo Hash Join O(N+M).
+\item \textbf{Formato Flexible}: Delimitador configurable.
+\item \textbf{Claves Compuestas}: Múltiples columnas para identificación.
+\item \textbf{Rendimiento Optimizado}: Buffered I/O, pre-alloc, paralelo.
+\item \textbf{Salida Estructurada}: Archivos separados para auditoría.
+\item \textbf{Integración Total}: Comando nativo en Sentinel.
+\end{itemize}
+\end{caja}
+
+\notacientifica{SCF representa un ejemplo de ingeniería de sistemas especializada dentro del ecosistema Sandra.}

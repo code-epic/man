@@ -14,7 +14,7 @@ El chat de Sandra AI proporciona un espacio de dialogo continuo donde los usuari
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{anexos/chat.png}
+\includegraphics[width=0.95\textwidth]{anexos/22 chat.principal.png}
 \caption{Interfaz de chat de Sandra AI}
 \label{fig:chat}
 \end{figure}
@@ -210,3 +210,107 @@ Historial muy largo & Usa el comando limpiar chat para reiniciar \\
 \caption{Solucion de problemas comunes en el chat}
 \label{tab:problemas-chat}
 \end{table}
+
+\section{Gestion de Sesiones y Seguridad del Chat}
+\label{sec:gestion-sesiones}
+
+El sistema de chat de SDC implementa capacidades avanzadas de gestion de sesiones y seguridad que garantizan la trazabilidad e integridad de todas las conversaciones.
+
+\notacientifica{Cada mensaje en el chat puede ser rastreado hasta su origen, proporcionando un registro de auditoria completo.}
+
+\subsection{Agrupacion Temporal de Mensajes}
+
+Los mensajes se agrupan automaticamente por fecha, facilitando la lectura de hilos historicos:
+
+\begin{caja}{Caracteristicas de Agrupacion}
+\begin{itemize}
+\item \textbf{Agrupacion por fecha}: Los mensajes se organizan en secciones segun su fecha de envio
+\item \textbf{Secciones claras}: Separadores visuales entre dias diferentes
+\item \textbf{Navegacion rapida}: Acceso directo a conversaciones por fecha
+\end{itemize}
+\end{caja}
+
+\notacientifica{Esta organizacion facilita enormemente la busqueda y revision de conversaciones antiguas.}
+
+\subsection{Persistencia de Sesion}
+
+El chat implementa un motor de busqueda y eliminacion selectiva:
+
+\begin{caja}{Opciones de Persistencia}
+\begin{itemize}
+\item \textbf{Borrado de sesion individual}: Permite eliminar una conversacion especifica
+\item \textbf{Borrador Maestro}: Elimina todas las sesiones para cumplir con protocolos de seguridad post-operacion
+\item \textbf{Exportacion cifrada}: Permite exportar el historial antes de eliminarlo
+\end{itemize}
+\end{caja}
+
+\notacientifica{La capacidad de borrado selectivo permite cumplir con politicas de retencion de datos mientras se mantiene la funcionalidad del sistema.}
+
+\subsection{Scroll Inteligente}
+
+El sistema implementa auto-scroll con deteccion de interaccion del usuario:
+
+\begin{caja}{Comportamiento del Scroll}
+\begin{itemize}
+\item \textbf{Auto-scroll automatico}: Desplaza automaticamente al recibir nuevos mensajes
+\item \textbf{Detencion manual}: Si el usuario desplaza manualmente, el auto-scroll se pausa
+\item \textbf{Reanudacion}: Al hacer clic en el ultimo mensaje, el auto-scroll se reactiva
+\item \textbf{Notificacion de mensajes no leidos}: Indicador cuando hay mensajes nuevos fuera de vista
+\end{itemize}
+\end{caja}
+
+\notacientifica{Evite saltos bruscos durante la recepcion de rafagas de mensajes, mejorando la experiencia del usuario.}
+
+\subsection{Inyeccion de Identidad en Mensajes}
+
+Cada mensaje saliente incorpora automaticamente el perfil del autor:
+
+\begin{caja}{Datos de Identidad Inyectados}
+\begin{itemize}
+\item \textbf{Usuario}: ID unico del usuario extraido del JWT de sesion
+\item \textbf{Dispositivo}: Client ID del terminal emisor
+\item \textbf{Timestamp}: Fecha y hora exacta del envio
+\item \textbf{Version SDC}: Version del contenedor utilizada
+\end{itemize}
+\end{caja}
+
+\notacientifica{La inyeccion de identidad garantiza que el receptor pueda validar la procedencia del mensaje, proporcionando no repudiacion.}
+
+\begin{figure}[H]
+\centering
+\fbox{\includegraphics[width=0.7\textwidth]{anexos/22 chat.perfiles.png}}
+\caption{Gestion de perfiles en el chat}
+\label{fig:chat-perfiles}
+\end{figure}
+
+\notacientifica{Los perfiles de usuario permiten identificar rapidamente al emisor de cada mensaje.}
+
+\subsection{Filtro de Contenido}
+
+El sistema implementa sanitizacion proactiva de mensajes:
+
+\begin{caja}{Medidas de Seguridad}
+\begin{itemize}
+\item \textbf{Prevencion de XSS}: Elimina codigo potencialmente malicioso
+\item \textbf{Normalizacion de enlaces}: Valida URLs externas
+\item \textbf{Detencion de comandos}: Previene la ejecucion de comandos inyectados
+\item \textbf{Logging de seguridad}: Registra intentos de inyeccion
+\end{itemize}
+\end{caja}
+
+\notacientifica{La sanitizacion proactiva protege tanto al usuario como al sistema de posibles ataques a traves del chat.}
+
+\subsection{Historial y Auditoria}
+
+El historial de chat proporciona un registro completo para auditorias:
+
+\begin{caja}{Capacidades de Auditoria}
+\begin{itemize}
+\item \textbf{Registro completo}: Cada mensaje se almacena con todos los metadatos
+\item \textbf{Busqueda avanzada}: Filtrar por usuario, fecha, contenido
+\item \textbf{Exportacion}: Generar reportes de conversaciones
+\item \textbf{Trazabilidad}: Cada mensaje puede rastrearse hasta su origen
+\end{itemize}
+\end{caja}
+
+\notacientifica{Estas capacidades hacen del chat una herramienta valiosa para auditorias de seguridad y cumplimiento normativo.}
